@@ -13,6 +13,7 @@ class songs(db.Model):
 
 class artist_points(db.Model):
         Artist = db.Column(db.String(120), primary_key=True)
+        ArtistID = db.Column(db.Integer)
         Genre = db.Column(db.String(25), primary_key=True)
         Points = db.Column(db.Integer)
         def __repr__self(self):
@@ -27,5 +28,6 @@ class graphs(db.Model):
 class song_points(db.Model):
         SongID = db.Column(db.Integer, primary_key = True)
         ArtistID = db.Column(db.Integer)
+        Artist = db.Column(db.String(120))
         Genre = db.Column(db.String(25), primary_key = True)
         Points = db.Column(db.Integer)

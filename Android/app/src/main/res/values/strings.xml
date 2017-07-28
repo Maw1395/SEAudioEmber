@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">SongDatabase</string>
+
+    <!-- Action bar strings -->
+    <string name="actionbar_main">Search By</string>
+    <string name="actionbar_month_year_result">Month/Year</string>
+    <string name="actionbar_month_selection">Select Month</string>
+    <string name="actionbar_genre_selection">Genres</string>
+    <string name="actionbar_song_result">Hello by Adele: 1714 points</string>
+    <string name="actionbar_song_artist_search">Song/Artist Search</string>
+    <string name="actionbar_song_artist_search_result">Search Term</string>
+
+    <!-- Main activity listview items -->
+    <string-array name="main_listview_items">
+        <item>Artist</item>
+        <item>Song</item>
+        <item>Genre</item>
+        <item>Month</item>
+        <item>Year</item>
+        <item>Random</item>
+    </string-array>
+
+    <!-- Genre listview items -->
+    <string-array name="genre_listview_items">
+        <item>Hot 100</item>
+        <item>Rock</item>
+        <item>Pop</item>
+        <item>R&amp;B/Hip Hop</item>
+        <item>EDM</item>
+        <item>Country</item>
+    </string-array>
+
+</resources>

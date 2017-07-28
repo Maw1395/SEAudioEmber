@@ -4,6 +4,7 @@
     <item
         android:id="@+id/front_page_song_selector"
         android:icon="@drawable/song"
+        android:color="@android:color/white"
         android:title="@string/top_songs" />
 
     <item

@@ -18,13 +18,12 @@ public class FrontPage extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.front_page_song_selector:
-                    mTextMessage.setText(R.string.top_songs);
                     return true;
                 case R.id.front_page_artist_selector:
-                    mTextMessage.setText(R.string.top_artists);
+
                     return true;
                 case R.id.front_page_genre_selector:
-                    mTextMessage.setText(R.string.genre_list);
+
                     return true;
             }
             return false;

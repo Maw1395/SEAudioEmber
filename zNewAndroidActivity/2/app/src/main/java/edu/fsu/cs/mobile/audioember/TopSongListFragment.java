@@ -20,7 +20,7 @@ import java.util.List;
 
 public class TopSongListFragment extends Fragment {
 
-    public TopSongListFragment() {
+   /* public TopSongListFragment() {
     }
     String newWebsite="";
 
@@ -65,12 +65,12 @@ public class TopSongListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = parent.getItemAtPosition(position);
-                String str = (String)o;
+                String str = (String)
                /*Bundle bundle = new Bundle();
                bundle.getString("str", str);
                Intent myIntent = new Intent(view.getContext(), MyWebFragment.class);
                myIntent.putExtras(bundle);
-               startActivity(myIntent);*/
+               startActivity(myIntent);*//*
                 Intent i = new Intent(view.getContext(),MainActivity.class);
                 i.putExtra("str", str);
                 startActivity(i);
@@ -81,7 +81,7 @@ public class TopSongListFragment extends Fragment {
         return view;
     }
 
-
+*/
     /*
     <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

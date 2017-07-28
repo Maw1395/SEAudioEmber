@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/front_page_song_selector"
+        android:icon="@drawable/song"
+        android:title="@string/top_songs" />
+
+    <item
+        android:id="@+id/front_page_artist_selector"
+        android:icon="@drawable/artist"
+        android:title="@string/top_artists" />
+
+    <item
+        android:id="@+id/front_page_genre_selector"
+        android:icon="@drawable/genre"
+        android:title="@string/genre_list" />
+
+</menu>

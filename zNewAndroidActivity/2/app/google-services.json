@@ -36,6 +36,37 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723614955105:android:465948f61ce178e4",
+        "android_client_info": {
+          "package_name": "edu.fsu.cs.mobile.audioember"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723614955105-k6orjpqf9q7v1ntmvd83e7kp6h2lk0n5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFoQ1LDMBCEjK97_HtnFKuyL3c5kRajs4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

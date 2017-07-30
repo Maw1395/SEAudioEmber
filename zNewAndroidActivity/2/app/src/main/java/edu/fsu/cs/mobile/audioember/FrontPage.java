@@ -18,6 +18,7 @@ public class FrontPage extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.front_page_song_selector:
+
                     return true;
                 case R.id.front_page_artist_selector:
 

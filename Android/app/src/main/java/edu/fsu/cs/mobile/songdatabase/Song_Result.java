@@ -7,6 +7,7 @@ package edu.fsu.cs.mobile.songdatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -15,6 +16,15 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.io.IOException;
 
 public class Song_Result extends AppCompatActivity {
     // For the video
@@ -27,6 +37,8 @@ public class Song_Result extends AppCompatActivity {
     WebChromeClient.CustomViewCallback mCustomViewCallback;
 
     WebView myWebView;
+    String html;
+    String[] SongHtml = {};
 
 
     @Override
@@ -43,32 +55,67 @@ public class Song_Result extends AppCompatActivity {
         //mWebChromeClient = new WebChromeClient();
 
         // For chart
-        WebView chart = (WebView) findViewById(R.id.chart_webview);
-        chartChromeClient = new WebChromeClient();
-        chart.setWebChromeClient(chartChromeClient);
-        chart.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
-        WebSettings chartSettings = chart.getSettings();
-        chartSettings.setJavaScriptEnabled(true);
-        chart.loadUrl("https://plot.ly/~audioembers/18803.embed");
+        final String songName = "SugarDaddy";
+        final String artistName = "PajamaBand";
+        final String url = "https://www.youtube.com/results?search_query=" + songName + " by " + artistName;
+        Thread ConnectionThread = new Thread() {
+        public void run()
+            {
+                Document jSoupDocument = null;
+                try {
+                    jSoupDocument = Jsoup.connect(url).get();
+                    String getJson = jSoupDocument.text();
+                    JSONObject jsonObject = (JSONObject) new JSONTokener(getJson ).nextValue();
 
-        // For Video
-        myWebView = (WebView) findViewById(R.id.video_webview);
-        mWebChromeClient = new WebChromeClient();
-        myWebView.setWebChromeClient(mWebChromeClient);
-        myWebView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
+                    System.out.println(jsonObject.getString("videoId"));
+                   // Element link = jSoupDocument.select("a[href=/watch]").first();
+                    //String AttrEmbed = link.attr("href");
+                   // String url = "https://www.youtube.com/embed/" + AttrEmbed.substring(AttrEmbed.indexOf(9)) +"?autoplay=1";
+                    Log.d("UrlBeingParsed", jsonObject.getString("videoId"));
+                } catch (
+                        IOException e)
+
+                {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        });
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        myWebView.loadUrl("https://www.youtube.com/watch?v=YQHsXMglC9A");
+        };
+       ConnectionThread.start();
+
+
+
+            WebView chart = (WebView) findViewById(R.id.chart_webview);
+            chartChromeClient = new WebChromeClient();
+            chart.setWebChromeClient(chartChromeClient);
+            chart.setWebViewClient(new WebViewClient()
+            {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url)
+                {
+                    return false;
+                }
+            });
+            WebSettings chartSettings = chart.getSettings();
+            chartSettings.setJavaScriptEnabled(true);
+            html = "<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/21985.embed\" height=\"525\" width=\"100%\"></iframe>";
+            chart.loadData(html, "text/html", null);
+
+            // For Video
+            myWebView = (WebView) findViewById(R.id.video_webview);
+            mWebChromeClient = new WebChromeClient();
+            myWebView.setWebChromeClient(mWebChromeClient);
+            myWebView.setWebViewClient(new WebViewClient()
+            {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    return false;
+                }
+            });
+            WebSettings webSettings = myWebView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            myWebView.loadUrl("https://www.youtube.com/watch?v=YQHsXMglC9A");
     }
 
     @Override
@@ -78,20 +125,6 @@ public class Song_Result extends AppCompatActivity {
         return true;
     }
 
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     public class MyWebChromeClient extends WebChromeClient {
 

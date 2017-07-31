@@ -1,24 +1,25 @@
 package edu.fsu.cs.mobile.audioember;
 
-import android.content.Intent;
+import android.app.ListFragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by woody on 7/28/17.
  */
 
-public class TopSongListFragment extends Fragment {
+public class TopSongListFragment extends ListFragment {
+    public static class MusicFragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            // Inflate the layout for this fragment
+            return inflater.inflate(R.layout.fragment, container, false);
+        }
+    }
 
    /* public TopSongListFragment() {
     }

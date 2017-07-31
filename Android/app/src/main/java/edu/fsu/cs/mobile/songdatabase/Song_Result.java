@@ -5,6 +5,8 @@ package edu.fsu.cs.mobile.songdatabase;
  */
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,6 +25,7 @@ import org.json.JSONTokener;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
@@ -37,6 +40,7 @@ public class Song_Result extends AppCompatActivity {
     WebChromeClient.CustomViewCallback mCustomViewCallback;
 
     WebView myWebView;
+    WebView chart;
     String html;
     String[] SongHtml = {};
 
@@ -64,58 +68,66 @@ public class Song_Result extends AppCompatActivity {
                 Document jSoupDocument = null;
                 try {
                     jSoupDocument = Jsoup.connect(url).get();
-                    String getJson = jSoupDocument.text();
-                    JSONObject jsonObject = (JSONObject) new JSONTokener(getJson ).nextValue();
+                    String youtubeEmbedLink=jSoupDocument.select("a.yt-uix-tile-link").first().attr("abs:href");
 
-                    System.out.println(jsonObject.getString("videoId"));
+
+
+                   final String url="<iframe width=\"100%\" height=\"140\" src=\"https://www.youtube.com/embed/"+ youtubeEmbedLink.substring(youtubeEmbedLink.indexOf("?v=") +3) +"\" frameborder=\"0\" allowfullscreen==\"allowfullscreen\"></iframe>";
                    // Element link = jSoupDocument.select("a[href=/watch]").first();
                     //String AttrEmbed = link.attr("href");
-                   // String url = "https://www.youtube.com/embed/" + AttrEmbed.substring(AttrEmbed.indexOf(9)) +"?autoplay=1";
-                    Log.d("UrlBeingParsed", jsonObject.getString("videoId"));
-                } catch (
-                        IOException e)
+                   //String url = "https://www.youtube.com/embed/" + testhref.substring(testhref.indexOf(".com/")) +"?autoplay=1";
+                    Log.d("UrlBeingParsed", url);
+                    if(youtubeEmbedLink!=null)
+                    {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                myWebView.loadData(url, "text/html", "UTF-8");
+                                chart.loadData(html, "text/html", null);
+                            }
+                        });
 
+                    }
+                } catch (IOException e)
                 {
                     e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+
             }
         };
-       ConnectionThread.start();
 
 
 
-            WebView chart = (WebView) findViewById(R.id.chart_webview);
-            chartChromeClient = new WebChromeClient();
-            chart.setWebChromeClient(chartChromeClient);
-            chart.setWebViewClient(new WebViewClient()
+        chart = (WebView) findViewById(R.id.chart_webview);
+        chartChromeClient = new WebChromeClient();
+        chart.setWebChromeClient(chartChromeClient);
+        chart.setWebViewClient(new WebViewClient()
+        {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url)
             {
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, String url)
-                {
-                    return false;
-                }
-            });
-            WebSettings chartSettings = chart.getSettings();
-            chartSettings.setJavaScriptEnabled(true);
-            html = "<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/21985.embed\" height=\"525\" width=\"100%\"></iframe>";
-            chart.loadData(html, "text/html", null);
+                return false;
+            }
+        });
+        WebSettings chartSettings = chart.getSettings();
+        chartSettings.setJavaScriptEnabled(true);
+        html = "<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/21985.embed\" height=\"250\" width=\"100%\"></iframe>";
 
-            // For Video
-            myWebView = (WebView) findViewById(R.id.video_webview);
-            mWebChromeClient = new WebChromeClient();
-            myWebView.setWebChromeClient(mWebChromeClient);
-            myWebView.setWebViewClient(new WebViewClient()
-            {
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    return false;
-                }
-            });
-            WebSettings webSettings = myWebView.getSettings();
-            webSettings.setJavaScriptEnabled(true);
-            myWebView.loadUrl("https://www.youtube.com/watch?v=YQHsXMglC9A");
+        // For Video
+        myWebView = (WebView) findViewById(R.id.video_webview);
+        mWebChromeClient = new WebChromeClient();
+        myWebView.setWebChromeClient(mWebChromeClient);
+        myWebView.setWebViewClient(new WebViewClient()
+        {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+       // myWebView.loadUrl("https://www.youtube.com/watch?v=YQHsXMglC9A");
+        ConnectionThread.start();
     }
 
     @Override

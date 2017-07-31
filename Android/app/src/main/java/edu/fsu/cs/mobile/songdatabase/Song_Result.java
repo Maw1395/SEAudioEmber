@@ -12,12 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +44,7 @@ public class Song_Result extends AppCompatActivity {
 
     WebView myWebView;
     WebView chart;
+    WebView[] webViewArray = new WebView[7];
     String html;
     String[] SongHtml = {};
 
@@ -48,8 +52,18 @@ public class Song_Result extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.song_result);
+        //setContentView(R.layout.song_result);
+        ScrollView sv = new ScrollView(this);
+        sv.setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        final LinearLayout layout = new LinearLayout(this);
+        final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getWindowManager().getDefaultDisplay().
+                getWidth(),getWindowManager().getDefaultDisplay().getHeight());
 
+        layout.setLayoutParams(params);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        sv.addView(layout);
+        setContentView(sv);
+        final LinearLayout.LayoutParams webViewParams= new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         // Sets the text for the action bar title
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar_song_result);
@@ -72,7 +86,7 @@ public class Song_Result extends AppCompatActivity {
 
 
 
-                   final String url="<iframe width=\"100%\" height=\"140\" src=\"https://www.youtube.com/embed/"+ youtubeEmbedLink.substring(youtubeEmbedLink.indexOf("?v=") +3) +"\" frameborder=\"0\" allowfullscreen==\"allowfullscreen\"></iframe>";
+                   final String url="<iframe width=\"100%\" height=\"355\" src=\"https://www.youtube.com/embed/"+ youtubeEmbedLink.substring(youtubeEmbedLink.indexOf("?v=") +3) +"\" frameborder=\"0\" allowfullscreen==\"allowfullscreen\"></iframe>";
                    // Element link = jSoupDocument.select("a[href=/watch]").first();
                     //String AttrEmbed = link.attr("href");
                    //String url = "https://www.youtube.com/embed/" + testhref.substring(testhref.indexOf(".com/")) +"?autoplay=1";
@@ -83,7 +97,13 @@ public class Song_Result extends AppCompatActivity {
                             @Override
                             public void run() {
                                 myWebView.loadData(url, "text/html", "UTF-8");
+                                webViewArray[0]=myWebView;
                                 chart.loadData(html, "text/html", null);
+                                webViewArray[1]=chart;
+                                layout.addView(webViewArray[1], webViewParams);
+                                layout.addView(webViewArray[0], webViewParams);
+                                //chart.loadData(url,  "text/html", null);
+                                //layout.addView(chart, webViewParams);
                             }
                         });
 
@@ -98,7 +118,7 @@ public class Song_Result extends AppCompatActivity {
 
 
 
-        chart = (WebView) findViewById(R.id.chart_webview);
+        chart = new WebView(this);
         chartChromeClient = new WebChromeClient();
         chart.setWebChromeClient(chartChromeClient);
         chart.setWebViewClient(new WebViewClient()
@@ -111,10 +131,10 @@ public class Song_Result extends AppCompatActivity {
         });
         WebSettings chartSettings = chart.getSettings();
         chartSettings.setJavaScriptEnabled(true);
-        html = "<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/21985.embed\" height=\"250\" width=\"100%\"></iframe>";
+        html = "<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/21985.embed\" height=\"355\" width=\"100%\"></iframe>";
 
         // For Video
-        myWebView = (WebView) findViewById(R.id.video_webview);
+        myWebView = new WebView(this);
         mWebChromeClient = new WebChromeClient();
         myWebView.setWebChromeClient(mWebChromeClient);
         myWebView.setWebViewClient(new WebViewClient()
@@ -128,66 +148,5 @@ public class Song_Result extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
        // myWebView.loadUrl("https://www.youtube.com/watch?v=YQHsXMglC9A");
         ConnectionThread.start();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.song_result_menu, menu);
-        return true;
-    }
-
-
-    public class MyWebChromeClient extends WebChromeClient {
-
-        FrameLayout.LayoutParams LayoutParameters = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
-
-        @Override
-        public void onShowCustomView(View view, CustomViewCallback callback) {
-            // if a view already exists then immediately terminate the new one
-            if (mCustomView != null) {
-                callback.onCustomViewHidden();
-                return;
-            }
-            mContentView = (RelativeLayout) findViewById(R.id.song_result_recyclerview);
-            mContentView.setVisibility(View.GONE);
-            mCustomViewContainer = new FrameLayout(Song_Result.this);
-            mCustomViewContainer.setLayoutParams(LayoutParameters);
-            mCustomViewContainer.setBackgroundResource(android.R.color.black);
-            view.setLayoutParams(LayoutParameters);
-            mCustomViewContainer.addView(view);
-            mCustomView = view;
-            mCustomViewCallback = callback;
-            mCustomViewContainer.setVisibility(View.VISIBLE);
-            setContentView(mCustomViewContainer);
-        }
-
-        @Override
-        public void onHideCustomView() {
-            if (mCustomView == null) {
-                return;
-            } else {
-                // Hide the custom view.
-                mCustomView.setVisibility(View.GONE);
-                // Remove the custom view from its container.
-                mCustomViewContainer.removeView(mCustomView);
-                mCustomView = null;
-                mCustomViewContainer.setVisibility(View.GONE);
-                mCustomViewCallback.onCustomViewHidden();
-                // Show the content view.
-                mContentView.setVisibility(View.VISIBLE);
-                setContentView(mContentView);
-            }
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mCustomViewContainer != null)
-            mWebChromeClient.onHideCustomView();
-        else if (myWebView.canGoBack())
-            myWebView.goBack();
-        else
-            super.onBackPressed();
     }
 }

@@ -60,7 +60,7 @@ public class SongVideoGraphPage extends Fragment{
                                  Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.dyanmic_graph, container, false);
         ScrollView sv = new ScrollView(getContext());
-        sv.setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        sv.setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         final LinearLayout layout = new LinearLayout(getContext());
         final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().
                 getWidth(),getActivity().getWindowManager().getDefaultDisplay().getHeight());
@@ -68,9 +68,7 @@ public class SongVideoGraphPage extends Fragment{
         layout.setLayoutParams(params);
         layout.setOrientation(LinearLayout.VERTICAL);
         sv.addView(layout);
-
         final LinearLayout.LayoutParams webViewParams= new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
 
         Bundle b = getArguments();
         String songName;
@@ -92,7 +90,6 @@ public class SongVideoGraphPage extends Fragment{
 
 
         }
-
 
         final String youtubeSearchQuery = "https://www.youtube.com/results?search_query=" + songName + " by " + artistName;
         Thread ConnectionThread = new Thread() {
@@ -146,9 +143,12 @@ public class SongVideoGraphPage extends Fragment{
             webset.setJavaScriptEnabled(true);
         }
 
-
         ConnectionThread.start();
-        return rootView;
+
+        //LinearLayout l = (LinearLayout) rootView.findViewById(R.id.Scroller);
+        //l.addView(sv);
+
+        return sv;
     }
 
 }

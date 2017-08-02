@@ -94,6 +94,7 @@ public class SongListView extends Fragment {
                                 i++;
                             }
                             songs.add(new Song(Artist, Title, point, urls));
+                            urls.clear();
                         }
                     }
                     Collections.sort(songs, new Comparator<Song>() {

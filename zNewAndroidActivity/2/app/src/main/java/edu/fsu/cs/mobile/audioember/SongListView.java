@@ -101,14 +101,17 @@ public class SongListView extends Fragment {
                                 }
                                 i++;
                             }
+                            //add song to song list and iteratively add graph HTML snippets
                             Song s = new Song(Artist, Title, point);
                             for(String url : urls){
                                 s.addGraph(url);
                             }
                             songs.add(s);
+                            //clear url list as to not add all urls over and over
                             urls.clear();
                         }
                     }
+                    // sort urls by point value descending
                     Collections.sort(songs, new Comparator<Song>() {
                         @Override
                         public int compare(Song o1, Song o2) {
@@ -116,9 +119,11 @@ public class SongListView extends Fragment {
                         }
                     });
                 }
+                // create list for user with appropriate information
                 for(int i =0; i<songs.size(); i++){
                     Songs.add((i+1) + ". " + songs.get(i).getTitle() + " by " + songs.get(i).getArtist() + "   " + songs.get(i).getPoints());
                 }
+                // create UI for user after the query has completed
                 setup();
 
             }

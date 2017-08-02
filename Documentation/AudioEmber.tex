@@ -83,7 +83,7 @@ We opted for timedelta objects for week incrementation in a substitute.
 Moreover, if the chart did not exist on the current date, the API would return a null list.
 However, the API does not fetch a chart.date from a null list, which lead to frequent breaking and patching within our dbinit file. 
 \subsection*{SQLAlchemy}
-In order to effectively use the Billboard API we opted to back end our initial database with python and an init script. SQLAlchemy is a great database to use for storing information when using python because it allows for SQL queries to be returned in a Python-like structure which make for an easier implementation and integration into our project overall.
+In order to effectively use the Billboard API we opted to back end our initial database with python and an init script. SQLAlchemy is a great set of database bindings to use for storing information when using python because it allows for SQL queries to be returned in a Python-like structure which make for an easier implementation and integration into our project overall.
 SQLAlchemy's documentation, while extensive, did not quite translate well to our project.
 Because of the environment that they placed their documentation in, we were only able to gain a basic understanding of how the system works.
 Often, we found ourself reverting to stack overflow posts whenever we found an issue that we needed to solve.
@@ -92,17 +92,7 @@ While it was nice dealing with Python based objects, we have had to recompile ou
 Additionally, rather than directing to a Firebase within our python script for the initialization, we needed a way to store information to later query. 
 The SQLAlchemy structure allowed us to have this delay ability. 
 \subsection*{FireBase}
-
-
-
-
-
-Rob Can Put Stuff Here
-
-
-
-
-
+We opted to use FireBase in an effort to support our ability to update the song information over time without asking the users to constantly update through the play store. This gives us a lot of flexibility in regards to future updates only having to push new functionality to the play store. However Firebase did not come without its own set of woes. The official FireBase documentation is terribly deprecated with many referenced classes and methods appearing to not exist at all. This being the case our methods had to be peiced together from solutions to use-cases with varying similarities. Once these initial hurdles were overcome the FireBase was easy to use, reliable and overall a great solution. We believe that storing our content in this way will give us many opportunities to grow our functionality with minimal growing pains.  
 \subsection*{Plotly}
 Plotly was used for the graphing interface of our website.
 When we first acquired this service in 2016 we were promised by the company that we would be allowed to make 10,000 API calls a day.
@@ -138,13 +128,7 @@ In a future instantiation of the app we would like to have time capsule informat
 \subsection*{Search Terms}
 We want to be able to implement a search bar for either Artist or Songs. Again, an easy fix which could be implemented in the next update.  
 \subsection*{Firebase Update Scripts}
-
-
-
-
-
-
-ROB's Information Goes HERE
+Moving forward we would like to implement a python script that pulls down new  information from billboard, updates the SQL database and pushes changes to the firebase weekly. So that our users can come back to our app over time and watch out for new trends and follow their favorite songs.
 
 
 

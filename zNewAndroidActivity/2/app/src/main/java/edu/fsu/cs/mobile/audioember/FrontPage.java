@@ -11,10 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class FrontPage extends AppCompatActivity {
     ListView songList;
     ArrayAdapter<String> adapter;
+    FragmentManager fm;
+    FragmentTransaction ft;
+    Fragment genreFrag;
+    Fragment songListFrag;
+    Fragment songVideoGraphFrag;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -23,13 +29,25 @@ public class FrontPage extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.front_page_song_selector:
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.layout, songListFrag);
 
+                    //Commit transaction
+                    ft.commit();
                     return true;
                 case R.id.front_page_artist_selector:
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.layout,songListFrag );
 
+                    //Commit transaction
+                    ft.commit();
                     return true;
                 case R.id.front_page_genre_selector:
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.layout, genreFrag);
 
+                    //Commit transaction
+                    ft.commit();
                     return true;
             }
             return false;
@@ -43,15 +61,16 @@ public class FrontPage extends AppCompatActivity {
         setContentView(R.layout.activity_front_page);
 
         //Fragment manager associcated with this activity
-        FragmentManager fm = getFragmentManager();
+         fm = getFragmentManager();
 
         //Start fragment transaction
-        FragmentTransaction ft = fm.beginTransaction();
+        ft = fm.beginTransaction();
 
-        Fragment genreFrag = new GenreListview();
+        genreFrag = new GenreListview();
+        songListFrag = new SongListView();
 
         //Replace layout in activity_front_page.xml with the fragment
-        ft.replace(R.id.layout, genreFrag);
+        ft.replace(R.id.layout, songListFrag);
 
         //Commit transaction
         ft.commit();
@@ -63,5 +82,7 @@ public class FrontPage extends AppCompatActivity {
         //Set up the navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
     }
 }

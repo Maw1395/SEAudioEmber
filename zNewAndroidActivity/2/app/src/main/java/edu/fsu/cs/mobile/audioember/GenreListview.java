@@ -52,6 +52,9 @@ public class GenreListview extends Fragment {
                 ft.commit();
             }
         });
+        // Set title bar
+        ((FrontPage) getActivity())
+                .setActionBarTitleG();
         return rootView;
     }
 

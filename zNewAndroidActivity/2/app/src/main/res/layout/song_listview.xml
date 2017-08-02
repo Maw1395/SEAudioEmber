@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/song_list"
-        android:background="#2b2828"
+        android:background="#1a1818"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textColor="#edbe89"
+        android:textColor="#dc6414"
     android:paddingTop="15dp"
     android:paddingBottom="10dp"
     android:paddingLeft="15dp"

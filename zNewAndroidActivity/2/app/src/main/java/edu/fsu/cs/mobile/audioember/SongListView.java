@@ -38,7 +38,6 @@ public class SongListView extends Fragment {
     private ArrayList<String> urls = new ArrayList<String>();
     private List<String> Songs = new ArrayList<String>();
     private String Genre;
-    private int cv = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,22 +45,22 @@ public class SongListView extends Fragment {
 
         View rootView = inflater.inflate(R.layout.genre_listview, container, false);
         list = (ListView) rootView.findViewById(R.id.genre_list);
-        //HEY ROB THE GENRE IS BEING PASSED HERE!!!!!!
-        //HERE IT
-        //IS
-        //CATCH A DICK IN YOUR THROAT
+
         Bundle b = getArguments();
         if(b!=null)
         {
             songs = new ArrayList<Song>();
             urls = new ArrayList<String>();
             Genre = b.getString("Genre");
-            Toast.makeText(getContext(),b.getString("Genre"), Toast.LENGTH_SHORT).show();
+            ((FrontPage) getActivity()).setActionBarTitle(Genre);
         }
         else {
             songs = new ArrayList<Song>();
             urls = new ArrayList<String>();
             Genre = "hot-100";
+            // Set title bar
+            ((FrontPage) getActivity())
+                    .setActionBarTitle("hot-100");
         }
 
 
@@ -103,12 +102,9 @@ public class SongListView extends Fragment {
                         }
                     });
                 }
-                cv = 1;
-                //String[] Songs = new ;
                 for(int i =0; i<songs.size(); i++){
                     Songs.add((i+1) + ". " + songs.get(i).getTitle() + " by " + songs.get(i).getArtist() + "   " + songs.get(i).getPoints());
                 }
-                //while (cv == 0){}
                 setup();
 
             }
@@ -118,9 +114,6 @@ public class SongListView extends Fragment {
 
             }
         });
-
-        //NEED TO MAKE THE QUERY ASYNCH AND HAVE THE LIST WAIT TILL QUERY IS DONE
-
 
         return rootView;
     }

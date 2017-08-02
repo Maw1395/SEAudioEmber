@@ -55,6 +55,8 @@ public class SongListView extends Fragment {
             Toast.makeText(getContext(),b.getString("Genre"), Toast.LENGTH_SHORT).show();
         }
         else {
+            songs = new ArrayList<Song>();
+            urls = new ArrayList<String>();
             Genre = "hot-100";
         }
 

@@ -93,6 +93,7 @@ public class FrontPage extends AppCompatActivity {
     }
 
     public void setActionBarTitle(String g) {
+        //set action bar depending on which genre has been selected
         switch (g){
             case "hot-100": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
                 getSupportActionBar().setCustomView(R.layout.genre_actionbar);
@@ -119,6 +120,7 @@ public class FrontPage extends AppCompatActivity {
 
 
     public void setActionBarTitleG() {
+        // set pick genre action bar, should probably be moved into function above
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.genre1_actionbar);
     }

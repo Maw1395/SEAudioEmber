@@ -28,8 +28,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static android.R.string.copy;
-
 
 /**
  * Created by woody on 8/1/17.
@@ -53,12 +51,14 @@ public class SongListView extends Fragment {
         Bundle b = getArguments();
         if(b!=null)
         {
+            //load list for specified genre
             songs = new ArrayList<Song>();
             urls = new ArrayList<String>();
             Genre = b.getString("Genre");
             ((FrontPage) getActivity()).setActionBarTitle(Genre);
         }
         else {
+            //load list for hot-100
             songs = new ArrayList<Song>();
             urls = new ArrayList<String>();
             Genre = "hot-100";

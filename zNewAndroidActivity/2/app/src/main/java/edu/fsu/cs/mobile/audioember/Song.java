@@ -12,7 +12,7 @@ public class Song {
     int points;
     ArrayList<String> graphs = new ArrayList<String>();
 
-    public Song(String a, String t, int p, ArrayList<String> g){Artist = a; Title = t; points = p; graphs = g;}
+    public Song(String a, String t, int p){Artist = a; Title = t; points = p;}
 
     public String getArtist() {
         return Artist;

@@ -27,6 +27,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static android.R.string.copy;
+
 
 /**
  * Created by woody on 8/1/17.
@@ -93,7 +95,11 @@ public class SongListView extends Fragment {
                                 }
                                 i++;
                             }
-                            songs.add(new Song(Artist, Title, point, urls));
+                            Song s = new Song(Artist, Title, point);
+                            for(String url : urls){
+                                s.addGraph(url);
+                            }
+                            songs.add(s);
                             urls.clear();
                         }
                     }

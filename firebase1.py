@@ -13,12 +13,14 @@ SONG_MAX = 2123
 CURRENT = 1 
 URL_NUM = 0
 
+# iterate over all songs in SQl database and add them to FireBase
 for i in range(SONG_MAX):
     #print(i)
     sid = i + CURRENT
     s = db.session.query(models.songs).filter(models.songs.SongID == sid).all()
     #print(s)
     entry = [False,False,False,False,False,False]
+    #iterate through all entries for each song and add necesary data to FireBase
     for song_entry in s:
         if not(song_entry.Genre == "hot-100" and entry[0] == True) and not (song_entry.Genre == "country-songs" and  entry[1] == True) and not (song_entry.Genre == "rock-songs" and entry[2] == True) and not (song_entry.Genre == "r-b-hip-hop-songs" and entry[3] == True) and not (song_entry.Genre == "dance-electronic-songs" and entry[4] == True) and not (song_entry.Genre == "pop-songs" and entry[5] == True):
             #print("past genre if") 

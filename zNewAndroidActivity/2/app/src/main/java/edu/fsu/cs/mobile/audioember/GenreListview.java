@@ -21,7 +21,7 @@ import android.widget.Toast;
 public class GenreListview extends Fragment {
     ListView list;
     ArrayAdapter<String> adapter;
-    String [] genres = {"Hot 100","Country","Rock","R&B", "EDM", "Pop"};
+    String [] genres = {"hot-100","country-songs","rock-songs","r-b-hip-hop-songs", "dance-electronic-songs", "pop-songs"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

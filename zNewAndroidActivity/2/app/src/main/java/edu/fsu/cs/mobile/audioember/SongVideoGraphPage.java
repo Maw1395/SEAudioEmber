@@ -58,7 +58,6 @@ public class SongVideoGraphPage extends Fragment{
     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.dyanmic_graph, container, false);
         ScrollView sv = new ScrollView(getContext());
         sv.setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         final LinearLayout layout = new LinearLayout(getContext());
@@ -66,6 +65,11 @@ public class SongVideoGraphPage extends Fragment{
                 getWidth(),getActivity().getWindowManager().getDefaultDisplay().getHeight());
 
         layout.setLayoutParams(params);
+        String color = "2b2828";
+        sv.setBackgroundColor(Integer.parseInt(color,16));
+        layout.setBackgroundColor(Integer.parseInt(color,16));
+        layout.setDrawingCacheBackgroundColor(Integer.parseInt(color,16));
+        sv.setDrawingCacheBackgroundColor(Integer.parseInt(color,16));
         layout.setOrientation(LinearLayout.VERTICAL);
         sv.addView(layout);
         final LinearLayout.LayoutParams webViewParams= new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -73,23 +77,24 @@ public class SongVideoGraphPage extends Fragment{
         Bundle b = getArguments();
         String songName;
         String artistName;
-        ArrayList<String> GraphUrls= new ArrayList<String>();
+        ArrayList<String> GraphUrl = new ArrayList<String>();
         if(b!=null)
         {
             songName = b.getString("Title");
             artistName= b.getString("Artist");
-            GraphUrls = b.getStringArrayList("GraphUrls");
+            GraphUrl = b.getStringArrayList("GraphUrls");
         }
         else
         {
             songName = "Closer";
             artistName= "ChainSmokers Featuring Halsey";
-            GraphUrls.add("<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/20335.embed\" height=\"525\" width=\"100%\"></iframe>");
-            GraphUrls.add("<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/20337.embed\" height=\"525\" width=\"100%\"></iframe>");
-            GraphUrls.add("<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/20339.embed\" height=\"525\" width=\"100%\"></iframe>");
+            GraphUrl.add("<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/20335.embed\" height=\"525\" width=\"100%\"></iframe>");
+            GraphUrl.add("<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/20337.embed\" height=\"525\" width=\"100%\"></iframe>");
+            GraphUrl.add("<iframe id=\"igraph\" scrolling=\"no\" style=\"border:none;\" seamless=\"seamless\" src=\"https://plot.ly/~audioembers/20339.embed\" height=\"525\" width=\"100%\"></iframe>");
 
 
         }
+        final ArrayList<String> GraphUrls= GraphUrl;
 
         final String youtubeSearchQuery = "https://www.youtube.com/results?search_query=" + songName + " by " + artistName;
         Thread ConnectionThread = new Thread() {
@@ -98,21 +103,25 @@ public class SongVideoGraphPage extends Fragment{
                 Document jSoupDocument = null;
                 try {
                     jSoupDocument = Jsoup.connect(youtubeSearchQuery).get();
-                    String youtubeEmbedLink=jSoupDocument.select("a.yt-uix-tile-link").first().attr("abs:href");
+                    final String youtubeEmbedLink=jSoupDocument.select("a.yt-uix-tile-link").first().attr("abs:href");
 
 
 
-                    final String url="<iframe width=\"100%\" height=\"355\" src=\"https://www.youtube.com/embed/"+ youtubeEmbedLink.substring(youtubeEmbedLink.indexOf("?v=") +3) +"\" frameborder=\"0\" allowfullscreen==\"allowfullscreen\"></iframe>";
-                    Log.d("UrlBeingParsed", url);
+                    final String youtubeUrl="<iframe width=\"100%\" height=\"355\" src=\"https://www.youtube.com/embed/"+ youtubeEmbedLink.substring(youtubeEmbedLink.indexOf("?v=") +3) +"\" frameborder=\"0\" allowfullscreen==\"allowfullscreen\"></iframe>";
+
                     if(youtubeEmbedLink!=null)
                     {
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
-                                webViewArray[0].loadData(url, "text/html", "UTF-8");
-                                webViewArray[1].loadData(html, "text/html", null);
-                                layout.addView(webViewArray[1], webViewParams);
+                                webViewArray[0].loadData(youtubeUrl, "text/html", "UTF-8");
                                 layout.addView(webViewArray[0], webViewParams);
+                                for (int i =0; i< GraphUrls.size(); i++)
+                                {
+                                    webViewArray[i+1].loadData(GraphUrls.get(i), "text/html",null);
+                                    layout.addView(webViewArray[i+1], webViewParams);
+
+                                }
                             }
                         });
 

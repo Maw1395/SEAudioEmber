@@ -137,6 +137,7 @@ public class SongListView extends Fragment {
                 GraphPasser.putString("Title", songs.get(pos).Title);
                 GraphPasser.putString("Artist", songs.get(pos).getTitle());
                 GraphPasser.putStringArrayList("GraphUrls", songs.get(pos).getGraphs());
+                Log.d("db2", "" + songs.get(pos).getGraphs().toString());
                 android.app.FragmentManager fm = getFragmentManager();
 
                 //Start fragment transaction

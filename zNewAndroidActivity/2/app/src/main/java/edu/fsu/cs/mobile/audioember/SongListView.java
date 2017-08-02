@@ -2,6 +2,7 @@ package edu.fsu.cs.mobile.audioember;
 
 import android.app.DownloadManager;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -125,6 +126,21 @@ public class SongListView extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View v, int pos,
                                     long id) {
+                Bundle GraphPasser = new Bundle();
+                GraphPasser.putString("Title", songs.get(pos).Title);
+                GraphPasser.putString("Artist", songs.get(pos).getTitle());
+                GraphPasser.putStringArrayList("GraphUrls", songs.get(pos).getGraphs());
+                android.app.FragmentManager fm = getFragmentManager();
+
+                //Start fragment transaction
+                FragmentTransaction ft = fm.beginTransaction();
+
+                SongVideoGraphPage svgp = new SongVideoGraphPage();
+                svgp.setArguments(GraphPasser);
+
+                //Replace layout in activity_front_page.xml with the fragment
+                ft.replace(R.id.layout, svgp);
+                ft.commit();
                 // TODO Auto-generated method stub
                 Toast.makeText(getActivity(), songs.get(pos).Title, Toast.LENGTH_SHORT).show();
             }

@@ -41,7 +41,7 @@ public class FrontPage extends AppCompatActivity {
                     return true;
                 case R.id.front_page_artist_selector:
                     ft = fm.beginTransaction();
-                    ft.replace(R.id.layout,songListFrag );
+                    ft.replace(R.id.layout,songVideoGraphFrag );
 
                     //Commit transaction
                     ft.commit();
@@ -72,6 +72,7 @@ public class FrontPage extends AppCompatActivity {
 
         genreFrag = new GenreListview();
         songListFrag = new SongListView();
+        songVideoGraphFrag = new SongVideoGraphPage();
 
         //Replace layout in activity_front_page.xml with the fragment
         ft.replace(R.id.layout, songListFrag);

@@ -36,12 +36,16 @@ public class SongListView extends Fragment {
     ArrayAdapter<String> adapter;
     private ArrayList<Song> songs = new ArrayList<Song>();
     private ArrayList<String> urls = new ArrayList<String>();
+    private List<String> Songs = new ArrayList<String>();
     private String Genre;
+    private int cv = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View rootView = inflater.inflate(R.layout.genre_listview, container, false);
+        list = (ListView) rootView.findViewById(R.id.genre_list);
         //HEY ROB THE GENRE IS BEING PASSED HERE!!!!!!
         //HERE IT
         //IS
@@ -99,6 +103,14 @@ public class SongListView extends Fragment {
                         }
                     });
                 }
+                cv = 1;
+                //String[] Songs = new ;
+                for(int i =0; i<songs.size(); i++){
+                    Songs.add((i+1) + ". " + songs.get(i).getTitle() + " by " + songs.get(i).getArtist() + "   " + songs.get(i).getPoints());
+                }
+                //while (cv == 0){}
+                setup();
+
             }
 
             @Override
@@ -106,21 +118,17 @@ public class SongListView extends Fragment {
 
             }
         });
+
         //NEED TO MAKE THE QUERY ASYNCH AND HAVE THE LIST WAIT TILL QUERY IS DONE
-        List<String> Songs = new ArrayList<String>();
-        //String[] Songs = new ;
-        for(int i =0; i<songs.size(); i++){
-            Songs.add((i+1) + ". " + songs.get(i).getTitle() + " by " + songs.get(i).getArtist() + "   " + songs.get(i).getPoints());
-        }
 
 
-        View rootView = inflater.inflate(R.layout.genre_listview, container, false);
-        list = (ListView) rootView.findViewById(R.id.genre_list);
+        return rootView;
+    }
+
+    public void setup(){
         adapter = new ArrayAdapter<String>(getActivity(), R.layout.song_listview, Songs);
         list.setAdapter(adapter);
-
         list.setOnItemClickListener(new OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> arg0, View v, int pos,
                                     long id) {
@@ -128,8 +136,6 @@ public class SongListView extends Fragment {
                 Toast.makeText(getActivity(), songs.get(pos).Title, Toast.LENGTH_SHORT).show();
             }
         });
-
-        return rootView;
     }
 }
 

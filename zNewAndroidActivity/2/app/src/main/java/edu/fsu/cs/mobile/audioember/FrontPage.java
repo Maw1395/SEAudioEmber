@@ -1,13 +1,17 @@
 package edu.fsu.cs.mobile.audioember;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class FrontPage extends FragmentActivity {
+public class FrontPage extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -37,31 +41,25 @@ public class FrontPage extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_page);
 
-        //For TopSong, TopArtist, Genre fragments
-        setContentView(R.layout.fragment);
+        //Fragment manager associcated with this activity
+        FragmentManager fm = getFragmentManager();
 
-        // Check that the activity is using the layout version with
-        // the fragment_container FrameLayout
-        if (findViewById(R.id.fragment_container) != null) {
+        //Start fragment transaction
+        FragmentTransaction ft = fm.beginTransaction();
 
-            // However, if we're being restored from a previous state,
-            // then we don't need to do anything and should return or else
-            // we could end up with overlapping fragments.
-            if (savedInstanceState != null) {
-                return;
-            }
+        Fragment genreFrag = new GenreListview();
 
-            // Create a new Fragment to be placed in the activity layout
-            TopSongListFragment songFragment = new TopSongListFragment();
+        //Replace layout in activity_front_page.xml with the fragment
+        ft.replace(R.id.layout, genreFrag);
 
-            // In case this activity was started with special instructions from an
-            // Intent, pass the Intent's extras to the fragment as arguments
-            //songtFragment.setArguments(getIntent().getExtras());
+        //Commit transaction
+        ft.commit();
 
-            // Add the fragment to the 'fragment_container' FrameLayout
-            //getSupportFragmentManager().beginTransaction().add
-        }
+        // Sets the text for the action bar title
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.genre_actionbar);
 
+        //Set up the navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }

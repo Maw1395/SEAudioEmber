@@ -25,7 +25,7 @@ This was accomplished by assigning each song a point value.
 Points are the accumulation of ranks brought about by our formula which determines the total points that the song has generated across all weeks up to the current week. 
 Our formula is the following, 101 - rank of song on chart. 
 For example, a song which was ranked 22 on the Hot-100 chart will have the value of 79 in the hot 100 chart.
-As of current our app implements the Dates from January 1, 2016 to July 22, 2017.
+As of current our app implements the Dates from January 1, 2016 to July 22, 2017 but we do intend to expand this time period in future updates.
 Our target audience is probably going to be millennials given that our target data is such a small chunk of years, but in future updates our target audience will be member of all age brackets who love music.
 
 \section*{Related Apps vs Our Application}
@@ -67,8 +67,8 @@ Here you can see our original artist page. This was later revised to match the c
     \label{fig:ER}
   \end{center}
 \end{figure}
-\tab Not shown is the second revision before we settled on our final design. In this revision There was a bottom bar similar to our final design. This bar was dynamic and would change given the user's position in the application either having 3, 4, or just two options. This design was scrapped for two reasons. Firstly, our artist integration was unable to be finalized in the project so that eliminated the need for a lot of our options. Secondly, with artist integration gone, most of our implementation was deemed to be redundant, resulting in our final design being built. 
-\tab The third and final revision is shown below. We opted for a simple design of three buttons. Gone is the search function, gone is the date function, and what is left is a simple list from the top songs in a specific genre as determined by the user in the second option of the bottom bar. The third option is the video and graph generation for the specific song. While it is a downgrade from our original concept, we are happy with the results, and will be implementing the final product in future generations. 
+Not shown is the second revision before we settled on our final design. In this revision There was a bottom bar similar to our final design. This bar was dynamic and would change given the user's position in the application either having 3, 4, or just two options. This design was scrapped for two reasons. Firstly, our artist integration was unable to be finalized in the project so that eliminated the need for a lot of our options. Secondly, with artist integration gone, most of our implementation was deemed to be redundant, resulting in our final design being built. 
+\\ \\ \tab The third and final revision is shown below. We opted for a simple design of three buttons. Gone is the search function, gone is the date function, and what is left is a simple list from the top songs in a specific genre as determined by the user in the second option of the bottom bar. The third option is the video and graph generation for the specific song. While it is a downgrade from our original concept, we are happy with the results, and will be implementing the final product in future generations. 
 
 
 \section*{Implementation Details}
@@ -114,13 +114,21 @@ As the YouTube API proved to be cumbersome to use, we opted for which we neglect
 JSoup allowed for our songs to be dynamically linked upon song-request from our Application.
 This was not placed into our database due to the volatility of YouTube videos as well as the lack of need, as nothing needs to be rendered unlike plotly.
 \subsection*{Andorid Specific Implementation Designs}
+
 \subsubsection*{ListView}
+ListViews are being used to allow for simple naviagtion in the lists for top-songs, and genres respectively. Clickable implementation was added for fragment transitions.
 
-\subsubsection*{Menu}
-
+\subsubsection*{WebViews}
+The WebView is using an embed technique rather than a straight URL to load data. 
+This allows for the webview to be more or less static and makes the scroll of the webpage more manageable for the user rther than traditional WebViews,
+resulting in the webview not being scrolled, but rather the scrollview that it is encapsulated within.
+The WebView is used for the youtube embed links and the graphs. 
+They are dynamically added to the fragment rather than statically as anywhere between 2-8 webviews can be used on one song-graph page depending on the individual
+song and the number of charts that it made it on. 
 \subsubsection*{BottomNaviagtionView}
-
+The bottom naviagtion view is used for the menu layouts to allow for simple navigation bewtween fragments in the main layout.
 \subsubsection*{Fragments}
+In order to simplify the UI and maintain consistency fragments are used in the main layout rather than individual activities. 
 
 \section*{Future Development}
 \subsection*{Artist Integration}

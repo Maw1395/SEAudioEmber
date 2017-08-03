@@ -69,6 +69,36 @@ Here you can see our original artist page. This was later revised to match the c
 \end{figure}
 Not shown is the second revision before we settled on our final design. In this revision There was a bottom bar similar to our final design. This bar was dynamic and would change given the user's position in the application either having 3, 4, or just two options. This design was scrapped for two reasons. Firstly, our artist integration was unable to be finalized in the project so that eliminated the need for a lot of our options. Secondly, with artist integration gone, most of our implementation was deemed to be redundant, resulting in our final design being built. 
 \\ \\ \tab The third and final revision is shown below. We opted for a simple design of three buttons. Gone is the search function, gone is the date function, and what is left is a simple list from the top songs in a specific genre as determined by the user in the second option of the bottom bar. The third option is the video and graph generation for the specific song. While it is a downgrade from our original concept, we are happy with the results, and will be implementing the final product in future generations. 
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=0.75\textwidth]{EDMTop.png}
+    \caption{Top EDM Songs}
+    \label{label}
+  \end{minipage}%
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=0.75\textwidth]{RockList.png}
+    \caption{Rock Songs Lower}
+    \label{fig:ER}
+  \end{minipage}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=0.75\textwidth]{GenreList.png}
+    \caption{Genre Selector}
+    \label{label}
+  \end{minipage}%
+  \begin{minipage}{.5\textwidth}
+    \centering
+    \includegraphics[width=0.75\textwidth]{Video.png}
+    \caption{Demo Song Page}
+    \label{fig:ER}
+  \end{minipage}
+\end{figure}
 
 
 \section*{Implementation Details}
@@ -129,6 +159,15 @@ In a future instantiation of the app we would like to have time capsule informat
 We want to be able to implement a search bar for either Artist or Songs. Again, an easy fix which could be implemented in the next update.  
 \subsection*{Firebase Update Scripts}
 Moving forward we would like to implement a python script that pulls down new  information from billboard, updates the SQL database and pushes changes to the firebase weekly. So that our users can come back to our app over time and watch out for new trends and follow their favorite songs.
+\subsection*{Bottom Naviagtion Button and Scroll Placement}
+As of now, our bottom naviagtion view buttons do not work well with our intents or remember your last position within the app. We Intend to fix this in future generations.
+\subsection*{Youtube Embedding}
+While the youtube links do work, and you can turn off our phone and listen to youtube at the same time, which we think is pretty awesome, it is not perfect as there is an extra step on most videos due to youtube restrictions. We want to find a way around this in future generations and stay away from the google API.
+We don't want to be limited by API Calls. We would like to also have an auto next function to almost create a playlist and not have to go back to the songlist to play the next song on said list. 
+\subsection*{Graphs}
+The Graph layout highly contrasts our dark view, we need to recolor them, but actually did run out of time to do this.
+Additionally we did at first believe that tick marks would crowd the page, and they do on the plot.ly page, but in the mobile program, we do feel that they are warranted, and without them the user does get confused.
+We will be adding them back in our next installment. 
 
 
 

@@ -58,25 +58,37 @@ public class SongVideoGraphPage extends Fragment{
     @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
+        //We need to dynamically set the view so we're using a scrollview
         ScrollView sv = new ScrollView(getContext());
         sv.setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        //set the linear layout inside the scroll view to add items to
         final LinearLayout layout = new LinearLayout(getContext());
         final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().
                 getWidth(),getActivity().getWindowManager().getDefaultDisplay().getHeight());
 
         layout.setLayoutParams(params);
+
+        //setting the colors
         String color = "2b2828";
         sv.setBackgroundColor(Integer.parseInt(color,16));
         layout.setBackgroundColor(Integer.parseInt(color,16));
         layout.setDrawingCacheBackgroundColor(Integer.parseInt(color,16));
         sv.setDrawingCacheBackgroundColor(Integer.parseInt(color,16));
         layout.setOrientation(LinearLayout.VERTICAL);
+
+        //add it all
         sv.addView(layout);
+
         final LinearLayout.LayoutParams webViewParams= new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+        //get the arguments from the intent
         Bundle b = getArguments();
         String songName;
         String artistName;
+
+        // this is for the base Closer by the chainsmokers, if no intent thats what you get
         int Points = 4390;
         ArrayList<String> GraphUrl = new ArrayList<String>();
         if(b!=null)
@@ -98,6 +110,7 @@ public class SongVideoGraphPage extends Fragment{
         }
         final ArrayList<String> GraphUrls= GraphUrl;
 
+        // search youtube and fetch the first link
         final String youtubeSearchQuery = "https://www.youtube.com/results?search_query=" + songName + " by " + artistName;
         Log.d("ArtistName", artistName);
         Thread ConnectionThread = new Thread() {
@@ -106,8 +119,12 @@ public class SongVideoGraphPage extends Fragment{
                 Document jSoupDocument = null;
                 try {
                     jSoupDocument = Jsoup.connect(youtubeSearchQuery).timeout(1000).get();
+
+                    //youtube stores their video link in the class yt-uix-tile-link
+                    //get that link
                     final String youtubeEmbedLink = jSoupDocument.select("a.yt-uix-tile-link").first().attr("abs:href");
 
+                        //how to embed
                         final String youtubeUrl = "<iframe width=\"100%\" height=\"355\" src=\"https://www.youtube.com/embed/" + youtubeEmbedLink.substring(youtubeEmbedLink.indexOf("?v=") + 3) + "\" frameborder=\"0\" allowfullscreen==\"allowfullscreen\"></iframe>";
 
                         if (youtubeEmbedLink != null) {
@@ -116,6 +133,7 @@ public class SongVideoGraphPage extends Fragment{
                                 public void run() {
                                     webViewArray[0].loadData(youtubeUrl, "text/html", "UTF-8");
                                     layout.addView(webViewArray[0], webViewParams);
+                                    //add all of our charts to the views
                                     for (int i = 0; i < GraphUrls.size(); i++) {
                                         webViewArray[i + 1].loadData(GraphUrls.get(i), "text/html", null);
                                         layout.addView(webViewArray[i + 1], webViewParams);
@@ -133,7 +151,7 @@ public class SongVideoGraphPage extends Fragment{
             }
         };
 
-
+        //set all of our charts up and initalize everything
         for (int i=0; i<webViewArray.length; i++)
         {
             webViewArray[i] = new WebView(getContext());
@@ -153,8 +171,8 @@ public class SongVideoGraphPage extends Fragment{
 
         ConnectionThread.start();
 
-        //LinearLayout l = (LinearLayout) rootView.findViewById(R.id.Scroller);
-        //l.addView(sv);
+        //start the thread
+        //change the action bar
         Log.d("ArtistName", artistName);
         ((FrontPage) getActivity())
                 .setActionBarSongGraph(songName + " by " + artistName + " "+ Points );

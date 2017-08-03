@@ -15,5 +15,5 @@ We don't claim the project to be perfect, in fact it really isn't by all means, 
 
 We would also like to thank you for everything this past semester.
 
-Sincerly,AudioEmber Team 
+Sincerly, AudioEmber Team 
 # xAduioEmberMobile

@@ -29,6 +29,7 @@ public class GenreListview extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.genre_listview, container, false);
         list = (ListView) rootView.findViewById(R.id.genre_list);
+        //set the genres to the array adapted
         adapter = new ArrayAdapter<String>(getActivity(), R.layout.song_listview, genres);
         list.setAdapter(adapter);
 
@@ -38,6 +39,8 @@ public class GenreListview extends Fragment {
             public void onItemClick(AdapterView<?> arg0, View v, int pos,
                                     long id) {
                 // TODO Auto-generated method stub
+
+                //set the on click listener and launch the song-list-page with the intents
                 Bundle genrepasser = new Bundle();
                 genrepasser.putString("Genre", genres[pos]);
                 android.app.FragmentManager fm = getFragmentManager();

@@ -116,20 +116,6 @@ public class FrontPage extends AppCompatActivity {
 
 
     }
-   /* public void setNavigationView(String view)
-    {
-        BottomNavigationView bottomNavigationView;
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        switch(view) {
-            case "Graph":
-                bottomNavigationView.setSelectedItemId(R.id.graph_actionbar);
-                break;
-            case "Song":
-                break;
-            case "Genre":
-                break;
-        }
-    }*/
 
 
     public void setActionBarTitleG() {

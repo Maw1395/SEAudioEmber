@@ -67,17 +67,20 @@ public class SongListView extends Fragment {
                     .setActionBarTitle("hot-100");
         }
 
-
+        //querying the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
+        //start with the genre
         Query query = ref.child(Genre);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    //get the artist
                     for (DataSnapshot artist : dataSnapshot.getChildren()) {
                         String Artist = artist.getKey();
                         Log.i("db", Artist);
+                        //get the song from that artist
                         for (DataSnapshot song : artist.getChildren()) {
                             String Title = song.getKey();
                             Log.i("db", "  " + Title);
@@ -85,12 +88,14 @@ public class SongListView extends Fragment {
                             int point = 0;
                             for (DataSnapshot p : song.getChildren()) {
                                 if (i == 0){
+                                    //get the graph urls
                                     for (DataSnapshot url : p.getChildren()) {
                                         Log.i("db", "    "+url.getValue().toString());
                                         urls.add(url.getValue().toString());
                                     }
                                 }
                                 if (i == 1){
+                                    //get the point value
                                     point = Integer.parseInt(p.getValue().toString());
                                     Log.i("db", "    "+p.getValue().toString());
                                 }
@@ -134,6 +139,8 @@ public class SongListView extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View v, int pos,
                                     long id) {
+
+                //same as all the others, set the onclick listeners
                 Bundle GraphPasser = new Bundle();
                 GraphPasser.putString("Title", songs.get(pos).Title);
                 GraphPasser.putString("Artist", songs.get(pos).getArtist());

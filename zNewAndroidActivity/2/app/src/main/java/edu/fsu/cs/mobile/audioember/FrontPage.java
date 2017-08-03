@@ -8,7 +8,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,7 +41,7 @@ public class FrontPage extends AppCompatActivity {
                     //Commit transaction
                     ft.commit();
                     return true;
-                case R.id.front_page_artist_selector:
+                case R.id.front_page_graph_selector:
                     ft = fm.beginTransaction();
                     ft.replace(R.id.layout,songVideoGraphFrag );
 
@@ -114,9 +116,32 @@ public class FrontPage extends AppCompatActivity {
 
 
     }
+   /* public void setNavigationView(String view)
+    {
+        BottomNavigationView bottomNavigationView;
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        switch(view) {
+            case "Graph":
+                bottomNavigationView.setSelectedItemId(R.id.graph_actionbar);
+                break;
+            case "Song":
+                break;
+            case "Genre":
+                break;
+        }
+    }*/
+
 
     public void setActionBarTitleG() {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.genre1_actionbar);
     }
+
+    public void setActionBarSongGraph(String Title)
+    {
+        TextView title = getSupportActionBar().getCustomView().findViewById(R.id.genre_actionbar);
+        title.setText(Title);
+        //getSupportActionBar().setTitle(Title);
+    }
+
 }

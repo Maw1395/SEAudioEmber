@@ -77,12 +77,14 @@ public class SongVideoGraphPage extends Fragment{
         Bundle b = getArguments();
         String songName;
         String artistName;
+        int Points = 4390;
         ArrayList<String> GraphUrl = new ArrayList<String>();
         if(b!=null)
         {
             songName = b.getString("Title");
             artistName= b.getString("Artist");
             GraphUrl = b.getStringArrayList("GraphUrls");
+            Points = b.getInt("Points");
         }
         else
         {
@@ -97,39 +99,36 @@ public class SongVideoGraphPage extends Fragment{
         final ArrayList<String> GraphUrls= GraphUrl;
 
         final String youtubeSearchQuery = "https://www.youtube.com/results?search_query=" + songName + " by " + artistName;
+        Log.d("ArtistName", artistName);
         Thread ConnectionThread = new Thread() {
             public void run()
             {
                 Document jSoupDocument = null;
                 try {
-                    jSoupDocument = Jsoup.connect(youtubeSearchQuery).get();
-                    final String youtubeEmbedLink=jSoupDocument.select("a.yt-uix-tile-link").first().attr("abs:href");
+                    jSoupDocument = Jsoup.connect(youtubeSearchQuery).timeout(1000).get();
+                    final String youtubeEmbedLink = jSoupDocument.select("a.yt-uix-tile-link").first().attr("abs:href");
 
+                        final String youtubeUrl = "<iframe width=\"100%\" height=\"355\" src=\"https://www.youtube.com/embed/" + youtubeEmbedLink.substring(youtubeEmbedLink.indexOf("?v=") + 3) + "\" frameborder=\"0\" allowfullscreen==\"allowfullscreen\"></iframe>";
 
+                        if (youtubeEmbedLink != null) {
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    webViewArray[0].loadData(youtubeUrl, "text/html", "UTF-8");
+                                    layout.addView(webViewArray[0], webViewParams);
+                                    for (int i = 0; i < GraphUrls.size(); i++) {
+                                        webViewArray[i + 1].loadData(GraphUrls.get(i), "text/html", null);
+                                        layout.addView(webViewArray[i + 1], webViewParams);
 
-                    final String youtubeUrl="<iframe width=\"100%\" height=\"355\" src=\"https://www.youtube.com/embed/"+ youtubeEmbedLink.substring(youtubeEmbedLink.indexOf("?v=") +3) +"\" frameborder=\"0\" allowfullscreen==\"allowfullscreen\"></iframe>";
-
-                    if(youtubeEmbedLink!=null)
-                    {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                webViewArray[0].loadData(youtubeUrl, "text/html", "UTF-8");
-                                layout.addView(webViewArray[0], webViewParams);
-                                for (int i =0; i< GraphUrls.size(); i++)
-                                {
-                                    webViewArray[i+1].loadData(GraphUrls.get(i), "text/html",null);
-                                    layout.addView(webViewArray[i+1], webViewParams);
-
+                                    }
                                 }
-                            }
-                        });
+                            });
 
+                        }
+
+                } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
 
             }
         };
@@ -156,7 +155,9 @@ public class SongVideoGraphPage extends Fragment{
 
         //LinearLayout l = (LinearLayout) rootView.findViewById(R.id.Scroller);
         //l.addView(sv);
-
+        Log.d("ArtistName", artistName);
+        ((FrontPage) getActivity())
+                .setActionBarSongGraph(songName + " by " + artistName + " "+ Points );
         return sv;
     }
 

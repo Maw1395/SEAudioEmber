@@ -4,4 +4,5 @@
     <string name="top_artists">By Genres</string>
     <string name="genre_list">Song Graph</string>
     <string name="list_of_genres">Hot-100</string>
+    <string name="by_genres">By Genres</string>
 </resources>

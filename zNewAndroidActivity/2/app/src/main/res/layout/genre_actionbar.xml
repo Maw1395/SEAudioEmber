@@ -4,9 +4,10 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:paddingTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="left"
         android:id="@+id/genre_actionbar"
         android:text="Hot 100"
         android:background="#0B0909"

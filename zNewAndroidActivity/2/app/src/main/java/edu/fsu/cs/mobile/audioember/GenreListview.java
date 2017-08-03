@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,8 @@ public class GenreListview extends Fragment {
                 songListFrag.setArguments(genrepasser);
 
                 //Replace layout in activity_front_page.xml with the fragment
+
+
                 ft.replace(R.id.layout, songListFrag);
                 ft.commit();
             }
@@ -58,10 +61,5 @@ public class GenreListview extends Fragment {
         return rootView;
     }
 
-/*    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.genre_view, container, false);
-    }*/
+
 }

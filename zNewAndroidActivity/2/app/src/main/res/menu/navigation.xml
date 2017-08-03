@@ -8,13 +8,15 @@
         android:title="@string/top_songs" />
 
     <item
-        android:id="@+id/front_page_artist_selector"
-        android:icon="@drawable/artist"
-        android:title="@string/top_artists" />
 
-    <item
         android:id="@+id/front_page_genre_selector"
         android:icon="@drawable/genre"
+        android:title="@string/by_genres" />
+
+    <item
+        android:id="@+id/front_page_graph_selector"
+        android:icon="@drawable/chart"
         android:title="@string/genre_list" />
+    <!-- Icons Fetched from https://material.io/icons/-->
 
 </menu>

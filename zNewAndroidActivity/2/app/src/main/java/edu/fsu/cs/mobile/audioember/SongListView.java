@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -135,9 +136,10 @@ public class SongListView extends Fragment {
                                     long id) {
                 Bundle GraphPasser = new Bundle();
                 GraphPasser.putString("Title", songs.get(pos).Title);
-                GraphPasser.putString("Artist", songs.get(pos).getTitle());
+                GraphPasser.putString("Artist", songs.get(pos).getArtist());
                 GraphPasser.putStringArrayList("GraphUrls", songs.get(pos).getGraphs());
-                Log.d("db2", "" + songs.get(pos).getGraphs().toString());
+                GraphPasser.putInt("Points", songs.get(pos).getPoints());
+
                 android.app.FragmentManager fm = getFragmentManager();
 
                 //Start fragment transaction
@@ -147,6 +149,7 @@ public class SongListView extends Fragment {
                 svgp.setArguments(GraphPasser);
 
                 //Replace layout in activity_front_page.xml with the fragment
+
                 ft.replace(R.id.layout, svgp);
                 ft.commit();
                 // TODO Auto-generated method stub

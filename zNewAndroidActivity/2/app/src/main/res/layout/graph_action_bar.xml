@@ -11,6 +11,6 @@
         android:text="Song by With Points x"
         android:background="#0B0909"
         android:textColor="#a45610"
-        android:textSize="25sp" />
+        android:textSize="15sp" />
 
 </LinearLayout>

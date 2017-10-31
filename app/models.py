@@ -29,3 +29,9 @@ class song_points(db.Model):
         ArtistID = db.Column(db.Integer)
         Genre = db.Column(db.String(25), primary_key = True)
         Points = db.Column(db.Integer)
+
+class dates_on_chart(db.Model):
+        SongID = db.Column(db.Integer, primary_key = True)
+        StartDate = db.Column(db.Date, primary_key = True)
+        EndDate = db.Column(db.Date)
+        IsLastDate = db.Column(db.Boolean) #will be set to true unless song is on chart again

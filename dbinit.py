@@ -11,7 +11,7 @@ import config as Config
 py.sign_in(Config.user, Config.api_key)
 song_id_max=0
 artist_id_max=0
-def insertsongs(NAMEOFGENRE):
+def insertsongs(NAMEOFGENRE, ):
     global song_id_max
     global artist_id_max
 
@@ -42,10 +42,26 @@ def insertsongs(NAMEOFGENRE):
                 artist_id_max=artist_id_max+1
             else:
                 artist_id=db.session.query(models.songs).filter(models.songs.Artist==artist).first().ArtistID
-            
+           #------------------- Adding song to weekely Song Chart ----------------------------- 
             SongToAdd = models.songs(Artist=artist, Title = i.title, SongID=song_id, Genre=NAMEOFGENRE,Points= Points, Date = date, ArtistID=artist_id)
 
             db.session.add(SongToAdd)
+        
+            #-----------------Adding Song To The Date subseries ------------------------------
+            if((db.session.query(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id).count()) == 0):
+                SongDateToAdd = models.dates_on_chart(SongID=song_id, StartDate=date, EndDate=date, IsLastDate=True)
+                db.session.add(SongDateToAdd)
+            elif (i.lastPos == 0):
+                SongDateToAdd = models.dates_on_chart(songID=song_id,StartDate=date,EndDate=date,IsLastDate=True)
+                SongDateToUpdate = db.session.query(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id,
+                        models.dates_on_chart.IsLastDate==True, models.dates_on_chart.EndDate < date)
+                SongDateToUpdate.IsLastDate=False
+                db.session.add(SongDateToAdd)
+            else:
+                SongEndDateToUpdate = db.session.qyery(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id,
+                        models.dates_on_chart.IsLastDate==True)
+                SongEndDateToUpdate=.EndDate=date
+        
         
         newdate = date + timedelta(days = 7)
         chart=billboard.ChartData(NAMEOFGENRE, newdate.strftime("%Y-%m-%d")) 

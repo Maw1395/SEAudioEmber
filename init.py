@@ -1,2 +1,0 @@
-
-    print link.get('href')

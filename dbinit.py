@@ -1,69 +1,86 @@
 import billboard
-import plotly.plotly as py
-import plotly.graph_objs as go
+#import plotly.plotly as py
+#import plotly.graph_objs as go
 from datetime import datetime, timedelta
 from app import db, models
 import dateutil.parser as parser 
 from sqlalchemy import exists, desc
 import config as Config
+import pdb
+filename = "billboarderrors.txt"
+fileErrors= open(filename, 'w')
 
-
-py.sign_in(Config.user, Config.api_key)
-song_id_max=0
-artist_id_max=0
-def insertsongs(NAMEOFGENRE, ):
+#py.sign_in(Config.user, Config.api_key)
+song_id_max= db.session.query(models.songs).order_by(models.songs.SongID.desc()).first().SongID + 1
+artist_id_max=db.session.query(models.songs).order_by(models.songs.ArtistID.desc()).first().ArtistID + 1
+#song_id_max=0
+#artist_id_max=0
+def insertsongs(NAMEOFGENRE, startDateOfTheChart):
     global song_id_max
     global artist_id_max
+    global fileErrors
 
-
-    chart = billboard.ChartData(NAMEOFGENRE, date = '2016-01-01')
-    while(chart.date < '2017-07-24'):
+    chart = billboard.ChartData(NAMEOFGENRE, date = startDateOfTheChart)
+    while(chart.date < '2017-07-09'):
         
         for i in chart:
             date = datetime.strptime(chart.date, '%Y-%m-%d')
             artist = i.artist
             print (i.title)
             print (artist)
-            
-            #-------------Calculating Point Position------------------------------
-            Points = 101
-            for b in range(i.rank):
-                Points = Points - 1
             #-------------------checking Song Table for same songID----------------------------
             if ((db.session.query(models.songs).filter(models.songs.Title==i.title, models.songs.Artist==artist).count())==0):
                 song_id =song_id_max+1
                 song_id_max+=1
             else:
-                song_id=db.session.query(models.songs).filter(models.songs.Title==i.title, models.songs.Artist==artist).first().SongID
-            
-            #-------------------checking Song Table for same ArtistID----------------------------
-            if ((db.session.query(models.songs).filter(models.songs.Artist==artist).count())==0):
-                artist_id=artist_id_max+1
-                artist_id_max=artist_id_max+1
+                song_id=db.session.query(models.songs).filter(models.songs.Title==i.title,  models.songs.Artist==artist).first(
+                        ).SongID
+            #----------------Billboard sucks OCTOBER 6, 1990 Unchained Melody TEST CASE----------
+            if(db.session.query(models.songs).filter(models.songs.SongID==song_id, 
+                models.songs.Date==date.strftime('%Y-%m-%d'),  models.songs.Genre==NAMEOFGENRE).count()==1):
+                ToWrite=i.title + " " + NAMEOFGENRE + " " + date.strftime('%Y-%m-%d')
+                fileErrors.write(ToWrite)
             else:
-                artist_id=db.session.query(models.songs).filter(models.songs.Artist==artist).first().ArtistID
-           #------------------- Adding song to weekely Song Chart ----------------------------- 
-            SongToAdd = models.songs(Artist=artist, Title = i.title, SongID=song_id, Genre=NAMEOFGENRE,Points= Points, Date = date, ArtistID=artist_id)
+                #-------------Calculating Point Position------------------------------
+                Points = 101
+                for b in range(i.rank):
+                    Points = Points - 1
+                
+                #-------------------checking Song Table for same ArtistID----------------------------
+                if ((db.session.query(models.songs).filter(models.songs.Artist==artist).count())==0):
+                    artist_id=artist_id_max+1
+                    artist_id_max=artist_id_max+1
+                else:
+                    artist_id=db.session.query(models.songs).filter(models.songs.Artist==artist).first().ArtistID
+               #------------------- Adding song to weekely Song Chart ----------------------------- 
+                SongToAdd = models.songs(Artist=artist, Title = i.title, SongID=song_id, Genre=NAMEOFGENRE,Points= Points, Date = date, ArtistID=artist_id)
 
-            db.session.add(SongToAdd)
+                db.session.add(SongToAdd)
         
-            #-----------------Adding Song To The Date subseries ------------------------------
-            if((db.session.query(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id).count()) == 0):
-                SongDateToAdd = models.dates_on_chart(SongID=song_id, StartDate=date, EndDate=date, IsLastDate=True)
-                db.session.add(SongDateToAdd)
-            elif (i.lastPos == 0):
-                SongDateToAdd = models.dates_on_chart(songID=song_id,StartDate=date,EndDate=date,IsLastDate=True)
-                SongDateToUpdate = db.session.query(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id,
-                        models.dates_on_chart.IsLastDate==True, models.dates_on_chart.EndDate < date)
-                SongDateToUpdate.IsLastDate=False
-                db.session.add(SongDateToAdd)
-            else:
-                SongEndDateToUpdate = db.session.qyery(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id,
-                        models.dates_on_chart.IsLastDate==True)
-                SongEndDateToUpdate=.EndDate=date
-        
-        
+                #-----------------Adding Song To The Date subseries ------------------------------
+                if((db.session.query(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id, models.dates_on_chart.
+                    Genre==NAMEOFGENRE).count()) == 0):
+                   SongDateToAdd = models.dates_on_chart(SongID=song_id, StartDate=date, EndDate=date, IsLastDate=True
+                           , Genre = NAMEOFGENRE)
+                   db.session.add(SongDateToAdd)
+                elif (i.lastPos == 0):
+                   SongDateToAdd = models.dates_on_chart(SongID=song_id,StartDate=date,EndDate=date,IsLastDate=True
+                           , Genre = NAMEOFGENRE)
+                   SongDateToUpdate = db.session.query(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id,
+                           models.dates_on_chart.IsLastDate==True, models.dates_on_chart.EndDate < date).first()
+                   SongDateToUpdate.IsLastDate=False
+                   db.session.add(SongDateToAdd)
+
+                else:
+                   SongEndDateToUpdate = db.session.query(models.dates_on_chart).filter(models.dates_on_chart.SongID==song_id,
+                           models.dates_on_chart.IsLastDate==True).first()
+                   SongEndDateToUpdate.EndDate=date
+                   db.session.add(SongEndDateToUpdate)
+
+
         newdate = date + timedelta(days = 7)
+        print(date, "      songid_max : ", song_id_max, "      Genre: ", NAMEOFGENRE)
+        db.session.commit()
         chart=billboard.ChartData(NAMEOFGENRE, newdate.strftime("%Y-%m-%d")) 
 def CalculateSongPoints():
     global song_id_max
@@ -250,21 +267,24 @@ def GraphingFunction():
             GraphinFunctionByGenre(a[0].SongID, 'country-songs')
         db.session.commit()
 
-'''insertsongs('hot-100')
+#insertsongs('hot-100','1990-10-06' )
+#db.session.commit()
+insertsongs('country-songs', '1958-10-20')
 db.session.commit()
-insertsongs('country-songs')
+
+insertsongs('r-b-hip-hop-songs', '1958-10-20')
 db.session.commit()
-insertsongs('r-b-hip-hop-songs')
+insertsongs('rock-songs', '2009-06-20')
 db.session.commit()
-insertsongs('rock-songs')
+insertsongs('dance-club-play-songs','1976-08-28' )
 db.session.commit()
-insertsongs('dance-electronic-songs')
+
+insertsongs('pop-songs', '1992-01-03')
 db.session.commit()
-insertsongs('pop-songs')
-db.session.commit()'''
 '''CalculateSongPoints()
 db.session.commit()'''
 '''CalculateArtistPoints()
 db.session.commit()'''
-GraphingFunction()
-db.session.commit()
+'''GraphingFunction()
+db.session.commit()'''
+fileErrors.close()

@@ -8,6 +8,10 @@
     android:background="@color/colorPrimaryDark"
     tools:context="edu.fsu.cs.mobile.audioember.SearchMenu">
 
+    <!-- Changed all dp to sp -KW
+         Splash is the screen that loads
+         as soon as the app starts (splash screen) -->
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,10 +25,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Audio Ember"
+        android:text="@string/splash_screen"
         android:textColor="#ffffff"
         android:textSize="40sp"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="228dp" />
+        tools:layout_editor_absoluteX="77sp"
+        tools:layout_editor_absoluteY="228sp" />
 
 </RelativeLayout>

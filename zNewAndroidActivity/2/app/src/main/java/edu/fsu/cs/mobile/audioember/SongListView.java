@@ -1,11 +1,8 @@
 package edu.fsu.cs.mobile.audioember;
 
-import android.app.DownloadManager;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.support.design.widget.BottomNavigationView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +55,7 @@ public class SongListView extends Fragment {
             ((FrontPage) getActivity()).setActionBarTitle(Genre);
         }
         else {
-            //load list for hot-100
+            //load list for hot 100
             songs = new ArrayList<Song>();
             urls = new ArrayList<String>();
             Genre = "hot-100";

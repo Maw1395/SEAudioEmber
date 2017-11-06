@@ -1,8 +1,26 @@
+<!-- Changed "list_of_genres" Hot 100 -KW
+     <string name="list_of_genres">Hot 100</string>
+
+    Added Country, Rock, R&B/Hip-Hop,
+    Dance/Electric, Pop, song_n_points -KW
+
+    Splash is the screen that loads
+    as soon as the app starts (splash screen)-->
+
 <resources>
     <string name="app_name">AudioEmber</string>
+    <string name="splash_screen">Audio Ember</string>
     <string name="top_songs">Top Songs</string>
     <string name="top_artists">By Genres</string>
-    <string name="genre_list">Song Graph</string>
-    <string name="list_of_genres">Hot-100</string>
-    <string name="by_genres">By Genres</string>
+    <string name="song_graph">Song Graph</string>
+    <string name="Hot_100">Hot 100</string>
+    <string name="Country">Country</string>
+    <string name="Rock">Rock</string>
+    <string name="RnBHipHop">R&amp;B/Hip-Hop</string>
+    <string name="DanceElectric">Dance/Electric</string>
+    <string name="Pop">Pop</string>
+    <string name="by_genre">By Genre</string>
+    <string name="song_n_points">Song by With Points X</string>
+    <string name="select_a_genre">Select A Genre</string>
+    <string name="home">Home</string>
 </resources>

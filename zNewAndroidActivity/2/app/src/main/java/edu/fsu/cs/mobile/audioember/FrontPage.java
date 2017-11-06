@@ -79,13 +79,13 @@ public class FrontPage extends AppCompatActivity {
         songVideoGraphFrag = new SongVideoGraphPage();
 
         //Replace layout in activity_front_page.xml with the fragment
-        ft.replace(R.id.layout, songListFrag);
+    /*    ft.replace(R.id.layout, songListFrag);
 
         //Commit transaction
         ft.commit();
 
         // Sets the text for the action bar title
-        setActionBarTitle("hot-100");
+        setActionBarTitle("hot-100");*/
 
         //Set up the navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

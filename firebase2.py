@@ -7,7 +7,7 @@ firebase = firebase.FirebaseApplication('https://seaudioember.firebaseio.com/', 
 
 SONG_MAX = db.session.query(models.songs).order_by(models.songs.SongID.desc()).first().SongID
 GenreList = ['hot-100', 'country-songs', 'rock-songs', 'r-b-hip-hop-songs', 'dance-club-play-songs', 'pop-songs']
-for i in range(54, SONG_MAX):
+for i in range(1, 5):
     print (i)
     songEntry = i
     for j in range(len(GenreList)):
@@ -22,6 +22,6 @@ for i in range(54, SONG_MAX):
                 SongID = IndividualSongEntry.SongID
                 path = "SongByDay/" + str(SongID) + '/' + GenreList[j] + '/' + Date.strftime('%Y-%m-%d') + '/'
 
-                data = {'Points': Points, 'Artist': Artist, 'Title': Title}
-                data = json.dumps(data)
-                firebase.post(path, data)
+                #data = {Points}
+                #data = json.dumps(data)
+                firebase.post(path, Points)

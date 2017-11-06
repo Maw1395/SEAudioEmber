@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1009591101596",
+    "firebase_url": "https://seaudioember.firebaseio.com",
+    "project_id": "seaudioember",
+    "storage_bucket": "seaudioember.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009591101596:android:eef144cc5ce71c4e",
+        "android_client_info": {
+          "package_name": "com.example.cook.graph_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1009591101596-r0h1js75nva54f0eiu46pqma042s3ek5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKWAODIusTtj7YDrqEpiNeRUrs35SFryU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

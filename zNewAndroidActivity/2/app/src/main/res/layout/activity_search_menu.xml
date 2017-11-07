@@ -15,8 +15,10 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         android:src="@drawable/musicians" />
 
     <TextView
@@ -28,6 +30,19 @@
         android:text="@string/splash_screen"
         android:textColor="#ffffff"
         android:textSize="40sp"
+        tools:layout_editor_absoluteX="77sp"
+        tools:layout_editor_absoluteY="228sp" />
+
+    <!-- Added version number -KW -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="Version 1.0"
+        android:textColor="#ffffff"
         tools:layout_editor_absoluteX="77sp"
         tools:layout_editor_absoluteY="228sp" />
 

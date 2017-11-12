@@ -21,7 +21,9 @@ import android.util.Log;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 
 /**
  * Created by jonas on 10.09.16.
@@ -29,81 +31,96 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
     private LineGraphSeries<DataPoint> mSeries;
-
     private final Handler mHandler = new Handler();
     private Runnable mTimer2;
-    int size =0;
-    double counter =1;
+    int size = 0;
+    String FirstDate = "1958-01-01";
+    Date theday1 = Calendar.getInstance().getTime();
+    Date datelast = Calendar.getInstance().getTime();
+    boolean firstdate=true;
+    int counter =0;
+    Vector<Date> datearray = new Vector<>();
+    Vector<Long> pointarray = new Vector<>();
+    boolean threadsleeper=false;
+    Date datefirst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         GraphView graph = findViewById(R.id.graph);
+
         initGraph(graph);
     }
 
-    public void initGraph(GraphView graph) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public void initGraph(final GraphView graph) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
-        Query query = ref.child("SongByDay");
+        final Query query = ref.child("SongByDay");
         mSeries = new LineGraphSeries<>();
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            theday1 = df1.parse(FirstDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        datefirst = theday1;
 
-                if(dataSnapshot.exists()){
-                    for(DataSnapshot SONGID: dataSnapshot.getChildren()) {
-                        for (DataSnapshot GENRE : SONGID.getChildren()) {
-                            long count = GENRE.getChildrenCount();
-                            Log.e("COUNTER",count + "");
-                            int count1 = (int)count + 0;
-                            size = count1;
-                            Log.e("COUNTER",count1 + "");
+    query.addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            for (DataSnapshot DATE : GENRE.getChildren()) {
-                                String datesting = DATE.getKey();
-                                DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-                                try {
-                                    Date theday = df.parse(datesting);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot SONGID : dataSnapshot.getChildren()) {
+                    for (DataSnapshot GENRE : SONGID.getChildren()) {
+                        long count = GENRE.getChildrenCount();
+                        Log.e("COUNTER", count + "");
+                        int count1 = (int) count + 0;
+                        size = count1;
+                        Log.e("COUNTER", count1 + "");
+
+                        for (DataSnapshot DATE : GENRE.getChildren()) {
+                            String datesting = DATE.getKey();
+                            Date theday = Calendar.getInstance().getTime();
+                            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                            try {
+                                    theday = df.parse(datesting);
+                                    datearray.add(theday);
                                 }
-                                for(DataSnapshot POINT: DATE.getChildren()) {
-                                    Log.e("COUNT", POINT.getValue() + "");
-                                    long d = (long)POINT.getValue();
-
-                                    mSeries.appendData(new DataPoint(counter++, d), true, count1 );
-                                }
-
+                            catch (ParseException e) {
+                                e.printStackTrace();
                             }
-                            break;
+                            for (DataSnapshot POINT : DATE.getChildren()) {
+                                Log.e("COUNT", theday + "");
+                                pointarray.add((Long) POINT.getValue());
+                                counter++;
+                            }
                         }
                         break;
                     }
+                    break;
+                }
+                for(int i =0; i<pointarray.size(); i++)
+                {
+                    final int i1 =i;
+                    mSeries.appendData(new DataPoint(datearray.elementAt(i1),pointarray.elementAt(i1)), false, size);
+                    graph.addSeries(mSeries);
+                    Log.e("VECTOR", pointarray.elementAt(i) + " " + datearray.elementAt(i));
                 }
             }
-
+        }
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
         double x = 0;
-        // first mSeries is a line
-
-        graph.addSeries(mSeries);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(12);
-
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setXAxisBoundsManual(true);
+        //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
-
-        //graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-
-
+        graph.getViewport().setScrollable(true);
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
+        Log.e("SIZE", pointarray.size() + "");
     }
 }

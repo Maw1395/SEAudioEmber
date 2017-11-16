@@ -20,8 +20,8 @@ for i in range(1, 5):
                 Artist = unicodedata.normalize('NFKD', IndividualSongEntry.Artist).encode('ascii', 'ignore')
                 Title = unicodedata.normalize('NFKD', IndividualSongEntry.Title).encode('ascii', 'ignore')
                 SongID = IndividualSongEntry.SongID
-                path = "SongByDay/" + str(SongID) + '/' + GenreList[j] + '/' + Date.strftime('%Y-%m-%d') + '/'
+                path = "SongByDay/" + str(SongID) + '/' + GenreList[j] + '/' + Date.strftime('%Y-%m-%d')
 
                 #data = {Points}
                 #data = json.dumps(data)
-                firebase.post(path, Points)
+                firebase.patch(path, {"Points":Points})

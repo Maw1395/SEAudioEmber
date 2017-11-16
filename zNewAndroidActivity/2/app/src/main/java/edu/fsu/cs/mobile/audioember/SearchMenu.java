@@ -11,7 +11,7 @@ public class SearchMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_menu);
+        setContentView(R.layout.activity_splash_page);
         new Handler().postDelayed(new Runnable()
         {
             @Override

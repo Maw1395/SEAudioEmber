@@ -3,15 +3,23 @@ package edu.fsu.cs.mobile.audioember;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+
+
 
 public class FrontPage extends AppCompatActivity {
     ListView songList;
@@ -35,7 +43,6 @@ public class FrontPage extends AppCompatActivity {
                     //Commit transaction
                     ft.commit();
                     return true;
-
                 case R.id.front_page_graph_selector:
                     ft = fm.beginTransaction();
                     ft.replace(R.id.layout,songVideoGraphFrag );
@@ -43,7 +50,6 @@ public class FrontPage extends AppCompatActivity {
                     //Commit transaction
                     ft.commit();
                     return true;
-
                 case R.id.front_page_genre_selector:
                     ft = fm.beginTransaction();
                     ft.replace(R.id.layout, genreFrag);
@@ -73,15 +79,13 @@ public class FrontPage extends AppCompatActivity {
         songVideoGraphFrag = new SongVideoGraphPage();
 
         //Replace layout in activity_front_page.xml with the fragment
-        //ft.replace(R.id.layout, genreFrag);
+        ft.replace(R.id.layout, songListFrag);
 
         //Commit transaction
-        //ft.commit();
+        ft.commit();
 
         // Sets the text for the action bar title
-
-        //Change this
-        //setActionBarTitle("Hot 100");
+        setActionBarTitle("hot-100");
 
         //Set up the navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -92,31 +96,23 @@ public class FrontPage extends AppCompatActivity {
     public void setActionBarTitle(String g) {
         //set action bar depending on which genre has been selected
         switch (g){
-
-            //Altered the genere names -KW
-
-            //Home will eventually be the home screen that the app defaults to.  Still working on
-            //what will be included in the home screen
-            case "Home": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(R.layout.genre_actionbar_home);
+            case "hot-100": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                getSupportActionBar().setCustomView(R.layout.genre_actionbar);
                 break;
-            case "Hot 100": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(R.layout.genre_actionbar_hot_100);
+            case "pop-songs": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                getSupportActionBar().setCustomView(R.layout.genre_actionbar1);
                 break;
-            case "Pop": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(R.layout.genre_actionbar_pop);
+            case "country-songs": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                getSupportActionBar().setCustomView(R.layout.genre_actionbar2);
                 break;
-            case "Country": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(R.layout.genre_actionbar_country);
+            case "rock-songs": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                getSupportActionBar().setCustomView(R.layout.genre_actionbar3);
                 break;
-            case "Rock": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(R.layout.genre_actionbar_rock);
+            case "dance-electronic-songs": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                getSupportActionBar().setCustomView(R.layout.genre_actionbar4);
                 break;
-            case "Dance/Electronic": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(R.layout.genre_actionbar_dance_electric);
-                break;
-            case "R&B/Hip-Hop": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-                getSupportActionBar().setCustomView(R.layout.genre_actionbar_rb_hiphop);
+            case "r-b-hip-hop-songs": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+                getSupportActionBar().setCustomView(R.layout.genre_actionbar5);
                 break;
         }
 
@@ -127,7 +123,7 @@ public class FrontPage extends AppCompatActivity {
     public void setActionBarTitleG() {
         // set pick genre action bar, should probably be moved into function above
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.genre_actionbar_home);
+        getSupportActionBar().setCustomView(R.layout.genre1_actionbar);
     }
 
     public void setActionBarSongGraph(String Title)

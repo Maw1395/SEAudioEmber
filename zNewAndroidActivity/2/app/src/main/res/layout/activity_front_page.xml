@@ -8,11 +8,24 @@
     android:orientation="vertical"
     tools:context=".FrontPage">
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="70dp"
+        android:layout_height="520dp"
+        android:background="@android:color/transparent"
+        android:icon="@drawable/menu" />
+
+    <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+        />
     <LinearLayout
         android:id="@+id/layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView

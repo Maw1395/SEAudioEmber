@@ -5,13 +5,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
-    android:paddingTop="15sp"
-    android:paddingBottom="10sp"
-    android:paddingStart="15sp"
-    android:paddingEnd="15sp"
-    android:textSize="14sp">
+        android:paddingTop="15sp"
+        android:paddingBottom="10sp"
+        android:paddingStart="15sp"
+        android:paddingEnd="15sp"
+        android:textSize="14sp">
     </TextView>
-
     <!-- Changed all dp to sp and paddingLeft to paddingStart
          Changed paddingLeft to paddingStart
          Added paddingEn -KW -->

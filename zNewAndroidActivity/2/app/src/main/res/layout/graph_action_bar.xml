@@ -4,9 +4,7 @@
     android:layout_height="match_parent">
 
     <!-- Change left to start
-         android:layout_gravity="start" -KW
-    -->
-
+         android:layout_gravity="start" -KW -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,7 +4,6 @@
     android:layout_height="match_parent">
 
     <!-- Changed all dp to sp -KW -->
-
     <TextView
         android:paddingTop="10sp"
         android:layout_width="wrap_content"

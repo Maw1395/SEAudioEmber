@@ -11,7 +11,6 @@
     <!-- Changed all dp to sp -KW
          Splash is the screen that loads
          as soon as the app starts (splash screen) -->
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +33,6 @@
         tools:layout_editor_absoluteY="228sp" />
 
     <!-- Added version number -KW -->
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
         android:id="@+id/song_list"
         android:background="#1a1818"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#dc6414"
-    android:paddingTop="15dp"
-    android:paddingBottom="10dp"
-    android:paddingLeft="15dp"
-    android:textSize="14dp">
+        android:paddingTop="15sp"
+        android:paddingBottom="10sp"
+        android:paddingLeft="15sp"
+        android:paddingRight="15sp"
+        android:textSize="14sp">
     </TextView>
+
+</LinearLayout>

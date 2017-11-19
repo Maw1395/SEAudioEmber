@@ -5,7 +5,7 @@
 
     <ListView
         android:id="@+id/genre_list"
-        android:background="#2b2828"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="#FF0000">

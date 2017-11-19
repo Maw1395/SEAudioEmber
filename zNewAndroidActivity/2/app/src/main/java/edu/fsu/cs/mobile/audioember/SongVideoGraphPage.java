@@ -1,4 +1,4 @@
-package edu.fsu.cs.mobile.audioember;
+/*package edu.fsu.cs.mobile.audioember;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,7 +31,7 @@ import static edu.fsu.cs.mobile.audioember.R.id.container;
 
 /**
  * Created by woody on 7/30/17.
- */
+
 
 public class SongVideoGraphPage extends Fragment{
 
@@ -180,3 +180,4 @@ public class SongVideoGraphPage extends Fragment{
     }
 
 }
+*/

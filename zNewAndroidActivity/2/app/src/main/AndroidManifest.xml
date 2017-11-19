@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SearchMenu"
+            android:name=".SplashPage"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar">
@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FrontPage"
-            android:label="Home">
-        </activity>
+            android:name=".MainActivity"
+            android:label="Search Method"
+            android:background = "@android:color/black"></activity>
     </application>
 
 </manifest>

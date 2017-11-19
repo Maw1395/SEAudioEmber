@@ -1,4 +1,4 @@
-package edu.fsu.cs.mobile.audioember;
+/*package edu.fsu.cs.mobile.audioember;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 /**
  * Created by woody on 7/28/17.
- */
+
 
 public class GenreListview extends Fragment {
     ListView list;
@@ -66,3 +66,4 @@ public class GenreListview extends Fragment {
 
 
 }
+*/

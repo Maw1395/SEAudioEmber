@@ -52,7 +52,7 @@ public class SongListView extends Fragment {
             songs = new ArrayList<Song>();
             urls = new ArrayList<String>();
             Genre = b.getString("Genre");
-            ((FrontPage) getActivity()).setActionBarTitle(Genre);
+//            ((FrontPage) getActivity()).setActionBarTitle(Genre);
         }
         else {
             //load list for hot 100
@@ -60,8 +60,8 @@ public class SongListView extends Fragment {
             urls = new ArrayList<String>();
             Genre = "hot-100";
             // Set title bar
-            ((FrontPage) getActivity())
-                    .setActionBarTitle("hot-100");
+//            ((FrontPage) getActivity())
+//                    .setActionBarTitle("hot-100");
         }
 
         //querying the database

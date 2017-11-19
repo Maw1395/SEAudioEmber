@@ -1,11 +1,13 @@
-/*package edu.fsu.cs.mobile.audioember;
+package edu.fsu.cs.mobile.audioember;
 
+import android.app.Application;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +19,13 @@ import android.widget.Toast;
 
 /**
  * Created by woody on 7/28/17.
+*/
 
-
-public class GenreListview extends Fragment {
+public class GenreListview extends AppCompatActivity {
     ListView list;
     ArrayAdapter<String> adapter;
     String [] genres = {"hot-100","country-songs","rock-songs","r-b-hip-hop-songs", "dance-electronic-songs", "pop-songs"};
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.genre_listview, container, false);
@@ -58,12 +59,11 @@ public class GenreListview extends Fragment {
                 ft.commit();
             }
         });
-        // Set title bar
+        /* Set title bar
         ((FrontPage) getActivity())
-                .setActionBarTitleG();
+                .setActionBarTitleG();*/
         return rootView;
     }
 
 
 }
-*/

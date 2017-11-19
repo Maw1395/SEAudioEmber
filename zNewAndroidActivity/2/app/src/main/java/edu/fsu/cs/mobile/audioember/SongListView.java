@@ -1,4 +1,4 @@
-/*package edu.fsu.cs.mobile.audioember;
+package edu.fsu.cs.mobile.audioember;
 
 import android.app.DownloadManager;
 import android.app.Fragment;
@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,9 +32,9 @@ import java.util.List;
 
 /**
  * Created by woody on 8/1/17.
+*/
 
-
-public class SongListView extends Fragment {
+public class SongListView extends AppCompatActivity {
     ListView list;
     ArrayAdapter<String> adapter;
     private ArrayList<Song> songs = new ArrayList<Song>();
@@ -41,7 +42,6 @@ public class SongListView extends Fragment {
     private List<String> Songs = new ArrayList<String>();
     private String Genre;
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -55,16 +55,16 @@ public class SongListView extends Fragment {
             songs = new ArrayList<Song>();
             urls = new ArrayList<String>();
             Genre = b.getString("Genre");
-            ((FrontPage) getActivity()).setActionBarTitle(Genre);
+         //   ((FrontPage) getActivity()).setActionBarTitle(Genre);
         }
         else {
             //load list for hot-100
             songs = new ArrayList<Song>();
             urls = new ArrayList<String>();
             Genre = "hot-100";
-            // Set title bar
+          /*  // Set title bar
             ((FrontPage) getActivity())
-                    .setActionBarTitle("hot-100");
+                    .setActionBarTitle("hot-100");*/
         }
 
         //querying the database
@@ -157,12 +157,12 @@ public class SongListView extends Fragment {
                 //Start fragment transaction
                 FragmentTransaction ft = fm.beginTransaction();
 
-                SongVideoGraphPage svgp = new SongVideoGraphPage();
-                svgp.setArguments(GraphPasser);
+               // SongVideoGraphPage svgp = new SongVideoGraphPage();
+               // svgp.setArguments(GraphPasser);
 
                 //Replace layout in activity_front_page.xml with the fragment
 
-                ft.replace(R.id.layout, svgp);
+               // ft.replace(R.id.layout, svgp);
                 ft.commit();
                 // TODO Auto-generated method stub
                 Toast.makeText(getActivity(), songs.get(pos).Title, Toast.LENGTH_SHORT).show();
@@ -170,4 +170,4 @@ public class SongListView extends Fragment {
         });
     }
 }
-*/
+

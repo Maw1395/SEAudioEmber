@@ -13,7 +13,8 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -29,34 +30,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button selection4 = findViewById(R.id.genre);
         selection4.setOnClickListener(this);
     }
-        @Override
-        public void onClick (View v){
-            switch(v.getId())
+
+    @Override
+    public void onClick (View v)
+    {
+        switch(v.getId())
+        {
+            case R.id.song:
             {
-                case R.id.song:
-                {
-                    //startActivity(new Intent(MainActivity.this, SongListView.class));
-                    break;
-                }
+                startActivity(new Intent(MainActivity.this, SearchBySong.class));
+                break;
+            }
 
-                case R.id.artist:
-                {
-                   // startActivity(new Intent(MainActivity.this, ArtistView.class));
-                    break;
-                }
+            case R.id.artist:
+            {
+                // startActivity(new Intent(MainActivity.this, ArtistView.class));
+                break;
+            }
 
-                case R.id.year:
-                {
-                   // startActivity(new Intent(MainActivity.this, YearView.class));
-                    break;
-                }
+            case R.id.year:
+            {
+                // startActivity(new Intent(MainActivity.this, YearView.class));
+                break;
+            }
 
-                case R.id.genre:
-                {
-                    //startActivity(new Intent(MainActivity.this, GenreListview.class));
-                    break;
-                }
+            case R.id.genre:
+            {
+                //startActivity(new Intent(MainActivity.this, GenreListview.class));
+                break;
             }
         }
+    }
 
 }

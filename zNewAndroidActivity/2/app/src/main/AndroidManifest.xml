@@ -26,7 +26,15 @@
         <activity
             android:name=".MainActivity"
             android:label="Search Method"
-            android:background = "@android:color/black"></activity>
+            android:background = "@android:color/black">
+        </activity>
+
+        <activity
+            android:name=".SearchBySong"
+            android:label="Search By Song"
+            android:backgroud="@android:color/black">
+        </activity>
+
 
 
 

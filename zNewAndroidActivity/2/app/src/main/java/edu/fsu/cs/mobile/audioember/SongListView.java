@@ -1,4 +1,4 @@
-package edu.fsu.cs.mobile.audioember;
+/*package edu.fsu.cs.mobile.audioember;
 
 import android.app.DownloadManager;
 import android.app.Fragment;
@@ -32,7 +32,7 @@ import java.util.List;
 
 /**
  * Created by woody on 8/1/17.
-*/
+
 
 public class SongListView extends AppCompatActivity {
     ListView list;
@@ -64,7 +64,7 @@ public class SongListView extends AppCompatActivity {
             Genre = "hot-100";
           /*  // Set title bar
             ((FrontPage) getActivity())
-                    .setActionBarTitle("hot-100");*/
+                    .setActionBarTitle("hot-100");
         }
 
         //querying the database
@@ -171,3 +171,4 @@ public class SongListView extends AppCompatActivity {
     }
 }
 
+*/

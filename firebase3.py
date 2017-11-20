@@ -1,18 +1,18 @@
 from app import db, models
 from datetime import datetime, timedelta 
 
-Firebasefile= open('FirebaseSongFile.json','w')
+Firebasefile= open('FirebaseSongFile1.json','w')
 Firebasefile.write("{\n")
-Firebasefile.write('\t"SongByDay1" : {\n')
+Firebasefile.write('\t"SongByDay1" : [null,{\n')
 
 SONG_MAX = db.session.query(models.songs).order_by(models.songs.SongID.desc()).first().SongID                    
 SONG_MIN=1
 GenreList = ['hot-100', 'country-songs', 'rock-songs', 'r-b-hip-hop-songs', 'dance-club-play-songs', 'pop-songs']
 for i in range(1, SONG_MAX):
-    print (i)
+    if i%1000 == 0:
+	print i
     SONG_MIN=i
     songEntry = i
-    Firebasefile.write('\t\t"'+str(i)+'" : {\n')	
     count = 0
     for j in range(len(GenreList)):
         IndividualSongList = db.session.query(models.songs).filter(models.songs.SongID == songEntry,
@@ -40,7 +40,7 @@ for i in range(1, SONG_MAX):
             if counter!=count:
                 Firebasefile.write('\t\t\t},\n')
             else:
-                Firebasefile.write('\t\t\t}\n\t\t},\n')
+                Firebasefile.write('\t\t\t}\n\t\t}, {\n')
  
                 #Points = IndividualSongEntry.Points
                 #Artist = unicodedata.normalize('NFKD', IndividualSongEntry.Artist).encode('ascii', 'ignore')

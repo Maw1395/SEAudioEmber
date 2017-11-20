@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context="edu.fsu.cs.mobile.audioember.SplashPage">
+    tools:context="edu.fsu.cs.mobile.audioember.SearchMenu">
 
     <ImageView
         android:layout_width="match_parent"

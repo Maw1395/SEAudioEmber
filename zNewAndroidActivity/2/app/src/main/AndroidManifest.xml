@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashPage"
+            android:name=".SearchMenu"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar">
@@ -24,6 +24,7 @@
         </activity>
 
         <activity
+<<<<<<< HEAD
             android:name=".MainActivity"
             android:label="Search Method"
             android:background = "@android:color/black">
@@ -41,6 +42,11 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+=======
+            android:name=".FrontPage"
+            android:label="Home">
+        </activity>
+>>>>>>> parent of cbc0693... More UI
     </application>
 
 </manifest>

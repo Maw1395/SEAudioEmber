@@ -1,4 +1,4 @@
-/*package edu.fsu.cs.mobile.audioember;
+package edu.fsu.cs.mobile.audioember;
 
 import android.app.Application;
 import android.app.Fragment;
@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 /**
  * Created by woody on 7/28/17.
-
+ */
 
 public class GenreListview extends AppCompatActivity {
     ListView list;
@@ -67,4 +67,3 @@ public class GenreListview extends AppCompatActivity {
 
 
 }
-*/

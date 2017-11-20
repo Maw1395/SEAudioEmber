@@ -27,6 +27,7 @@
 <<<<<<< HEAD
             android:name=".MainActivity"
             android:label="Search Method"
+<<<<<<< HEAD
             android:background = "@android:color/black">
         </activity>
 
@@ -47,6 +48,9 @@
             android:label="Home">
         </activity>
 >>>>>>> parent of cbc0693... More UI
+=======
+            android:background = "@android:color/black"></activity>
+>>>>>>> parent of 121c35e... More UI
     </application>
 
 </manifest>

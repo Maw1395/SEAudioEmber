@@ -5,7 +5,15 @@
 
     <ListView
         android:id="@+id/genre_list"
+<<<<<<< HEAD
         android:background="#000000"
+=======
+<<<<<<< HEAD
+        android:background="#ffffff"
+=======
+        android:background="#00ff40"
+>>>>>>> master
+>>>>>>> kevin-UI
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textColor="#141414">

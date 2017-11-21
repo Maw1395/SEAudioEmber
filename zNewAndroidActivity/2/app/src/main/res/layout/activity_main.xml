@@ -44,8 +44,13 @@
                 android:id="@+id/song"
                 android:layout_width="370dp"
                 android:layout_height="120dp"
+<<<<<<< HEAD
                 android:background="@drawable/button_border"
                 android:fontFamily="@font/audiowide2"
+=======
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/audiowide"
+>>>>>>> parent of 121c35e... More UI
                 android:text="Song"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="50dp"
@@ -62,8 +67,13 @@
                 android:id="@+id/artist"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
+<<<<<<< HEAD
                 android:background="@drawable/button_border"
                 android:fontFamily="@font/audiowide2"
+=======
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/audiowide"
+>>>>>>> parent of 121c35e... More UI
                 android:text="Artist"
                 android:textColor="@android:color/holo_blue_bright"
                 android:textSize="50dp"
@@ -79,8 +89,13 @@
                 android:id="@+id/year"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
+<<<<<<< HEAD
                 android:background="@drawable/button_border"
                 android:fontFamily="@font/audiowide2"
+=======
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/audiowide"
+>>>>>>> parent of 121c35e... More UI
                 android:text="Year"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="50dp"
@@ -96,8 +111,13 @@
                 android:id="@+id/genre"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
+<<<<<<< HEAD
                 android:background="@drawable/button_border"
                 android:fontFamily="@font/audiowide2"
+=======
+                android:fontFamily="@font/audiowide"
+                android:background="@android:color/transparent"
+>>>>>>> parent of 121c35e... More UI
                 android:text="Genre"
                 android:textColor="@android:color/holo_blue_bright"
                 android:textSize="50dp"

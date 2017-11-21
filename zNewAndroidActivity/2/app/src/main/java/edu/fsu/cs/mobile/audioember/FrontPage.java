@@ -30,7 +30,7 @@ public class FrontPage extends AppCompatActivity {
     Fragment songListFrag;
     Fragment songVideoGraphFrag;
 
-   /* private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -61,14 +61,14 @@ public class FrontPage extends AppCompatActivity {
             return false;
         }
 
-    };*/
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_front_page);
 
-/*        //Fragment manager associcated with this activity
+        //Fragment manager associcated with this activity
          fm = getFragmentManager();
 
         //Start fragment transaction
@@ -79,21 +79,21 @@ public class FrontPage extends AppCompatActivity {
         songVideoGraphFrag = new SongVideoGraphPage();
 
         //Replace layout in activity_front_page.xml with the fragment
-        ft.replace(R.id.layout, songListFrag);
+    /*    ft.replace(R.id.layout, songListFrag);
 
         //Commit transaction
         ft.commit();
 
         // Sets the text for the action bar title
-        setActionBarTitle("hot-100");
+        setActionBarTitle("hot-100");*/
 
         //Set up the navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);*/
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
 
-  /*  public void setActionBarTitle(String g) {
+    public void setActionBarTitle(String g) {
         //set action bar depending on which genre has been selected
         switch (g){
             case "hot-100": getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -132,5 +132,5 @@ public class FrontPage extends AppCompatActivity {
         title.setText(Title);
         //getSupportActionBar().setTitle(Title);
     }
-*/
+
 }

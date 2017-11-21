@@ -5,8 +5,4 @@
     <string name="genre_list">Song Graph</string>
     <string name="list_of_genres">Hot-100</string>
     <string name="by_genres">By Genres</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 </resources>

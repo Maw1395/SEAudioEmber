@@ -32,7 +32,11 @@ import java.util.List;
 
 /**
  * Created by woody on 8/1/17.
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 96d09a42a8da64e5a4c3529d89be242eb8f53f97
 
 public class SongListView extends AppCompatActivity {
     ListView list;
@@ -171,4 +175,6 @@ public class SongListView extends AppCompatActivity {
     }
 }
 
+<<<<<<< HEAD
 */
+

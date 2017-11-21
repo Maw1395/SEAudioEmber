@@ -173,9 +173,9 @@ public class SongVideoGraphPage extends Fragment{
 
         //start the thread
         //change the action bar
-        Log.d("ArtistName", artistName);
-        ((FrontPage) getActivity())
-                .setActionBarSongGraph(songName + " by " + artistName + " "+ Points );
+       /* Log.d("ArtistName", artistName);
+        ((MainActivity) getActivity())
+                .setActionBarSongGraph(songName + " by " + artistName + " "+ Points );*/
         return sv;
     }
 

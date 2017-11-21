@@ -25,17 +25,18 @@
         <activity
             android:name=".MainActivity"
             android:background="@android:color/black"
-            android:label="Search Method" />
+            android:label="Search Method" >
+         </activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Search_By_Song"
+        <activity android:name=".SearchBySong"
             android:background="@android:color/black"
             android:label="Search By Song">
         </activity>
-        
+
     </application>
 
 </manifest>

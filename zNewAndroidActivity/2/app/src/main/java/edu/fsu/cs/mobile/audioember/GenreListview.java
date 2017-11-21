@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 /**
  * Created by woody on 7/28/17.
+<<<<<<< HEAD
+
+=======
+
 
 
 public class GenreListview extends AppCompatActivity {

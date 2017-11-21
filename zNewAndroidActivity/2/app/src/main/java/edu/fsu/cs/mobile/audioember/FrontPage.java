@@ -1,4 +1,4 @@
-package edu.fsu.cs.mobile.audioember;
+/*package edu.fsu.cs.mobile.audioember;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -85,7 +85,7 @@ public class FrontPage extends AppCompatActivity {
         ft.commit();
 
         // Sets the text for the action bar title
-        setActionBarTitle("hot-100");*/
+        setActionBarTitle("hot-100");
 
         //Set up the navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -134,3 +134,4 @@ public class FrontPage extends AppCompatActivity {
     }
 
 }
+*/

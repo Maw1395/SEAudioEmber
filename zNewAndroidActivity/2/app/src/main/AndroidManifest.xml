@@ -32,8 +32,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".SearchBySong"
-            android:background="@android:color/black"
+        <activity
+            android:name=".SearchBySong"
             android:label="Search By Song">
         </activity>
 

@@ -26,6 +26,11 @@
             android:name=".FrontPage"
             android:label="Home">
         </activity>
+
+        <activity
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
     </application>
 
 </manifest>

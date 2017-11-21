@@ -1,12 +1,10 @@
 package edu.fsu.cs.mobile.audioember;
 
-import android.content.Intent;
-import android.os.Handler;
+
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 public class SearchMenu extends AppCompatActivity {
-    private static int splashScreenTimer = 4000;
+/*    private static int splashScreenTimer = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +21,5 @@ public class SearchMenu extends AppCompatActivity {
             }
 
         },splashScreenTimer);
-    }
+    }*/
 }

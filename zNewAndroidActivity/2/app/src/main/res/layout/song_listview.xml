@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:textColor="#dc6414"
         android:paddingTop="15sp"
         android:paddingBottom="10sp"
@@ -25,3 +26,15 @@
     </TextView>
 
 </LinearLayout>
+=======
+        android:textColor="#ffffff"
+        android:paddingTop="15sp"
+        android:paddingBottom="10sp"
+        android:paddingStart="15sp"
+        android:paddingEnd="15sp"
+        android:textSize="14sp">
+    </TextView>
+    <!-- Changed all dp to sp and paddingLeft to paddingStart
+         Changed paddingLeft to paddingStart
+         Added paddingEn -KW -->
+>>>>>>> 0054bc8bae39aabb22414cb5d824e89602610608

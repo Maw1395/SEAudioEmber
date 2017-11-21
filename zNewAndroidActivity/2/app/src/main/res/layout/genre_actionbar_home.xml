@@ -3,15 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Added for home screen -KW -->
     <TextView
         android:paddingTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:id="@+id/genre_actionbar"
-        android:text="Country Songs"
+        android:text="@string/home"
         android:background="#0B0909"
         android:textColor="#a45610"
-        android:textSize="15sp" />
+        android:textSize="25sp" />
 
 </LinearLayout>

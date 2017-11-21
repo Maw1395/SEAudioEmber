@@ -3,12 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Change left to start
+         android:layout_gravity="start" -KW -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:id="@+id/graph_actionbar"
-        android:text="Song by With Points x"
+        android:text="@string/song_n_points"
         android:background="#0B0909"
         android:textColor="#a45610"
         android:textSize="15sp" />

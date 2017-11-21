@@ -1,28 +1,10 @@
 package edu.fsu.cs.mobile.audioember;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
+
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
-import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
-
 
 public class FrontPage extends AppCompatActivity {
-    ListView songList;
+/*    ListView songList;
     ArrayAdapter<String> adapter;
     FragmentManager fm;
     FragmentTransaction ft;
@@ -79,13 +61,13 @@ public class FrontPage extends AppCompatActivity {
         songVideoGraphFrag = new SongVideoGraphPage();
 
         //Replace layout in activity_front_page.xml with the fragment
-    /*    ft.replace(R.id.layout, songListFrag);
+        ft.replace(R.id.layout, songListFrag);
 
         //Commit transaction
         ft.commit();
 
         // Sets the text for the action bar title
-        setActionBarTitle("hot-100");*/
+//        setActionBarTitle("hot-100");
 
         //Set up the navigation bar
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -93,6 +75,7 @@ public class FrontPage extends AppCompatActivity {
 
     }
 
+/*
     public void setActionBarTitle(String g) {
         //set action bar depending on which genre has been selected
         switch (g){
@@ -119,7 +102,6 @@ public class FrontPage extends AppCompatActivity {
 
     }
 
-
     public void setActionBarTitleG() {
         // set pick genre action bar, should probably be moved into function above
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -132,5 +114,5 @@ public class FrontPage extends AppCompatActivity {
         title.setText(Title);
         //getSupportActionBar().setTitle(Title);
     }
-
+*/
 }

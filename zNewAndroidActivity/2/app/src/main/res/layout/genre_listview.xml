@@ -6,14 +6,21 @@
     <ListView
         android:id="@+id/genre_list"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:background="#ffffff"
 =======
         android:background="#00ff40"
 >>>>>>> master
+=======
+>>>>>>> 0054bc8bae39aabb22414cb5d824e89602610608
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#000000"
         android:textColor="#141414">
-
     </ListView>
 
 </LinearLayout>
+
+<!--
+android:background="#00ff40"
+-->

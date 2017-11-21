@@ -12,13 +12,13 @@
         android:id="@+id/front_page_genre_selector"
         android:icon="@drawable/genre"
         android:background="@android:color/black"
-        android:title="@string/by_genres" />
+        android:title="@string/by_genre" />
 
     <item
         android:id="@+id/front_page_graph_selector"
         android:icon="@drawable/chart"
         android:background="@android:color/black"
-        android:title="@string/genre_list" />
+        android:title="@string/song_graph" />
     <!-- Icons Fetched from https://material.io/icons/-->
 
 </menu>

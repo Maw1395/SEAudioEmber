@@ -8,24 +8,15 @@
     android:orientation="vertical"
     tools:context=".FrontPage">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="70dp"
-        android:layout_height="520dp"
-        android:background="@android:color/transparent"
-        android:icon="@drawable/menu" />
-
     <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <LinearLayout
         android:id="@+id/layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
@@ -33,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:itemIconTint="#a45610"
-        app:itemTextColor="#a45610"
+        app:itemIconTint="#ffffff"
+        app:itemTextColor="#ffffff"
         android:background="#0B0909"
         app:menu="@menu/navigation"
         android:layout_alignParentBottom="true"

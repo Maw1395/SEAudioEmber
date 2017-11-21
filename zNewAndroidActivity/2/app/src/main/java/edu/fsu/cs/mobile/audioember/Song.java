@@ -1,12 +1,10 @@
 package edu.fsu.cs.mobile.audioember;
 
-import java.util.ArrayList;
-
 /**
  * Created by robert on 7/30/17.
  */
 //Song object used to store structured data from firebase
-
+/*
 public class Song {
     String Artist;
     String Title;
@@ -51,3 +49,4 @@ public class Song {
         this.graphs.add(g);
     }
 }
+*/

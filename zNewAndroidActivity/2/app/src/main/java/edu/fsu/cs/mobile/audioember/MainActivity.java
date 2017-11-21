@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
                 case R.id.song:
                 {
-                    //startActivity(new Intent(MainActivity.this, SongListView.class));
+                    startActivity(new Intent(MainActivity.this, Search_By_Song.class));
                     break;
                 }
 

@@ -1,20 +1,9 @@
 package edu.fsu.cs.mobile.audioember;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
 /**
  * Created by woody on 7/28/17.
  */
-
+/*
 public class GenreListview extends Fragment {
     ListView list;
     ArrayAdapter<String> adapter;
@@ -65,3 +54,4 @@ public class GenreListview extends Fragment {
 
 
 }
+*/

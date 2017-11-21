@@ -1,23 +1,10 @@
 package edu.fsu.cs.mobile.audioember;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
+
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-
-
-
 
 public class FrontPage extends AppCompatActivity {
-    ListView songList;
+/*    ListView songList;
     ArrayAdapter<String> adapter;
     FragmentManager fm;
     FragmentTransaction ft;
@@ -87,6 +74,7 @@ public class FrontPage extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
+
 /*
     public void setActionBarTitle(String g) {
         //set action bar depending on which genre has been selected
@@ -113,7 +101,6 @@ public class FrontPage extends AppCompatActivity {
 
 
     }
-*/
 
     public void setActionBarTitleG() {
         // set pick genre action bar, should probably be moved into function above
@@ -127,5 +114,5 @@ public class FrontPage extends AppCompatActivity {
         title.setText(Title);
         //getSupportActionBar().setTitle(Title);
     }
-
+*/
 }

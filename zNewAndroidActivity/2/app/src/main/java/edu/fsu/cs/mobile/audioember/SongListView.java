@@ -1,35 +1,9 @@
 package edu.fsu.cs.mobile.audioember;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-
 /**
  * Created by woody on 8/1/17.
  */
-
+/*
 public class SongListView extends Fragment {
     ListView list;
     ArrayAdapter<String> adapter;
@@ -168,3 +142,4 @@ public class SongListView extends Fragment {
     }
 }
 
+*/

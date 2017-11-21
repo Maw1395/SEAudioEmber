@@ -18,17 +18,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button selection1 = findViewById(R.id.song);
-        selection1.setOnClickListener(this);
+        Button searchSong = findViewById(R.id.song);
+        searchSong.setOnClickListener(this);
 
-        Button selection2 = findViewById(R.id.artist);
-        selection2.setOnClickListener(this);
+        Button searchArtist = findViewById(R.id.artist);
+        searchArtist.setOnClickListener(this);
 
-        Button selection3 = findViewById(R.id.year);
-        selection3.setOnClickListener(this);
+        Button searchYear = findViewById(R.id.year);
+        searchYear.setOnClickListener(this);
 
-        Button selection4 = findViewById(R.id.genre);
-        selection4.setOnClickListener(this);
+        Button searchGenre = findViewById(R.id.genre);
+        searchGenre.setOnClickListener(this);
     }
 
     @Override

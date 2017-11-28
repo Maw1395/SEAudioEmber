@@ -9,100 +9,76 @@
     tools:context="edu.fsu.cs.mobile.audioember.MainActivity">
 
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TableRow
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="Search By:"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="8dp" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="Search By:"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
+        <Button
+            android:id="@+id/song"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp">
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="Song"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="50dp"
+            android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/song"
-                android:layout_width="370dp"
-                android:layout_height="120dp"
-                android:background="@drawable/button_border"
-                android:fontFamily="@font/audiowide2"
-                android:text="Song"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="50dp"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
+        <Button
+            android:id="@+id/artist"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp">
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="Artist"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="50dp"
+            android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/artist"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:background="@drawable/button_border"
-                android:fontFamily="@font/audiowide2"
-                android:text="Artist"
-                android:textColor="@android:color/holo_blue_bright"
-                android:textSize="50dp"
-                android:textStyle="bold" />
-        </TableRow>
-
-        <TableRow
+        <Button
+            android:id="@+id/year"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp">
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="Year"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="50dp"
+            android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/year"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:background="@drawable/button_border"
-                android:fontFamily="@font/audiowide2"
-                android:text="Year"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="50dp"
-                android:textStyle="bold" />
-        </TableRow>
-
-        <TableRow
+        <Button
+            android:id="@+id/genre"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp">
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="Genre"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="50dp"
+            android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/genre"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:background="@drawable/button_border"
-                android:fontFamily="@font/audiowide2"
-                android:text="Genre"
-                android:textColor="@android:color/holo_blue_bright"
-                android:textSize="50dp"
-                android:textStyle="bold" />
-        </TableRow>
-    </TableLayout>
+        <Button
+            android:id="@+id/AllTime"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:text="All Time" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

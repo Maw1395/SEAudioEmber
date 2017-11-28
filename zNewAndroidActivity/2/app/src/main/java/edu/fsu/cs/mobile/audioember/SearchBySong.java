@@ -33,7 +33,7 @@ public class SearchBySong extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.Search:
             {
-
+                //startActivity(new Intent(SearchBySong.this, SongResults.class));
                 break;
             }
 

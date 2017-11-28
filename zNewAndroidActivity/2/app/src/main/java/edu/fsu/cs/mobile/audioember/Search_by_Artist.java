@@ -28,7 +28,7 @@ public class Search_by_Artist extends AppCompatActivity implements View.OnClickL
         {
             case R.id.Search:
             {
-                //startActivity(new Intent(Search_by_Artist.this, SearchBySong.class));
+                //startActivity(new Intent(Search_by_Artist.this, Artist_Results.class));
                 break;
             }
 

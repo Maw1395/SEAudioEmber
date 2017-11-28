@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button searchGenre = findViewById(R.id.genre);
         searchGenre.setOnClickListener(this);
+
+        Button AllTime = findViewById(R.id.AllTime);
+        AllTime.setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +60,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.genre:
             {
                 startActivity(new Intent(MainActivity.this, Search_by_Genre.class));
+                break;
+            }
+
+            case R.id.AllTime:
+            {
+                //startActivity(new Intent(MainActivity.this, All_Time_List));
                 break;
             }
         }

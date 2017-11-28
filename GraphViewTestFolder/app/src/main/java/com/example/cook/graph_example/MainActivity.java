@@ -1,5 +1,6 @@
 package com.example.cook.graph_example;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,19 +50,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         GraphView graph = findViewById(R.id.graph);
-
+        graph.setBackgroundColor(Color.rgb(0,0,0));
         initGraph(graph);
     }
 
     public void initGraph(final GraphView graph) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
-        final Query query = ref.child("SongByDay");
+        Log.e("FIREBASE", ref+"");
+        final Query query = ref.child("SongByDay1").child("1");
+
+        Log.e("FIREBASE", query+"");
         mSeries = new LineGraphSeries<>();
         DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
-        try {
+        try{
             theday1 = df1.parse(FirstDate);
-        } catch (ParseException e) {
+        }
+        catch (ParseException e) {
             e.printStackTrace();
         }
         datefirst = theday1;
@@ -69,10 +74,9 @@ public class MainActivity extends AppCompatActivity {
     query.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-
             if (dataSnapshot.exists()) {
-                for (DataSnapshot SONGID : dataSnapshot.getChildren()) {
-                    for (DataSnapshot GENRE : SONGID.getChildren()) {
+                Log.e("FINALLY", "INHERE");
+                    for (DataSnapshot GENRE : dataSnapshot.getChildren()) {
                         long count = GENRE.getChildrenCount();
                         Log.e("COUNTER", count + "");
                         int count1 = (int) count + 0;
@@ -97,16 +101,17 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         break;
-                    }
-                    break;
                 }
                 for(int i =0; i<pointarray.size(); i++)
                 {
-                    final int i1 =i;
+                    final int i1 = i;
                     mSeries.appendData(new DataPoint(datearray.elementAt(i1),pointarray.elementAt(i1)), false, size);
                     graph.addSeries(mSeries);
                     Log.e("VECTOR", pointarray.elementAt(i) + " " + datearray.elementAt(i));
                 }
+            }
+            else{
+                Log.e("FUCK", "FUCK");
             }
         }
             @Override
@@ -120,6 +125,13 @@ public class MainActivity extends AppCompatActivity {
         //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
+        graph.getGridLabelRenderer().setGridColor(Color.rgb(180,23,212));
+        graph.getGridLabelRenderer().setVerticalLabelsColor(Color.rgb(180,23,212));
+        graph.getGridLabelRenderer().setHorizontalLabelsColor(Color.rgb(180,23,212));
+        graph.setTitle("SongTitle");
+        graph.setTitleColor(Color.red(204));
+        //graph.getGridLabelRenderer().setVerticalAxisTitle("P  o  i  n  t  s");
+        //graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.rgb(204,0,0));
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         Log.e("SIZE", pointarray.size() + "");
     }

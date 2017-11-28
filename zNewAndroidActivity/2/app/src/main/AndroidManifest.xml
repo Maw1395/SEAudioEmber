@@ -25,8 +25,7 @@
         <activity
             android:name=".MainActivity"
             android:background="@android:color/black"
-            android:label="Search Method" >
-         </activity>
+            android:label="Search Method"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
@@ -34,9 +33,13 @@
 
         <activity
             android:name=".SearchBySong"
-            android:label="Search By Song">
-        </activity>
+            android:label="Search By Song"></activity>
 
+
+        <activity
+            android:name=".Search_by_Genre"
+            android:label="Select Genre"></activity>
+        <activity android:name=".Search_by_Artist"></activity>
     </application>
 
 </manifest>

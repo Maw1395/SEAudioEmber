@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Enter Song Title"
+        android:hint="Enter Artist Name"
         android:textColor="@android:color/white"
         android:inputType="textPersonName"
         android:textColorHint="@android:color/holo_blue_bright"

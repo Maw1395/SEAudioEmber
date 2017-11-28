@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.artist:
             {
-                // startActivity(new Intent(MainActivity.this, ArtistView.class));
+                 startActivity(new Intent(MainActivity.this, Search_by_Artist.class));
                 break;
             }
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.genre:
             {
-                //startActivity(new Intent(MainActivity.this, GenreListview.class));
+                startActivity(new Intent(MainActivity.this, Search_by_Genre.class));
                 break;
             }
         }

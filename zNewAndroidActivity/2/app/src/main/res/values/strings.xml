@@ -3,6 +3,12 @@
     <string name="top_songs">Top Songs</string>
     <string name="top_artists">By Genres</string>
     <string name="genre_list">Song Graph</string>
-    <string name="list_of_genres">Hot-100</string>
+    <string name="Hot100">Hot-100</string>
+    <string name="Pop">Pop</string>
+    <string name="RnB">R&amp;B/Hip-Hop</string>
+    <string name="DCP">Dance-Club-Play</string>
+    <string name="Country">Country</string>
+    <string name="Rock">Rock</string>
     <string name="by_genres">By Genres</string>
+    <string name="title_activity_search__by__genre">Search_By_Genre</string>
 </resources>

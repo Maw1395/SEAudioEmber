@@ -116,7 +116,6 @@ public class MainActivity extends Activity implements
 
     @Override
     public void onLoginFailed(Error error) {
-
     }
 
     // @Override

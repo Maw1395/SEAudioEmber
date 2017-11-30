@@ -79,7 +79,7 @@ public class SearchByGenre extends AppCompatActivity implements View.OnClickList
 
             case R.id.Back:
             {
-                startActivity(new Intent(SearchByGenre.this, MainActivity.class));
+                startActivity(new Intent(SearchByGenre.this, SearchMenu.class));
                 break;
             }
         }

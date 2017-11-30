@@ -46,7 +46,7 @@ public class SongGraph extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_song_graph);
         GraphView graph = findViewById(R.id.graph);
         graph.setBackgroundColor(Color.rgb(0,0,0));
         initGraph(graph);

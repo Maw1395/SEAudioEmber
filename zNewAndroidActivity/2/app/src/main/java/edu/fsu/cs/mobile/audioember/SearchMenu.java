@@ -6,13 +6,9 @@ package edu.fsu.cs.mobile.audioember;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class SearchMenu extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,7 +16,7 @@ public class SearchMenu extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_search_menu);
 
         Button searchSong = findViewById(R.id.song);
         searchSong.setOnClickListener(this);
@@ -57,7 +53,7 @@ public class SearchMenu extends AppCompatActivity implements View.OnClickListene
 
             case R.id.year:
             {
-                // startActivity(new Intent(MainActivity.this, YearView.class));
+                // startActivity(new Intent(SearchMenu.this, YearView.class));
                 break;
             }
 
@@ -69,7 +65,7 @@ public class SearchMenu extends AppCompatActivity implements View.OnClickListene
 
             case R.id.AllTime:
             {
-                //startActivity(new Intent(MainActivity.this, All_Time_List));
+                //startActivity(new Intent(SearchMenu.this, All_Time_List));
                 break;
             }
         }

@@ -34,7 +34,7 @@ public class SearchByArtist extends AppCompatActivity implements View.OnClickLis
 
             case R.id.Back:
             {
-                startActivity(new Intent(SearchByArtist.this, MainActivity.class));
+                startActivity(new Intent(SearchByArtist.this, SearchMenu.class));
                 break;
             }
         }

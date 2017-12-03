@@ -34,52 +34,68 @@ public class SearchByGenre extends AppCompatActivity implements View.OnClickList
 
         Button Back = findViewById(R.id.Back);
         Back.setOnClickListener(this);
+
+        Button AllTime = findViewById(R.id.AllTime);
+        AllTime.setOnClickListener(this);
     }
 
     @Override
     public void onClick (View v)
     {
+        Intent i = new Intent(getBaseContext(), GenreBeingSearched.class);
         switch(v.getId())
         {
             case R.id.Pop:
             {
-                //startActivity(new Intent(Search_by_Genre.this, Pop.class));
+                i.putExtra("Genre", "-pop-songs");
+                startActivity(i);
                 break;
             }
 
             case R.id.Hip_Hop:
             {
-                //startActivity(new Intent(Search_by_Genre.this, Hip_Hop.class));
+                i.putExtra("Genre", "-r-b-hip-hop-songs");
+                startActivity(i);
                 break;
             }
 
             case R.id.Rock:
             {
-                // startActivity(new Intent(Search_by_Genre.this, Rock.class));
+                i.putExtra("Genre", "-rock-songs");
+                startActivity(i);
                 break;
             }
 
             case R.id.Top100:
             {
-                //startActivity(new Intent(Search_by_Genre.this, Top100.class));
+                i.putExtra("Genre", "-hot-100");
+                startActivity(i);
                 break;
             }
 
             case R.id.DCP:
             {
-                //startActivity(Search_by_Genre.this, DCP.class);
+                i.putExtra("Genre", "-dance-club-play-songs");
+               startActivity(i);
                 break;
             }
 
             case R.id.Country:
             {
-                //startActivity(Search_by_Genre.this, Country.class);
+                i.putExtra("Genre", "-country-songs");
+               startActivity(i);
                 break;
             }
 
             case R.id.Back:
             {
                 startActivity(new Intent(SearchByGenre.this, SearchMenu.class));
+                break;
+            }
+            case R.id.AllTime:
+            {
+                i.putExtra("Genre", "");
+                startActivity(i);
                 break;
             }
         }

@@ -70,6 +70,20 @@
         <activity
             android:name=".SearchByGenre"
             android:label="Select Genre">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".GenreBeingSearched"
+            android:label="Select Song From Genre">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
         <activity android:name=".SearchByArtist">

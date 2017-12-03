@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by Woodham-PC on 12/2/2017.
@@ -27,7 +28,8 @@ import java.util.List;
 
 public class GenreBeingSearched extends AppCompatActivity {
 
-    private ArrayList<String> songs = new ArrayList<String>();
+    final private ArrayList<String> songs = new ArrayList<String>();
+    final private ArrayList<String> SongID = new ArrayList<String>();
 
     private String Genre;
     private String Year;
@@ -37,8 +39,8 @@ public class GenreBeingSearched extends AppCompatActivity {
       //  songs = new ArrayList<String>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.genre_being_searched);
-        ListView list  = (ListView) findViewById(R.id.genreList);
-        ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, R.layout.array_adapter_text_view, songs);
+        final ListView list  = (ListView) findViewById(R.id.genreList);
+        final ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, R.layout.array_adapter_text_view, songs);
         final int counterIntent = 50;
         final int counter = counterIntent;
         Year = "2010";
@@ -50,7 +52,7 @@ public class GenreBeingSearched extends AppCompatActivity {
         int i = 0;
 
         for (i = 1; i < 51; i++) {
-            Query query = ref.child(Genre).child(Year).child((i + counter) + "");
+            Query query = ref.child(Genre).child(Year).child((counter+i)+"");
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -68,6 +70,7 @@ public class GenreBeingSearched extends AppCompatActivity {
                                     Points = Rank.getValue() + "";
                                     break;
                                 case "SongID":
+                                    SongID.add(Rank.getValue() + "");
                                     break;
                                 case "SongName":
                                     SongName = Rank.getValue() + "";
@@ -76,8 +79,9 @@ public class GenreBeingSearched extends AppCompatActivity {
 
 
                         }
-                        songs.add(" " + SongName + " by " + Artist + " " + Points);
+                        songs.add(  SongName + " by " + Artist + " " + Points);
                         Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
+                        setup(list, adapter);
                     }
                 }
 
@@ -90,7 +94,7 @@ public class GenreBeingSearched extends AppCompatActivity {
             if (i == 50) {
                 for (int j =0; j<songs.size(); j++)
                     Log.e("SONG IN LIST",songs.get(j));
-                setup(list, adapter);
+                    setup(list, adapter);
             }
         }
     }
@@ -99,13 +103,14 @@ public class GenreBeingSearched extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, R.layout.array_adapter_text_view, songs);
         list.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-       /*list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View v, int pos, long id) {
-                Toast.makeText(this, "" + pos, Toast.LENGTH_LONG);
+            public void onItemClick(AdapterView<?> adapter, View list, int pos, long id) {
+
+               Log.e( "I'm BEING CLICKED", SongID.get(pos));
 
             }
-        }); */
+        });
 
 
 

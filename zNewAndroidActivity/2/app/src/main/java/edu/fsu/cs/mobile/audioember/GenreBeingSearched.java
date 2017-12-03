@@ -1,15 +1,17 @@
 package edu.fsu.cs.mobile.audioember;
 
-import android.content.Intent;
+import android.app.ProgressDialog;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,8 +21,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Semaphore;
 
 /**
  * Created by Woodham-PC on 12/2/2017.
@@ -34,8 +34,32 @@ public class GenreBeingSearched extends AppCompatActivity {
     private String Genre;
     private String Year;
 
+    // 1 ----------- Pagination vars -------------------
+    private RecyclerView recyclerView;
+    //adapter object
+    private RecyclerView.Adapter recyclerAdapter;
+
+    //progress dialog
+    private ProgressDialog progressDialog;
+
+    // Load 50 songs per page
+    private static final int TOTAL_ITEM_EACH_LOAD = 50;
+    private int currentPage = 0;
+    //------------------------------------------------
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // 2 ------------------------------------------
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading 50 More Songs");
+        progressDialog.show();
+        //---------------------------------------------------
+
       //  songs = new ArrayList<String>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.genre_being_searched);
@@ -51,11 +75,21 @@ public class GenreBeingSearched extends AppCompatActivity {
         final DatabaseReference ref = database.getReference();
         int i = 0;
 
-        for (i = 1; i < 51; i++) {
+        // 3 ----------------------------------------------
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setAdapter(recyclerAdapter);
+
+        for (i = 1; i < 51; i++)
+        {
             Query query = ref.child(Genre).child(Year).child((counter+i)+"");
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    // 4 ----------------------------------------------
+                    progressDialog.dismiss();
+                    //-----------------------------------------------
+
                     if (dataSnapshot.exists()) {
                         String Artist = "";
                         String Points = "";
@@ -82,12 +116,15 @@ public class GenreBeingSearched extends AppCompatActivity {
                         songs.add(  SongName + " by " + Artist + " " + Points);
                         Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
                         setup(list, adapter);
+
+                        // 5 ----------------------------------------
+                        recyclerView.setAdapter(recyclerAdapter);
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
+                    progressDialog.dismiss();
                 }
             });
             Log.e("i value", i + "");

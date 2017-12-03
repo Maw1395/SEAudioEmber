@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".SplashPage"
-            android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
@@ -22,10 +22,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+
+            <!-- Intent filter is here for MainActivity testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.spotify.sdk.android.authentication.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+        <activity
+            android:name=".SearchMenu"
             android:background="@android:color/black"
-            android:label="Search Method"></activity>
+            android:label="Search Method">
+
+            <!-- Intent filter is here for SearchMenu testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
@@ -33,13 +62,46 @@
 
         <activity
             android:name=".SearchBySong"
-            android:label="Search By Song"></activity>
+            android:label="Search By Song">
+
+        </activity>
 
 
         <activity
-            android:name=".Search_by_Genre"
-            android:label="Select Genre"></activity>
-        <activity android:name=".Search_by_Artist"></activity>
+            android:name=".SearchByGenre"
+            android:label="Select Genre">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".GenreBeingSearched"
+            android:label="Select Song From Genre">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".SearchByArtist">
+        </activity>
+
+        <activity
+            android:name=".SongGraph"
+            android:label="Graph">
+
+            <!-- Intent filter is here for SongGraph testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
     </application>
 
 </manifest>

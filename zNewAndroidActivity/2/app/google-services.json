@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "723614955105",
-    "firebase_url": "https://audioember-65fad.firebaseio.com",
-    "project_id": "audioember-65fad",
-    "storage_bucket": "audioember-65fad.appspot.com"
+    "project_number": "1009591101596",
+    "firebase_url": "https://seaudioember.firebaseio.com",
+    "project_id": "seaudioember",
+    "storage_bucket": "seaudioember.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:723614955105:android:706890a76c51e778",
+        "mobilesdk_app_id": "1:1009591101596:android:eef144cc5ce71c4e",
         "android_client_info": {
-          "package_name": "edu.fsu.cs.mobile.songdatabase"
+          "package_name": "com.example.cook.graph_example"
         }
       },
       "oauth_client": [
         {
-          "client_id": "723614955105-k6orjpqf9q7v1ntmvd83e7kp6h2lk0n5.apps.googleusercontent.com",
+          "client_id": "1009591101596-r0h1js75nva54f0eiu46pqma042s3ek5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDFoQ1LDMBCEjK97_HtnFKuyL3c5kRajs4"
+          "current_key": "AIzaSyCKWAODIusTtj7YDrqEpiNeRUrs35SFryU"
         }
       ],
       "services": {
@@ -39,20 +39,20 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:723614955105:android:465948f61ce178e4",
+        "mobilesdk_app_id": "1:1009591101596:android:465948f61ce178e4",
         "android_client_info": {
           "package_name": "edu.fsu.cs.mobile.audioember"
         }
       },
       "oauth_client": [
         {
-          "client_id": "723614955105-k6orjpqf9q7v1ntmvd83e7kp6h2lk0n5.apps.googleusercontent.com",
+          "client_id": "1009591101596-r0h1js75nva54f0eiu46pqma042s3ek5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDFoQ1LDMBCEjK97_HtnFKuyL3c5kRajs4"
+          "current_key": "AIzaSyCKWAODIusTtj7YDrqEpiNeRUrs35SFryU"
         }
       ],
       "services": {

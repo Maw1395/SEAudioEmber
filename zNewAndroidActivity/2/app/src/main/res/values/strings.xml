@@ -10,5 +10,7 @@
     <string name="Country">Country</string>
     <string name="Rock">Rock</string>
     <string name="by_genres">By Genres</string>
+    <string name="All_Time">All_Time</string>
     <string name="title_activity_search__by__genre">Search_By_Genre</string>
+
 </resources>

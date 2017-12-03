@@ -39,7 +39,7 @@ public class SearchBySong extends AppCompatActivity implements View.OnClickListe
 
             case R.id.Back:
             {
-                startActivity(new Intent(SearchBySong.this, MainActivity.class));
+                startActivity(new Intent(SearchBySong.this, SearchMenu.class));
                 break;
             }
         }

@@ -20,8 +20,11 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Vector;
 
 /**
@@ -56,10 +59,10 @@ public class SongGraph extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
         Log.e("FIREBASE", ref+"");
-        final Query query = ref.child("SongByDay1").child("1");
+        final Query query = ref.child("SongByDay1").child("92");
 
         Log.e("FIREBASE", query+"");
-        mSeries = new LineGraphSeries<>();
+        mSeries = new LineGraphSeries<DataPoint>();
         DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
         try{
             theday1 = df1.parse(FirstDate);
@@ -74,12 +77,16 @@ public class SongGraph extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Log.e("FINALLY", "INHERE");
+                    int genreCounter=0;
+                    Date MinDate = Calendar.getInstance().getTime();
+                    Date MaxDate = new Date(1,1,1);
                     for (DataSnapshot GENRE : dataSnapshot.getChildren()) {
                         long count = GENRE.getChildrenCount();
-                        Log.e("COUNTER", count + "");
+                        //Log.e("COUNTER", count + "");
+
                         int count1 = (int) count + 0;
                         size = count1;
-                        Log.e("COUNTER", count1 + "");
+                        //Log.e("COUNTER", count1 + "");
 
                         for (DataSnapshot DATE : GENRE.getChildren()) {
                             String datesting = DATE.getKey();
@@ -93,20 +100,82 @@ public class SongGraph extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             for (DataSnapshot POINT : DATE.getChildren()) {
-                                Log.e("COUNT", theday + "");
+                                //Log.e("COUNT", theday + "");
                                 pointarray.add((Long) POINT.getValue());
                                 counter++;
                             }
                         }
-                        break;
-                    }
-                    for(int i =0; i<pointarray.size(); i++)
-                    {
-                        final int i1 = i;
-                        mSeries.appendData(new DataPoint(datearray.elementAt(i1),pointarray.elementAt(i1)), false, size);
+                        for(int i =0; i<pointarray.size(); i++)
+                        {
+                            final int i1 = i;
+
+                            if(i==0) {
+                                if(MinDate.compareTo(datearray.elementAt(i1))>0)
+                                {
+                                    MinDate = datearray.elementAt(i1);
+                                }
+                            }
+                            if(i==pointarray.size()-1)
+                            {
+                                if (MaxDate.compareTo(datearray.elementAt(i1))<0){
+                                    MaxDate = datearray.elementAt(i1);
+
+                                }
+                            }
+
+                             mSeries.appendData(new DataPoint(datearray.elementAt(i),pointarray.elementAt(i1)), false, 250);
+
+                            Log.e("VECTOR", pointarray.elementAt(i) + " " + datearray.elementAt(i));
+                        }
+                        String GenreString = GENRE.getKey();
+                        switch (GenreString){
+                            case "country-songs":
+                                GenreString = "Country";
+                                break;
+                            case "dance-club-play-songs":
+                                GenreString = "EDM";
+                                break;
+                            case "hot-100":
+                                GenreString = "Hot-100";
+                                break;
+                            case "pop-songs":
+                                GenreString = "POP";
+                                break;
+                            case "r-b-hip-hop-songs":
+                                GenreString = "R&B Hip Hop";
+                                break;
+                            case "rock-songs":
+                                GenreString = "Rock";
+                        }
+                        if(genreCounter==1) {
+                            mSeries.setColor(Color.rgb(255, 255, 0));
+                            //graph.getLegendRenderer().
+                        }
+                        if(genreCounter==2) {
+                            mSeries.setColor(Color.rgb(204, 0, 0));
+                        }
+                        if(genreCounter==3) {
+                            mSeries.setColor(Color.rgb(57, 255, 20));
+                        }
+                        if(genreCounter==4) {
+                            mSeries.setColor(Color.rgb(253, 95, 0));
+                        }
+                        mSeries.setAnimated(true);
+                        mSeries.setThickness(10);
+                        mSeries.setTitle(GenreString);
                         graph.addSeries(mSeries);
-                        Log.e("VECTOR", pointarray.elementAt(i) + " " + datearray.elementAt(i));
+
+                        graph.getViewport().setMaxX(MaxDate.getTime());
+                        graph.getViewport().setMinX(MinDate.getTime());
+                        graph.getViewport().setXAxisBoundsManual(true);
+
+                        mSeries = new LineGraphSeries<DataPoint>();
+                        datearray = new Vector<Date>();
+                        pointarray = new Vector<>();
+                        genreCounter++;
+                        Log.e("Genre Counter",genreCounter+"");
                     }
+
                 }
                 else{
                     Log.e("FUCK", "FUCK");
@@ -120,6 +189,7 @@ public class SongGraph extends AppCompatActivity {
         double x = 0;
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
+       // graph.getGridLabelRenderer().setHumanRounding(false);
         //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
@@ -128,6 +198,11 @@ public class SongGraph extends AppCompatActivity {
         graph.getGridLabelRenderer().setHorizontalLabelsColor(Color.rgb(180,23,212));
         graph.setTitle("SongTitle");
         graph.setTitleColor(Color.red(204));
+        graph.getViewport().setScrollable(true); // enables horizontal scrolling
+        graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setWidth(400);
+        graph.getLegendRenderer().setTextColor(Color.WHITE);
         //graph.getGridLabelRenderer().setVerticalAxisTitle("P  o  i  n  t  s");
         //graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.rgb(204,0,0));
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));

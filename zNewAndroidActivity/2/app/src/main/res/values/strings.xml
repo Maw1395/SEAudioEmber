@@ -12,5 +12,8 @@
     <string name="by_genres">By Genres</string>
     <string name="All_Time">All_Time</string>
     <string name="title_activity_search__by__genre">Search_By_Genre</string>
+    <string name="tap_to_reload" />
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 
 </resources>

@@ -12,5 +12,7 @@
     <string name="by_genres">By Genres</string>
     <string name="All_Time">All_Time</string>
     <string name="title_activity_search__by__genre">Search_By_Genre</string>
+    <string name="genre">Genre</string>
+    <string name="all_time">All Time</string>
 
 </resources>

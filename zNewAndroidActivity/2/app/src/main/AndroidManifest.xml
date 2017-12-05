@@ -101,6 +101,78 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".FrontPage"
+            android:label="All Time or By Genre">
+
+            <!-- Intent filter is here for SongGraph testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".GenrePage"
+            android:label="Select A Genre">
+
+            <!-- Intent filter is here for SongGraph testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".YearPage"
+            android:label="Select A Year Range">
+
+            <!-- Intent filter is here for SongGraph testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".ArtistOrSongPage"
+            android:label="Search By Artist or By Song">
+
+            <!-- Intent filter is here for SongGraph testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".SongPage"
+            android:label="Select A Song">
+
+            <!-- Intent filter is here for SongGraph testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".ArtistPage"
+            android:label="Select An Artist">
+
+            <!-- Intent filter is here for SongGraph testing -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 

@@ -29,12 +29,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
-            <!-- Intent filter is here for MainActivity testing -->
+            <!-- Intent filter is here for MainActivity testing
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
 
         </activity>
 
@@ -47,12 +47,12 @@
             android:background="@android:color/black"
             android:label="Search Method">
 
-            <!-- Intent filter is here for SearchMenu testing -->
+            <!-- Intent filter is here for SearchMenu testing
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
 
         </activity>
 
@@ -70,19 +70,19 @@
         <activity
             android:name=".SearchByGenre"
             android:label="Select Genre">
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
 
         </activity>
         <activity
             android:name=".GenreBeingSearched"
             android:label="Select Song From Genre">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
 
         </activity>
 
@@ -93,12 +93,12 @@
             android:name=".SongGraph"
             android:label="Graph">
 
-            <!-- Intent filter is here for SongGraph testing -->
+            <!-- Intent filter is here for SongGraph testing
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
 
         </activity>
 

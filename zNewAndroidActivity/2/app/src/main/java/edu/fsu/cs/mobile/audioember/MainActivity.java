@@ -20,6 +20,8 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
+
+
 public class MainActivity extends Activity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
@@ -33,7 +35,7 @@ public class MainActivity extends Activity implements
     // Can be any integer
     private static final int REQUEST_CODE = 1337;
 
-    private Player mPlayer;
+    private SpotifyPlayer mPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,13 @@ public class MainActivity extends Activity implements
 
         // Check if result comes from the correct activity
         if (requestCode == REQUEST_CODE) {
-            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+            goToNext();//Forced code to move to the next activity since the Spotify SDK is having major issues and hasn't seemed to be updated in a year
+            //I (Cameron Porter) have no idea what this will do to the rest of the project, if the songs will play correctly or not,
+            // but this is the only way I have found of getting the app to move to the next activity since the error occurs afterwards and
+            // doesn't move onto the onInitialized function that is below which would call the onLoggedIn function through the use of the
+            //mPlayer.addConnectionStateCallback function.
+
+            /*AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
             if (response.getType() == AuthenticationResponse.Type.TOKEN) {
                 Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
                 Spotify.getPlayer(playerConfig, this, new SpotifyPlayer.InitializationObserver() {
@@ -71,7 +79,7 @@ public class MainActivity extends Activity implements
                         Log.e("MainActivity", "Could not initialize player: " + throwable.getMessage());
                     }
                 });
-            }
+            }*/
         }
     }
 
@@ -105,7 +113,6 @@ public class MainActivity extends Activity implements
     @Override
     public void onLoggedIn() {
         Log.d("MainActivity", "User logged in");
-
         mPlayer.playUri(null, "spotify:track:2TpxZ7JUBn3uw46aR7qd6V", 0, 0);
     }
 
@@ -116,6 +123,7 @@ public class MainActivity extends Activity implements
 
     @Override
     public void onLoginFailed(Error error) {
+        System.out.println("Failed to sign in.");
     }
 
     // @Override
@@ -131,5 +139,11 @@ public class MainActivity extends Activity implements
     @Override
     public void onConnectionMessage(String message) {
         Log.d("MainActivity", "Received connection message: " + message);
+    }
+
+    private void goToNext()
+    {
+        Intent Menu = new Intent(MainActivity.this, SearchMenu.class);
+        startActivity(Menu);
     }
 }

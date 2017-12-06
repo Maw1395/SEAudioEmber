@@ -197,7 +197,7 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
         double x = 0;
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
-         //graph.getGridLabelRenderer().setHumanRounding(false);
+        //graph.getGridLabelRenderer().setHumanRounding(false);
         //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
@@ -210,7 +210,7 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
         graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
         //graph.getViewport().setScalableY(true);
         graph.getLegendRenderer().setVisible(true);
-       // graph.getGridLabelRenderer().setNumHorizontalLabels(5);
+        // graph.getGridLabelRenderer().setNumHorizontalLabels(5);
         graph.getGridLabelRenderer().setHorizontalLabelsAngle(20);
         graph.getLegendRenderer().setWidth(400);
         graph.getLegendRenderer().setTextColor(Color.WHITE);

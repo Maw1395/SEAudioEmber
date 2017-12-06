@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/black"
     tools:context="edu.fsu.cs.mobile.audioember.GenreBeingSearched">
-<!--
- android:background="@android:color/black"
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="100sp">
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
         <ListView
             android:id="@+id/genreList"
@@ -22,57 +17,24 @@
             android:layout_height="match_parent"
             android:background="@android:color/black"
             android:textColor="@android:color/holo_blue_bright"
-            >
-        </ListView>
--->
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="match_parent"
-        android:layout_height="480sp"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false" />
-<!--
- <
-        android:textColor="@android:color/holo_blue_bright"
-        android:background="@android:color/black"
+            android:layout_marginBottom="50dp">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
--->
-            <Button
-                android:text="@string/previous"
-                android:id="@+id/prevBtn"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:text="@string/next"
-                android:id="@+id/nextBtn"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-<!--
-        </LinearLayout>
-
-        <ListView
-            android:id="@+id/genreList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/black"
-            android:textColor="@android:color/holo_blue_bright"
-            >
         </ListView>
 
-    </LinearLayout>
--->
-</RelativeLayout>
+        <Button
+            android:id="@+id/Next"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="@string/next"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@id/genreList"/>
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
 
 <!--
 <android.support.v7.widget.RecyclerView

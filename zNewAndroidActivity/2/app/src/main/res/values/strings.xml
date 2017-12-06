@@ -10,7 +10,17 @@
     <string name="Country">Country</string>
     <string name="Rock">Rock</string>
     <string name="by_genres">By Genres</string>
-    <string name="All_Time">All_Time</string>
+    <string name="All_Time">All Time</string>
     <string name="title_activity_search__by__genre">Search_By_Genre</string>
+    <string name="genre">Genre</string>
+    <string name="all_time">All Time</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="top_songs_by_genre">Top Songs By Genre</string>
+    <string name="top_artists_by_genre">Top Artists By Genre</string>
+    <string name="top_artists_all_time">Top Artists All Time</string>
+    <string name="top_songs_all_time">Top Songs All Time</string>
+    <string name="previous" />
+    <string name="tap_to_reload" />
 
 </resources>

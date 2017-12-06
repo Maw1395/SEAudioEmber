@@ -20,11 +20,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Vector;
 
 /**
@@ -125,7 +122,7 @@ public class SongGraph extends AppCompatActivity {
                                 }
                             }
 
-                             mSeries.appendData(new DataPoint(datearray.elementAt(i),pointarray.elementAt(i1)), false, 250);
+                            mSeries.appendData(new DataPoint(datearray.elementAt(i),pointarray.elementAt(i1)), false, 250);
 
                             Log.e("VECTOR", pointarray.elementAt(i) + " " + datearray.elementAt(i));
                         }
@@ -193,7 +190,7 @@ public class SongGraph extends AppCompatActivity {
         double x = 0;
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
-       // graph.getGridLabelRenderer().setHumanRounding(false);
+        // graph.getGridLabelRenderer().setHumanRounding(false);
         //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);

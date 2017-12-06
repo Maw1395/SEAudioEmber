@@ -51,9 +51,9 @@ public class ArtistOrSongPage extends AppCompatActivity implements View.OnClickL
         searchAllTime.setText("Artist");
         searchAllTime.setOnClickListener(this);
 
-        Button searchGenre = findViewById(R.id.Genre);
+       /* Button searchGenre = findViewById(R.id.Genre);
         searchGenre.setText("Song");
-        searchGenre.setOnClickListener(this);
+        searchGenre.setOnClickListener(this);*/
 
     }
 
@@ -72,14 +72,14 @@ public class ArtistOrSongPage extends AppCompatActivity implements View.OnClickL
                 break;
             }
 
-            case R.id.Genre:
+            /*case R.id.Genre:
             {
                 Intent i = new Intent(getBaseContext(),SongPage.class);
                 i.putExtra("GENRE", Genre);
                 i.putExtra("YEAR_RANGE", YearRange);
                 startActivity(i);
                 break;
-            }
+            }*/
 
         }
     }

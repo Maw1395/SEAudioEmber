@@ -45,12 +45,14 @@ public class SongGraph extends AppCompatActivity {
     Vector<Long> pointarray = new Vector<>();
     boolean threadsleeper=false;
     Date datefirst;
+    String SONGID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_graph);
         GraphView graph = findViewById(R.id.graph);
+        SONGID = getIntent().getStringExtra("SONGID");
         graph.setBackgroundColor(Color.rgb(0,0,0));
         initGraph(graph);
     }
@@ -59,7 +61,7 @@ public class SongGraph extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
         Log.e("FIREBASE", ref+"");
-        final Query query = ref.child("SongByDay1").child("92");
+        final Query query = ref.child("SongByDay1").child(SONGID);
 
         Log.e("FIREBASE", query+"");
         mSeries = new LineGraphSeries<DataPoint>();
@@ -147,20 +149,32 @@ public class SongGraph extends AppCompatActivity {
                             case "rock-songs":
                                 GenreString = "Rock";
                         }
+                        if(genreCounter==0)
+                        {
+                            mSeries.setColor(Color.rgb(51, 181, 229));
+                            mSeries.setBackgroundColor(Color.argb(10,51,181,229));
+                        }
                         if(genreCounter==1) {
                             mSeries.setColor(Color.rgb(255, 255, 0));
+                            mSeries.setBackgroundColor(Color.argb(10,255,255,0));
                             //graph.getLegendRenderer().
                         }
                         if(genreCounter==2) {
                             mSeries.setColor(Color.rgb(204, 0, 0));
+                            mSeries.setBackgroundColor(Color.argb(10,204,0,0));
                         }
                         if(genreCounter==3) {
                             mSeries.setColor(Color.rgb(57, 255, 20));
+                            mSeries.setBackgroundColor(Color.argb(10,57,0,0));
                         }
                         if(genreCounter==4) {
+                            mSeries.setBackgroundColor(Color.argb(10,253,95,0));
                             mSeries.setColor(Color.rgb(253, 95, 0));
                         }
                         mSeries.setAnimated(true);
+                        mSeries.setDrawDataPoints(true);
+                        mSeries.setDrawBackground(true);
+                        //mSeries.setDrawAsPath(true);
                         mSeries.setThickness(10);
                         mSeries.setTitle(GenreString);
                         graph.addSeries(mSeries);

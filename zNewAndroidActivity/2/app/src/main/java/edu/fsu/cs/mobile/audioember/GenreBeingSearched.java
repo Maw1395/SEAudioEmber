@@ -26,27 +26,36 @@ import java.util.concurrent.Semaphore;
  * Created by Woodham-PC on 12/2/2017.
  */
 
-public class GenreBeingSearched extends AppCompatActivity {
+public class GenreBeingSearched extends AppCompatActivity implements View.OnClickListener {
 
     final private ArrayList<String> songs = new ArrayList<String>();
     final private ArrayList<String> SongID = new ArrayList<String>();
 
     private String Genre;
+    private String Genre1;
     private String Year;
+    private int Page;
+    private Boolean End;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  songs = new ArrayList<String>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.genre_being_searched);
+        final Button NextButton = (Button) findViewById(R.id.Next);
+        NextButton.setOnClickListener(this);
         final ListView list  = (ListView) findViewById(R.id.genreList);
         final ArrayAdapter<String> adapter= new ArrayAdapter<String>(this, R.layout.array_adapter_text_view, songs);
-        final int counterIntent = 50;
+        Page = getIntent().getIntExtra("PAGE", 0);
+        Log.e("PAGENUMBER", Page+"");
+        int counterIntent= getIntent().getIntExtra("PAGE", 0);
+        counterIntent*=50;
         final int counter = counterIntent;
+        Log.e("PAGENUMBER", counterIntent+"");
         Year = "2010";
         Genre = getIntent().getStringExtra("Genre");
+        Genre1=Genre;
         Genre = "SongPointsByYear" + Genre;
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
         int i = 0;
@@ -119,6 +128,30 @@ public class GenreBeingSearched extends AppCompatActivity {
        /* Button Rock = findViewById(R.id.Rock);
         Rock.setOnClickListener(this);*/
        return list;
+    }
+    @Override
+    public void onClick (View v)
+    {
+        Intent i = new Intent(getBaseContext(), GenreBeingSearched.class);
+        switch(v.getId())
+        {
+            case R.id.Next:
+            {
+                i.putExtra("Genre", Genre1);
+                i.putExtra("PAGE", Page+1);
+                startActivity(i);
+                break;
+            }
+
+            case R.id.Back:
+            {
+                i.putExtra("Genre", Genre);
+                i.putExtra("PAGE", Page-1);
+                startActivity(i);
+                break;
+            }
+
+        }
     }
    /* @Override
     public void onClick(View v) {

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class GenrePage extends AppCompatActivity implements View.OnClickListener{
+    public boolean songOrArtist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,12 +45,22 @@ public class GenrePage extends AppCompatActivity implements View.OnClickListener
 
         Button Back = findViewById(R.id.Back);
         Back.setOnClickListener(this);
+        songOrArtist = getIntent().getBooleanExtra("SONGNOTARTIST", true);
+        if(songOrArtist)
+        {
+            this.setTitle("Top Songs > Select Genre");
+        }
+        else
+        {
+            this.setTitle("Top Artists > Select Genre");
+        }
     }
 
     @Override
     public void onClick (View v)
     {
         Intent i = new Intent(getBaseContext(), YearPage.class);
+        i.putExtra("SONGNOTARTIST", songOrArtist);
         switch(v.getId())
         {
             case R.id.Pop:

@@ -21,7 +21,7 @@ public class YearPage extends AppCompatActivity {
 
     private String Genre;
     private String Year;
-
+    private boolean songOrArtist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //  songs = new ArrayList<String>();
@@ -50,7 +50,15 @@ public class YearPage extends AppCompatActivity {
             case "-rock-songs":
                 GenreString = "Rock";
         }
-        this.setTitle("Genre > " +GenreString + " > Select Year");
+        songOrArtist = getIntent().getBooleanExtra("SONGNOTARTIST", true);
+        if(songOrArtist)
+        {
+            this.setTitle("Top Songs > " +GenreString + " > Select Year");
+        }
+        else
+        {
+            this.setTitle("Top Artists > " +GenreString + " > Select Year");
+        }
         switch(Genre)
         {
             case "-country-songs":
@@ -112,11 +120,23 @@ public class YearPage extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View list, int pos, long id) {
 
-                Log.e( "I'm BEING CLICKED", adapter.getItemAtPosition(pos)+"");
-                Intent i = new Intent(getBaseContext(), ArtistOrSongPage.class);
-                i.putExtra("GENRE", Genre);
-                i.putExtra("YEAR_RANGE", adapter.getItemAtPosition(pos)+"");
-                startActivity(i);
+                if (songOrArtist)
+
+                    {
+                        Intent i = new Intent(getBaseContext(), SongPage.class);
+                        i.putExtra("GENRE", Genre);
+                        i.putExtra("YEAR_RANGE", adapter.getItemAtPosition(pos)+"");
+                        Log.e( "I'm BEING CLICKED", adapter.getItemAtPosition(pos)+"");
+                        startActivity(i);
+                    }
+                else{
+                    Intent i = new Intent(getBaseContext(), ArtistPage.class);
+                    i.putExtra("GENRE", Genre);
+                    i.putExtra("YEAR_RANGE", adapter.getItemAtPosition(pos)+"");
+                    Log.e( "I'm BEING CLICKED", adapter.getItemAtPosition(pos)+"");
+                    startActivity(i);
+                }
+
 
             }
         });

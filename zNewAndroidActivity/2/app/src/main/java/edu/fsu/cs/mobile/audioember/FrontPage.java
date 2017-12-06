@@ -137,43 +137,33 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
                         switch (GenreString){
                             case "country-songs":
                                 GenreString = "Country";
+                                mSeries.setBackgroundColor(Color.argb(10,255,131,0));
+                                mSeries.setColor(Color.rgb(255, 131, 0));
                                 break;
                             case "dance-club-play-songs":
                                 GenreString = "EDM";
+                                mSeries.setColor(Color.rgb(51, 181, 229));
+                                mSeries.setBackgroundColor(Color.argb(10,51,181,229));
                                 break;
                             case "hot-100":
                                 GenreString = "Hot-100";
+                                mSeries.setColor(Color.rgb(204, 0, 0));
+                                mSeries.setBackgroundColor(Color.argb(10,204,0,0));
                                 break;
                             case "pop-songs":
                                 GenreString = "POP";
+                                mSeries.setColor(Color.rgb(255, 255, 0));
+                                mSeries.setBackgroundColor(Color.argb(10,255,255,0));
                                 break;
                             case "r-b-hip-hop-songs":
                                 GenreString = "R&B Hip Hop";
+                                mSeries.setColor(Color.rgb(255, 255, 255));
+                                mSeries.setBackgroundColor(Color.argb(10,255,255,255));
                                 break;
                             case "rock-songs":
                                 GenreString = "Rock";
-                        }
-                        if(genreCounter==0)
-                        {
-                            mSeries.setColor(Color.rgb(51, 181, 229));
-                            mSeries.setBackgroundColor(Color.argb(10,51,181,229));
-                        }
-                        if(genreCounter==1) {
-                            mSeries.setColor(Color.rgb(255, 255, 0));
-                            mSeries.setBackgroundColor(Color.argb(10,255,255,0));
-                            //graph.getLegendRenderer().
-                        }
-                        if(genreCounter==2) {
-                            mSeries.setColor(Color.rgb(204, 0, 0));
-                            mSeries.setBackgroundColor(Color.argb(10,204,0,0));
-                        }
-                        if(genreCounter==3) {
-                            mSeries.setColor(Color.rgb(57, 255, 20));
-                            mSeries.setBackgroundColor(Color.argb(10,57,0,0));
-                        }
-                        if(genreCounter==4) {
-                            mSeries.setBackgroundColor(Color.argb(10,253,95,0));
-                            mSeries.setColor(Color.rgb(253, 95, 0));
+                                mSeries.setColor(Color.rgb(57, 255, 20));
+                                mSeries.setBackgroundColor(Color.argb(10,57,0,0));
                         }
                         mSeries.setAnimated(true);
                         mSeries.setDrawDataPoints(true);
@@ -207,7 +197,7 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
         double x = 0;
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
-        // graph.getGridLabelRenderer().setHumanRounding(false);
+         //graph.getGridLabelRenderer().setHumanRounding(false);
         //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
@@ -218,7 +208,10 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
         graph.setTitleColor(Color.red(204));
         graph.getViewport().setScrollable(true); // enables horizontal scrolling
         graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
+        //graph.getViewport().setScalableY(true);
         graph.getLegendRenderer().setVisible(true);
+       // graph.getGridLabelRenderer().setNumHorizontalLabels(5);
+        graph.getGridLabelRenderer().setHorizontalLabelsAngle(20);
         graph.getLegendRenderer().setWidth(400);
         graph.getLegendRenderer().setTextColor(Color.WHITE);
         //graph.getGridLabelRenderer().setVerticalAxisTitle("P  o  i  n  t  s");

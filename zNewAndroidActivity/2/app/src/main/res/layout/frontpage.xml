@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context="edu.fsu.cs.mobile.audioember.SearchMenu">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="175dp" />
+
+
+
+        <Button
+            android:id="@+id/AllTimeSong"
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="@string/top_songs_all_time"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/AllTimeArtist"
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="@string/top_artists_all_time"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/GenreSong"
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="@string/top_songs_by_genre"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/GenreArtist"
+            android:layout_width="fill_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="@string/top_artists_by_genre"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

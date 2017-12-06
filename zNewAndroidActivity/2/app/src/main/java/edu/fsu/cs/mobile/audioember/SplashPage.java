@@ -31,7 +31,7 @@ public class SplashPage extends AppCompatActivity
             @Override
             public void run()
             {
-                Intent intent = new Intent(SplashPage.this, MainActivity.class);
+                Intent intent = new Intent(SplashPage.this, FrontPage.class);
                 startActivity(intent);
                 SplashPage.this.finish();
             }

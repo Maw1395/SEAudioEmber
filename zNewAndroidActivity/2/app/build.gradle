@@ -40,7 +40,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:10.0.1'
 
     // This library handles authentication and authorization
-    compile 'com.spotify.android:auth:1.0.0-alpha'
+    compile(name: 'spotify-auth-1.0.0-beta13', ext: 'aar')
     // This library handles music playback
     compile 'com.spotify.sdk:spotify-player-24-noconnect-2.20b@aar'
 

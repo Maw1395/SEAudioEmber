@@ -1,10 +1,17 @@
 package edu.fsu.cs.mobile.audioember;
 
+/**
+ * Created by woody on 12/4/2017.
+ */
+
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,18 +27,12 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.Random;
 import java.util.Vector;
 
-/**
- * Created by jonas on 10.09.16.
- */
-public class SongGraph extends AppCompatActivity {
-
+public class FrontPage extends AppCompatActivity implements View.OnClickListener {
     private LineGraphSeries<DataPoint> mSeries;
     private final Handler mHandler = new Handler();
     private Runnable mTimer2;
@@ -46,34 +47,37 @@ public class SongGraph extends AppCompatActivity {
     boolean threadsleeper=false;
     Date datefirst;
     String SONGID;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        this.setTitle("Welcome To Audio Ember");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_song_graph);
-        GraphView graph = findViewById(R.id.graph);
-        SONGID = getIntent().getStringExtra("SONGID");
-        graph.setBackgroundColor(Color.rgb(0,0,0));
-        initGraph(graph);
-    }
+        setContentView(R.layout.frontpage);
 
+        Button searchAllTimeArtist = findViewById(R.id.AllTimeArtist);
+        searchAllTimeArtist.setOnClickListener(this);
+
+        Button searchAllTimeSong = findViewById(R.id.AllTimeSong);
+        searchAllTimeSong.setOnClickListener(this);
+
+        Button searchGenreArtist = findViewById(R.id.GenreArtist);
+        searchGenreArtist.setOnClickListener(this);
+
+        Button searchGenreSong = findViewById(R.id.GenreSong);
+        searchGenreSong.setOnClickListener(this);
+
+        GraphView graph = findViewById(R.id.graph);
+        initGraph(graph);
+
+    }
     public void initGraph(final GraphView graph) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
         Log.e("FIREBASE", ref+"");
-        final Query query = ref.child("SongByDay1").child(SONGID);
-
-        Log.e("FIREBASE", query+"");
+        Random rand = new Random();
+        int n = rand.nextInt(40000) + 1;
+        final Query query = ref.child("SongByDay1").child(n+"");
         mSeries = new LineGraphSeries<DataPoint>();
-        DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            theday1 = df1.parse(FirstDate);
-        }
-        catch (ParseException e) {
-            e.printStackTrace();
-        }
-        datefirst = theday1;
-
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -125,7 +129,7 @@ public class SongGraph extends AppCompatActivity {
                                 }
                             }
 
-                             mSeries.appendData(new DataPoint(datearray.elementAt(i),pointarray.elementAt(i1)), false, 250);
+                            mSeries.appendData(new DataPoint(datearray.elementAt(i),pointarray.elementAt(i1)), false, 250);
 
                             Log.e("VECTOR", pointarray.elementAt(i) + " " + datearray.elementAt(i));
                         }
@@ -133,8 +137,8 @@ public class SongGraph extends AppCompatActivity {
                         switch (GenreString){
                             case "country-songs":
                                 GenreString = "Country";
-                                mSeries.setBackgroundColor(Color.argb(10,253,95,0));
-                                mSeries.setColor(Color.rgb(253, 95, 0));
+                                mSeries.setBackgroundColor(Color.argb(10,255,131,0));
+                                mSeries.setColor(Color.rgb(255, 131, 0));
                                 break;
                             case "dance-club-play-songs":
                                 GenreString = "EDM";
@@ -193,7 +197,7 @@ public class SongGraph extends AppCompatActivity {
         double x = 0;
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
-       // graph.getGridLabelRenderer().setHumanRounding(false);
+         //graph.getGridLabelRenderer().setHumanRounding(false);
         //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
@@ -204,13 +208,55 @@ public class SongGraph extends AppCompatActivity {
         graph.setTitleColor(Color.red(204));
         graph.getViewport().setScrollable(true); // enables horizontal scrolling
         graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
+        //graph.getViewport().setScalableY(true);
         graph.getLegendRenderer().setVisible(true);
-        graph.getLegendRenderer().setWidth(400);
+       // graph.getGridLabelRenderer().setNumHorizontalLabels(5);
         graph.getGridLabelRenderer().setHorizontalLabelsAngle(20);
+        graph.getLegendRenderer().setWidth(400);
         graph.getLegendRenderer().setTextColor(Color.WHITE);
         //graph.getGridLabelRenderer().setVerticalAxisTitle("P  o  i  n  t  s");
         //graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.rgb(204,0,0));
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         Log.e("SIZE", pointarray.size() + "");
+    }
+    @Override
+    public void onClick (View v)
+    {
+        switch(v.getId())
+        {
+
+            case R.id.AllTimeArtist:
+            {
+                Intent i = new Intent(getBaseContext(), ArtistPage.class);
+                i.putExtra("GENRE", "");
+                i.putExtra("YEAR_RANGE", "1960 - 2015");
+                startActivity(i);
+                break;
+            }
+            case R.id.AllTimeSong:
+            {
+                Intent i = new Intent(getBaseContext(), SongPage.class);
+                i.putExtra("GENRE", "");
+                i.putExtra("YEAR_RANGE", "1960 - 2015");
+                startActivity(i);
+                break;
+            }
+
+            case R.id.GenreSong:
+            {
+                Intent i = new Intent(getBaseContext(), GenrePage.class);
+                i.putExtra("SONGNOTARTIST", true);
+                startActivity(i);
+                break;
+            }
+            case R.id.GenreArtist:
+            {
+                Intent i = new Intent(getBaseContext(), GenrePage.class);
+                i.putExtra("SONGNOTARTIST",false);
+                startActivity(i);
+                break;
+            }
+
+        }
     }
 }

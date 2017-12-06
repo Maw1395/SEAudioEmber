@@ -3,12 +3,13 @@ from datetime import datetime, timedelta
 
 Firebasefile= open('FirebaseSongFile1.json','w')
 Firebasefile.write("{\n")
-Firebasefile.write('\t"SongByDay1" : [null,{\n')
+Firebasefile.write('\t"SongByDay1" : {\n')
 
 SONG_MAX = db.session.query(models.songs).order_by(models.songs.SongID.desc()).first().SongID                    
 SONG_MIN=1
 GenreList = ['hot-100', 'country-songs', 'rock-songs', 'r-b-hip-hop-songs', 'dance-club-play-songs', 'pop-songs']
 for i in range(1, SONG_MAX):
+    Firebasefile.write('\t\t\t"'+str(i) +'" :{\n')
     if i%1000 == 0:
 	print i
     SONG_MIN=i
@@ -40,12 +41,12 @@ for i in range(1, SONG_MAX):
             if counter!=count:
                 Firebasefile.write('\t\t\t},\n')
             else:
-                Firebasefile.write('\t\t\t}\n\t\t}, {\n')
+                Firebasefile.write('\t\t\t}\n\t\t}, \n')
  
-                #Points = IndividualSongEntry.Points
-                #Artist = unicodedata.normalize('NFKD', IndividualSongEntry.Artist).encode('ascii', 'ignore')
-                #Title = unicodedata.normalize('NFKD', IndividualSongEntry.Title).encode('ascii', 'ignore')
-                #SongID = IndividualSongEntry.SongID
-                #path = "SongByDay/" + str(SongID) + '/' + GenreList[j] + '/' + Date.strftime('%Y-%m-%    d')
-                
+#Points = IndividualSongEntry.Points
+#Artist = unicodedata.normalize('NFKD', IndividualSongEntry.Artist).encode('ascii', 'ignore')
+#Title = unicodedata.normalize('NFKD', IndividualSongEntry.Title).encode('ascii', 'ignore')
+#SongID = IndividualSongEntry.SongID
+#path = "SongByDay/" + str(SongID) + '/' + GenreList[j] + '/' + Date.strftime('%Y-%m-%    d')
+
 

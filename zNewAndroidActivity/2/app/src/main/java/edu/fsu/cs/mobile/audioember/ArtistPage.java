@@ -52,9 +52,10 @@ public class ArtistPage extends AppCompatActivity implements View.OnClickListene
         final int counter = counterIntent;
         Log.e("PAGENUMBER", counterIntent + "");
         Year = getIntent().getStringExtra("YEAR_RANGE");
+
         Genre = getIntent().getStringExtra("GENRE");
         Genre1 = Genre;
-        Genre = "SongPointsByYear" + Genre;
+        Genre = "ArtistPointsByYear" + Genre;
         Log.e("GENRE", Genre);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference ref = database.getReference();
@@ -78,18 +79,11 @@ public class ArtistPage extends AppCompatActivity implements View.OnClickListene
                                 case "Points":
                                     Points = Rank.getValue() + "";
                                     break;
-                                case "SongID":
-                                    SongID.add(Rank.getValue() + "");
-                                    break;
-                                case "SongName":
-                                    SongName = Rank.getValue() + "";
-                                    Log.e("SONGNAME", SongName);
-                                    break;
                             }
 
 
                         }
-                        songs.add(SongName + " by " + Artist + " " + Points);
+                        songs.add(Artist + " " + Points);
                         //Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
                         setup(list, adapter);
                     }
@@ -120,9 +114,9 @@ public class ArtistPage extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onItemClick(AdapterView<?> adapter, View list, int pos, long id) {
 
-                intent.putExtra("SONGID", SongID.get(pos));
-                startActivity(intent);
-                Log.e("I'm BEING CLICKED", SongID.get(pos));
+                /*intent.putExtra("SONGID", SongID.get(pos));
+                startActivity(intent);*/
+                //Log.e("I'm BEING CLICKED", SongID.get(pos));
 
             }
         });
@@ -135,7 +129,7 @@ public class ArtistPage extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(getBaseContext(), SongPage.class);
+        Intent i = new Intent(getBaseContext(), ArtistPage.class);
         switch (v.getId()) {
             case R.id.Next: {
                 i.putExtra("GENRE", Genre1);

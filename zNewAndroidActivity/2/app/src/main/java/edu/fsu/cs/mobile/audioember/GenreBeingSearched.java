@@ -25,6 +25,8 @@ import java.util.ArrayList;
 public class GenreBeingSearched extends AppCompatActivity {
 
     // ----------------------------------------------------------------------------
+
+
     ListView lv;
     Button nextBtn, prevBtn;
     Pagination p = new Pagination();

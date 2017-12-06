@@ -87,7 +87,9 @@
 
         </activity>
 
-        <activity android:name=".SearchByArtist">
+        <activity
+            android:name=".SearchByArtist"
+            android:label="Select An Artist">
         </activity>
 
         <activity

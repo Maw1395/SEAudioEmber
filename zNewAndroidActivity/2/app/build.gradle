@@ -34,6 +34,7 @@ dependencies {
     })
     implementation files('libs/GraphView-4.2.1.jar')
     compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:recyclerview-v7:26.+'
     //compile 'com.jjoe64:graphview:4.2.1'
     compile 'com.android.support:design:26.+'
     compile 'com.google.firebase:firebase-database:10.0.1'

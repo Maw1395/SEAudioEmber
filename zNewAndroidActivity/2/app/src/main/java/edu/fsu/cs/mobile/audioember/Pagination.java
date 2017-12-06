@@ -1,12 +1,14 @@
 package edu.fsu.cs.mobile.audioember;
 
+import android.support.v7.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
 /**
  * Created by Kevin Williams on 12/4/2017.
  */
 
-public class Pagination {
+public class Pagination extends AppCompatActivity {
     /*
     Constants
      */
@@ -24,7 +26,7 @@ public class Pagination {
     //    return songs;
     //}
 
-    ArrayList<String> songs = new ArrayList<>();
+    //ArrayList<String> songs = new ArrayList<>();
 
     /*
     GENERATE PAGE DATA, PASS US CURRENT PAGE.
@@ -56,3 +58,67 @@ public class Pagination {
         //return pagination;
     }
 }
+/*
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    final DatabaseReference ref = database.getReference();
+
+    int i = 0;
+        for (i = 1; i < 51; i++)
+        {
+        Query query = ref.child(Genre).child(Year).child((counter+i)+"");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener()
+        {
+@Override
+public void onDataChange(DataSnapshot dataSnapshot)
+        {
+        if (dataSnapshot.exists())
+        {
+        String Artist = "";
+        String Points = "";
+        String SongName = "";
+
+        for (DataSnapshot Rank : dataSnapshot.getChildren())
+        {
+        String key = Rank.getKey();
+        switch (key)
+        {
+        case "Artist":
+        Artist = Rank.getValue() + "";
+        break;
+        case "Points":
+        Points = Rank.getValue() + "";
+        break;
+        case "SongID":
+        SongID.add(Rank.getValue() + "");
+        break;
+        case "SongName":
+        SongName = Rank.getValue() + "";
+        break;
+        }
+        }
+        songs.add(  SongName + " by " + Artist + " " + Points);
+        Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
+        //setup(list, adapter);
+        setup(lv, adapter);
+        }
+        }
+
+@Override
+public void onCancelled(DatabaseError databaseError)
+        {
+
+        }
+        });
+
+        Log.e("i value", i + "");
+        if (i == 50)
+        {
+        for (int j =0; j<songs.size(); j++)
+        Log.e("SONG IN LIST",songs.get(j));
+
+        //setup(list, adapter);
+        setup(lv, adapter);
+        }
+        }
+*/

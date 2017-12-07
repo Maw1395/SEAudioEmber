@@ -1,10 +1,13 @@
 package edu.fsu.cs.mobile.audioember;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,22 +19,34 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.spotify.sdk.android.authentication.AuthenticationClient;
+import com.spotify.sdk.android.authentication.AuthenticationRequest;
+import com.spotify.sdk.android.authentication.AuthenticationResponse;
+import com.spotify.sdk.android.player.Config;
+import com.spotify.sdk.android.player.ConnectionStateCallback;
+import com.spotify.sdk.android.player.Error;
+import com.spotify.sdk.android.player.PlaybackState;
+import com.spotify.sdk.android.player.Player;
+import com.spotify.sdk.android.player.PlayerEvent;
+import com.spotify.sdk.android.player.Spotify;
+import com.spotify.sdk.android.player.SpotifyPlayer;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Vector;
+
+//import com.wrapper.spotify.Api;
 
 /**
  * Created by jonas on 10.09.16.
  */
-public class SongGraph extends AppCompatActivity {
+public class SongGraph extends AppCompatActivity implements View.OnClickListener,
+        SpotifyPlayer.NotificationCallback, ConnectionStateCallback {
 
+//    final TrackSearchRequest request = api.searchTracks("Mr. Brightside").market("US").build();
     private LineGraphSeries<DataPoint> mSeries;
     private final Handler mHandler = new Handler();
     private Runnable mTimer2;
@@ -51,6 +66,25 @@ public class SongGraph extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_graph);
+
+        //Spotify-----------------------------------------------------------------------------------
+        AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
+                AuthenticationResponse.Type.TOKEN,
+                REDIRECT_URI);
+        builder.setScopes(new String[]{"user-read-private", "streaming"});
+        AuthenticationRequest request = builder.build();
+
+        AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
+        //------------------------------------------------------------------------------------------
+        // Play song
+        Button playSong = (Button) findViewById(R.id.play_song);
+        playSong.setOnClickListener(this);
+
+        // Pause song
+        Button pauseSong = findViewById(R.id.pause_song);
+        pauseSong.setOnClickListener(this);
+        //------------------------------------------------------------------------------------------
+
         GraphView graph = findViewById(R.id.graph);
         SONGID = getIntent().getStringExtra("SONGID");
         graph.setBackgroundColor(Color.rgb(0,0,0));
@@ -125,7 +159,7 @@ public class SongGraph extends AppCompatActivity {
                                 }
                             }
 
-                             mSeries.appendData(new DataPoint(datearray.elementAt(i),pointarray.elementAt(i1)), false, 250);
+                            mSeries.appendData(new DataPoint(datearray.elementAt(i),pointarray.elementAt(i1)), false, 250);
 
                             Log.e("VECTOR", pointarray.elementAt(i) + " " + datearray.elementAt(i));
                         }
@@ -193,7 +227,7 @@ public class SongGraph extends AppCompatActivity {
         double x = 0;
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
-       // graph.getGridLabelRenderer().setHumanRounding(false);
+        // graph.getGridLabelRenderer().setHumanRounding(false);
         //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
@@ -212,5 +246,134 @@ public class SongGraph extends AppCompatActivity {
         //graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.rgb(204,0,0));
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         Log.e("SIZE", pointarray.size() + "");
+    }
+
+    //Spotify---------------------------------------------------------------------------------------
+    // TODO: Replace with your client ID
+    private static final String CLIENT_ID = "72cf4955f79d4afa836326c08b09c609";
+    // TODO: Replace with your redirect URI
+    private static final String REDIRECT_URI = "SEAudioEmber://callback";
+
+    // Request code that will be used to verify if the result comes from correct activity
+    // Can be any integer
+    private static final int REQUEST_CODE = 1337;
+
+    private SpotifyPlayer mPlayer;
+    private PlaybackState mCurrentPlaybackState;
+    private static final String TAG = "SongGraph";
+
+    private final Player.OperationCallback mOperationCallback = new Player.OperationCallback() {
+        @Override
+        public void onSuccess() {
+            Log.d(TAG, "onSuccess: ");
+        }
+
+        @Override
+        public void onError(Error error) {
+            Log.d(TAG, "onError: ");
+        }
+    };
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        // Check if result comes from the correct activity
+        if (requestCode == REQUEST_CODE) {
+            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+            if (response.getType() == AuthenticationResponse.Type.TOKEN) {
+                Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
+                Spotify.getPlayer(playerConfig, this, new SpotifyPlayer.InitializationObserver() {
+                    @Override
+                    public void onInitialized(SpotifyPlayer spotifyPlayer) {
+                        mPlayer = spotifyPlayer;
+                        mPlayer.addConnectionStateCallback(SongGraph.this);
+                        mPlayer.addNotificationCallback(SongGraph.this);
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+                        Log.e("SongGraph", "Could not initialize player: " + throwable.getMessage());
+                    }
+                });
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        Spotify.destroyPlayer(this);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPlaybackEvent(PlayerEvent playerEvent) {
+        Log.d("SongGraph", "Playback event received: " + playerEvent.name());
+        switch (playerEvent) {
+            // Handle event type as necessary
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onPlaybackError(Error error) {
+        Log.d("SongGraph", "Playback error received: " + error.name());
+        switch (error) {
+            // Handle error type as necessary
+            default:
+                break;
+        }
+    }
+
+    final static String uri = "spotify.com/track/4G8gkOterJn0Ywt6uhqbhp";
+
+    //radioactive imagine dragons
+    //https://open.spotify.com/track/4G8gkOterJn0Ywt6uhqbhp
+
+    boolean isPlaying = false;
+
+    @Override
+    public void onClick(View v)
+    {
+        switch(v.getId()) {
+
+            case R.id.play_song:
+            Log.d("SongGraph", "Song Playing");
+            mPlayer.playUri(null,
+                    "spotify:track:4G8gkOterJn0Ywt6uhqbhp", 0, 0);
+            break;
+
+            case R.id.pause_song:
+                mPlayer.playUri(null, "0", 0, 0);
+
+        }
+    }
+
+    @Override
+    public void onLoggedIn() {
+        Log.d("SongGraph", "User logged in");
+    }
+
+    @Override
+    public void onLoggedOut() {
+        Log.d("SongGraph", "User logged out");
+    }
+
+    @Override
+    public void onLoginFailed(Error error) {
+        System.out.println("Failed to sign in.");
+    }
+
+    @Override
+    public void onTemporaryError() {
+        Log.d("SongGraph", "Temporary error occurred");
+    }
+
+    @Override
+    public void onConnectionMessage(String message) {
+        Log.d("SongGraph", "Received connection message: " + message);
     }
 }

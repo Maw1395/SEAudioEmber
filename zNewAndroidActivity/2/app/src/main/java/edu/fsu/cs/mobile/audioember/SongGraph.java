@@ -343,13 +343,19 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
         switch(v.getId()) {
 
             case R.id.play_song:
-                Intent intent = new Intent("android.intent.action.MUSIC_PLAYER");
-                startActivity(intent);
+                //Intent intent = new Intent("android.intent.action.MUSIC_PLAYER");
+                //startActivity(intent);
 
             Log.d("SongGraph", "Song Playing");
             mPlayer.playUri(null,
                     "spotify:track:4G8gkOterJn0Ywt6uhqbhp", 0, 0);
+            break;
+
+            case R.id.pause_song:
+                mPlayer.playUri(null, "0", 0, 0);
+
         }
+
         //Intent intent = new Intent("android.intent.action.MUSIC_PLAYER");
         //startActivity(intent);
         //Intent i = new Intent(getBaseContext(), SongGraph.class);
@@ -365,12 +371,13 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
     //pauseSong.setOnClickListener(new View.OnClickListener){
 
     //@Override
-    public void onClickView(View v){
+    /*public void onClickView(View v){
         if(mCurrentPlaybackState != null && mCurrentPlaybackState.isPlaying)
-            mPlayer.pause(mOperationCallback);
+            //mPlayer.pause(mOperationCallback);
+            mPlayer.playUri(null, "0", 0, 0);
         else
             mPlayer.resume(mOperationCallback);
-    }
+    }*/
 
     /*public void onPauseButton(View v) {
         switch(v.getId()){

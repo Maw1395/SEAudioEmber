@@ -20,5 +20,9 @@
     <string name="top_artists_by_genre">Top Artists By Genre</string>
     <string name="top_artists_all_time">Top Artists All Time</string>
     <string name="top_songs_all_time">Top Songs All Time</string>
+    <string name="previous" />
+    <string name="tap_to_reload" />
+    <string name="play_song">Play</string>
+    <string name="pause_song">Pause</string>
 
 </resources>

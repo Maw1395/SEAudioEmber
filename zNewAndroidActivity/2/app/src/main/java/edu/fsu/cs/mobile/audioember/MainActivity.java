@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements
             // doesn't move onto the onInitialized function that is below which would call the onLoggedIn function through the use of the
             //mPlayer.addConnectionStateCallback function.
 
-            /*AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+           /* AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
             if (response.getType() == AuthenticationResponse.Type.TOKEN) {
                 Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
                 Spotify.getPlayer(playerConfig, this, new SpotifyPlayer.InitializationObserver() {
@@ -143,7 +143,7 @@ public class MainActivity extends Activity implements
 
     private void goToNext()
     {
-        Intent Menu = new Intent(MainActivity.this, SearchMenu.class);
+        Intent Menu = new Intent(MainActivity.this, FrontPage.class);
         startActivity(Menu);
     }
 }

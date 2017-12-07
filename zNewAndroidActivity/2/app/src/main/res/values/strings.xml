@@ -22,5 +22,6 @@
     <string name="top_songs_all_time">Top Songs All Time</string>
     <string name="previous" />
     <string name="tap_to_reload" />
+    <string name="play_song">Play Song</string>
 
 </resources>

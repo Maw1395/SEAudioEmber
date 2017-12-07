@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +29,7 @@ import java.util.Vector;
 /**
  * Created by jonas on 10.09.16.
  */
-public class SongGraph extends AppCompatActivity {
+public class SongGraph extends AppCompatActivity implements View.OnClickListener{
 
     private LineGraphSeries<DataPoint> mSeries;
     private final Handler mHandler = new Handler();
@@ -48,6 +50,11 @@ public class SongGraph extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_graph);
+
+        // Play song
+        Button playSong = findViewById(R.id.play_song);
+        playSong.setOnClickListener(this);
+
         GraphView graph = findViewById(R.id.graph);
         SONGID = getIntent().getStringExtra("SONGID");
         graph.setBackgroundColor(Color.rgb(0,0,0));
@@ -209,5 +216,10 @@ public class SongGraph extends AppCompatActivity {
         //graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.rgb(204,0,0));
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         Log.e("SIZE", pointarray.size() + "");
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

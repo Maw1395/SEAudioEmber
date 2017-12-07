@@ -31,6 +31,7 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,13 +41,18 @@ import java.util.Vector;
 
 //import com.wrapper.spotify.Api;
 
+//Oauth token
+//BQCc_zbHPoG7rS6qPZO-8iGQL3bQx6K0BrggzXJ0Ukrj0AGMAp0e_LIz_qHXSAEDYYyLj8tQh6MBk41YHED5I7pp8PAr3C5C2rvGrjd6cOGGsvUtGvD31vA4TXeQ3x3Gw5rkWuFRuqS8Kgch
+
 /**
  * Created by jonas on 10.09.16.
  */
 public class SongGraph extends AppCompatActivity implements View.OnClickListener,
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback {
-
-//    final TrackSearchRequest request = api.searchTracks("Mr. Brightside").market("US").build();
+    //curl -X GET "https://api.spotify.com/v1/tracks/imagine%20dragons" -H "Accept: application/json" -H "Authorization: Bearer BQDxyn2ZcmAYO1WVXbKhq1IuA3Rs_x3BIZjrzvLR94ciVxsRevaaIwsTEEpihIZNKNNh6pCE0zv_OAOJY5Y5uWXd9CI4naxC7-jaWri9aE1NqHokrb5Z7l4mhCxsklFlKDx_IPQE4rzoILmv"
+    //https://api.spotify.com/v1/me
+    //final TrackSearchRequest request = api.searchTracks("Mr. Brightside").market("US").build();
+    //https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/top-tracks?country=SE" -H"Authorization: Bearer BQDxyn2ZcmAYO1WVXbKhq1IuA3Rs_x3BIZjrzvLR94ciVxsRevaaIwsTEEpihIZNKNNh6pCE0zv_OAOJY5Y5uWXd9CI4naxC7-jaWri9aE1NqHokrb5Z7l4mhCxsklFlKDx_IPQE4rzoILmv"
     private LineGraphSeries<DataPoint> mSeries;
     private final Handler mHandler = new Handler();
     private Runnable mTimer2;
@@ -330,15 +336,12 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
 
     final static String uri = "spotify.com/track/4G8gkOterJn0Ywt6uhqbhp";
 
-    //private static final int[] Initializer = {
-    //        R.id.play_song,
-    //        R.id.pause_song,
-    //};
-
     //radioactive imagine dragons
     //https://open.spotify.com/track/4G8gkOterJn0Ywt6uhqbhp
 
-    boolean isPlaying = false;
+    //boolean isPlaying = false;
+
+    //https://api.spotify.com/v1/search?q=name:' + song + '%20artist:' + artist + '&type=track&limit=10
 
     @Override
     public void onClick(View v)
@@ -346,9 +349,6 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
         switch(v.getId()) {
 
             case R.id.play_song:
-                //Intent intent = new Intent("android.intent.action.MUSIC_PLAYER");
-                //startActivity(intent);
-
             Log.d("SongGraph", "Song Playing");
             mPlayer.playUri(null,
                     "spotify:track:4G8gkOterJn0Ywt6uhqbhp", 0, 0);
@@ -358,52 +358,11 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
                 mPlayer.playUri(null, "0", 0, 0);
 
         }
-
-        //Intent intent = new Intent("android.intent.action.MUSIC_PLAYER");
-        //startActivity(intent);
-        //Intent i = new Intent(getBaseContext(), SongGraph.class);
-        //i.putExtra("SONGNOTARTIST",false);
-        //startActivity(i);
-
-        //Log.d("SongGraph", "Song Playing");
-        //mPlayer.playUri(null, "spotify:track:4G8gkOterJn0Ywt6uhqbhp",
-        //        0, 0);
     }
-
-    //pauseSong = (Button) findViewById(R.id.pause_button);
-    //pauseSong.setOnClickListener(new View.OnClickListener){
-
-    //@Override
-    /*public void onClickView(View v){
-        if(mCurrentPlaybackState != null && mCurrentPlaybackState.isPlaying)
-            //mPlayer.pause(mOperationCallback);
-            mPlayer.playUri(null, "0", 0, 0);
-        else
-            mPlayer.resume(mOperationCallback);
-    }*/
-
-    /*public void onPauseButton(View v) {
-        switch(v.getId()){
-        //R.id.pause_song = v.getId();
-            case R.id.pause_song:
-            if (mCurrentPlaybackState != null && mCurrentPlaybackState.isPlaying)
-                mPlayer.pause(mOperationCallback);
-            else
-                mPlayer.resume(mOperationCallback);
-             break;
-        }
-    }*/
 
     @Override
     public void onLoggedIn() {
         Log.d("SongGraph", "User logged in");
-
-        // Play song
-        //Button playSong = (Button) findViewById(R.id.play_song);
-        //playSong.setOnClickListener(this);
-
-        //mPlayer.playUri(null, "spotify:track:4G8gkOterJn0Ywt6uhqbhp",
-          //      0, 0);
     }
 
     @Override

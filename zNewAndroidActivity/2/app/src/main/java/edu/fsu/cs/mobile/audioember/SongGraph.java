@@ -38,12 +38,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
+//import com.wrapper.spotify.Api;
+
 /**
  * Created by jonas on 10.09.16.
  */
 public class SongGraph extends AppCompatActivity implements View.OnClickListener,
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback {
 
+//    final TrackSearchRequest request = api.searchTracks("Mr. Brightside").market("US").build();
     private LineGraphSeries<DataPoint> mSeries;
     private final Handler mHandler = new Handler();
     private Runnable mTimer2;

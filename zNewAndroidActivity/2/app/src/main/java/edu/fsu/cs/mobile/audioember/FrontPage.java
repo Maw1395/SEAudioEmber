@@ -57,12 +57,14 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
         Button searchAllTimeArtist = findViewById(R.id.AllTimeArtist);
         searchAllTimeArtist.setOnClickListener(this);
 
+        //works
         Button searchAllTimeSong = findViewById(R.id.AllTimeSong);
         searchAllTimeSong.setOnClickListener(this);
 
         Button searchGenreArtist = findViewById(R.id.GenreArtist);
         searchGenreArtist.setOnClickListener(this);
 
+        //works
         Button searchGenreSong = findViewById(R.id.GenreSong);
         searchGenreSong.setOnClickListener(this);
 
@@ -233,6 +235,7 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             }
+            //works
             case R.id.AllTimeSong:
             {
                 Intent i = new Intent(getBaseContext(), SongPage.class);
@@ -242,6 +245,7 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
                 break;
             }
 
+            //works
             case R.id.GenreSong:
             {
                 Intent i = new Intent(getBaseContext(), GenrePage.class);

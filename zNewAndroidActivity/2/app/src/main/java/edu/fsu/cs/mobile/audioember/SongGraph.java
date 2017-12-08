@@ -61,6 +61,7 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
     boolean threadsleeper=false;
     Date datefirst;
     String SONGID;
+    String SONGSTRING;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,8 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
 
         GraphView graph = findViewById(R.id.graph);
         SONGID = getIntent().getStringExtra("SONGID");
+        SONGSTRING = getIntent().getStringExtra("SONGSTRING");
+
         graph.setBackgroundColor(Color.rgb(0,0,0));
         initGraph(graph);
     }
@@ -342,6 +345,7 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
 
             case R.id.play_song:
             Log.d("SongGraph", "Song Playing");
+
             mPlayer.playUri(null,
                     "spotify:track:4G8gkOterJn0Ywt6uhqbhp", 0, 0);
             break;

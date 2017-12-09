@@ -30,6 +30,7 @@ import com.spotify.sdk.android.player.Player;
 import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
+import com.wrapper.spotify.models.SimpleTrack;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -38,7 +39,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
-//import com.wrapper.spotify.Api;
 
 /**
  * Created by jonas on 10.09.16.
@@ -62,6 +62,9 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
     Date datefirst;
     String SONGID;
     String SONGSTRING;
+
+    String sName;
+    String sArtist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,8 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
         GraphView graph = findViewById(R.id.graph);
         SONGID = getIntent().getStringExtra("SONGID");
         SONGSTRING = getIntent().getStringExtra("SONGSTRING");
+        sName = getIntent().getStringExtra("sName");
+        sArtist = getIntent().getStringExtra("sArtist");
 
         graph.setBackgroundColor(Color.rgb(0,0,0));
         initGraph(graph);
@@ -331,12 +336,24 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    final static String uri = "spotify.com/track/4G8gkOterJn0Ywt6uhqbhp";
+
+//String uri = "spotify.com/track/4G8gkOterJn0Ywt6uhqbhp";
 
     //radioactive imagine dragons
     //https://open.spotify.com/track/4G8gkOterJn0Ywt6uhqbhp
 
+
     boolean isPlaying = false;
+
+    SimpleTrack uri;
+
+    String track;
+
+    // Got it to play
+    public String getPreviewUrl() {
+        return sName;
+    }
+
 
     @Override
     public void onClick(View v)
@@ -347,7 +364,7 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
             Log.d("SongGraph", "Song Playing");
 
             mPlayer.playUri(null,
-                    "spotify:track:4G8gkOterJn0Ywt6uhqbhp", 0, 0);
+                    "sName", 0, 0);
             break;
 
             case R.id.pause_song:

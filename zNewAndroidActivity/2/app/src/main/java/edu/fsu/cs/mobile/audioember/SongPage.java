@@ -27,6 +27,8 @@ public class SongPage extends AppCompatActivity implements View.OnClickListener 
 
 final private ArrayList<String> songs = new ArrayList<String>();
 final private ArrayList<String> songString = new ArrayList<String>();
+    final private ArrayList<String> sName = new ArrayList<String>();
+    final private ArrayList<String> sArtist = new ArrayList<String>();
 final private ArrayList<String> SongID = new ArrayList<String>();
 
 private String Genre;
@@ -35,6 +37,9 @@ private String Year;
 private int Page;
 private Boolean End;
 private Intent intent;
+
+    //private String sName;
+    //private String sArtist;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +97,10 @@ protected void onCreate(Bundle savedInstanceState) {
                         }
                         songs.add(  SongName + " by " + Artist + " " + Points);
                         songString.add(SongName + " by " + Artist);
+                        sName.add(SongName);
+                        sArtist.add(Artist);
+                        //sName = SongName;
+                        //sArtist = Artist;
                         //Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
                         setup(list, adapter);
                         }
@@ -129,6 +138,9 @@ public ListView setup(ListView list, ArrayAdapter<String> adapter)
                     startActivity(intent);
                     Log.e( "I'm BEING CLICKED", SongID.get(pos));
 
+                    intent.putExtra("sName", sName.get(pos));
+                    intent.putExtra("sArtist", sArtist.get(pos));
+
                 }
             });
 
@@ -137,6 +149,16 @@ public ListView setup(ListView list, ArrayAdapter<String> adapter)
         Rock.setOnClickListener(this);*/
         return list;
         }
+
+    //public String sNameReturn(String x){
+    //    intent.putExtra("sName", sName)
+        //return  sName;
+    //});
+
+    //public String SArtistReturn(String y){
+    //    return sArtist;
+    //}
+
 @Override
 public void onClick (View v) {
         Intent i = new Intent(getBaseContext(), SongPage.class);

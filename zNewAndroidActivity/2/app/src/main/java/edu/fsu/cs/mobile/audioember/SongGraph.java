@@ -31,7 +31,6 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,18 +40,13 @@ import java.util.Vector;
 
 //import com.wrapper.spotify.Api;
 
-//Oauth token
-//BQCc_zbHPoG7rS6qPZO-8iGQL3bQx6K0BrggzXJ0Ukrj0AGMAp0e_LIz_qHXSAEDYYyLj8tQh6MBk41YHED5I7pp8PAr3C5C2rvGrjd6cOGGsvUtGvD31vA4TXeQ3x3Gw5rkWuFRuqS8Kgch
-
 /**
  * Created by jonas on 10.09.16.
  */
 public class SongGraph extends AppCompatActivity implements View.OnClickListener,
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback {
-    //curl -X GET "https://api.spotify.com/v1/tracks/imagine%20dragons" -H "Accept: application/json" -H "Authorization: Bearer BQDxyn2ZcmAYO1WVXbKhq1IuA3Rs_x3BIZjrzvLR94ciVxsRevaaIwsTEEpihIZNKNNh6pCE0zv_OAOJY5Y5uWXd9CI4naxC7-jaWri9aE1NqHokrb5Z7l4mhCxsklFlKDx_IPQE4rzoILmv"
-    //https://api.spotify.com/v1/me
-    //final TrackSearchRequest request = api.searchTracks("Mr. Brightside").market("US").build();
-    //https://api.spotify.com/v1/artists/43ZHCT0cAZBISjO8DG9PnE/top-tracks?country=SE" -H"Authorization: Bearer BQDxyn2ZcmAYO1WVXbKhq1IuA3Rs_x3BIZjrzvLR94ciVxsRevaaIwsTEEpihIZNKNNh6pCE0zv_OAOJY5Y5uWXd9CI4naxC7-jaWri9aE1NqHokrb5Z7l4mhCxsklFlKDx_IPQE4rzoILmv"
+
+//    final TrackSearchRequest request = api.searchTracks("Mr. Brightside").market("US").build();
     private LineGraphSeries<DataPoint> mSeries;
     private final Handler mHandler = new Handler();
     private Runnable mTimer2;
@@ -67,6 +61,7 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
     boolean threadsleeper=false;
     Date datefirst;
     String SONGID;
+    String SONGSTRING;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +88,8 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
 
         GraphView graph = findViewById(R.id.graph);
         SONGID = getIntent().getStringExtra("SONGID");
+        SONGSTRING = getIntent().getStringExtra("SONGSTRING");
+
         graph.setBackgroundColor(Color.rgb(0,0,0));
         initGraph(graph);
     }
@@ -339,9 +336,7 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
     //radioactive imagine dragons
     //https://open.spotify.com/track/4G8gkOterJn0Ywt6uhqbhp
 
-    //boolean isPlaying = false;
-
-    //https://api.spotify.com/v1/search?q=name:' + song + '%20artist:' + artist + '&type=track&limit=10
+    boolean isPlaying = false;
 
     @Override
     public void onClick(View v)
@@ -350,6 +345,7 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
 
             case R.id.play_song:
             Log.d("SongGraph", "Song Playing");
+
             mPlayer.playUri(null,
                     "spotify:track:4G8gkOterJn0Ywt6uhqbhp", 0, 0);
             break;

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class SongPage extends AppCompatActivity implements View.OnClickListener {
 
 final private ArrayList<String> songs = new ArrayList<String>();
+final private ArrayList<String> songString = new ArrayList<String>();
 final private ArrayList<String> SongID = new ArrayList<String>();
 
 private String Genre;
@@ -90,6 +91,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
                         }
                         songs.add(  SongName + " by " + Artist + " " + Points);
+                        songString.add(SongName + " by " + Artist);
                         //Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
                         setup(list, adapter);
                         }
@@ -122,6 +124,8 @@ public ListView setup(ListView list, ArrayAdapter<String> adapter)
                 public void onItemClick(AdapterView<?> adapter, View list, int pos, long id) {
 
                     intent.putExtra("SONGID", SongID.get(pos));
+                    Log.e("Song String", songString.get(pos));
+                    intent.putExtra("SONGSTRING", songString.get(pos));
                     startActivity(intent);
                     Log.e( "I'm BEING CLICKED", SongID.get(pos));
 

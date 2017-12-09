@@ -38,12 +38,11 @@ private int Page;
 private Boolean End;
 private Intent intent;
 
-    //private String sName;
-    //private String sArtist;
+
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-        //  songs = new ArrayList<String>();
+
         intent = new Intent(getBaseContext(), SongGraph.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.genre_being_searched);
@@ -99,9 +98,6 @@ protected void onCreate(Bundle savedInstanceState) {
                         songString.add(SongName + " by " + Artist);
                         sName.add(SongName);
                         sArtist.add(Artist);
-                        //sName = SongName;
-                        //sArtist = Artist;
-                        //Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
                         setup(list, adapter);
                         }
 
@@ -111,13 +107,12 @@ protected void onCreate(Bundle savedInstanceState) {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-                        //Log.e("Nothing", "NOTHING");
+
                         }
                 });
-        //Log.e("i value", i + "");
+
         if (i == 50) {
                 for (int j =0; j<songs.size(); j++)
-                        //Log.e("SONG IN LIST",songs.get(j));
                         setup(list, adapter);
                 }
         }
@@ -145,19 +140,9 @@ public ListView setup(ListView list, ArrayAdapter<String> adapter)
             });
 
 
-       /* Button Rock = findViewById(R.id.Rock);
-        Rock.setOnClickListener(this);*/
         return list;
         }
 
-    //public String sNameReturn(String x){
-    //    intent.putExtra("sName", sName)
-        //return  sName;
-    //});
-
-    //public String SArtistReturn(String y){
-    //    return sArtist;
-    //}
 
 @Override
 public void onClick (View v) {

@@ -36,7 +36,6 @@ public class GenreBeingSearched extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //  songs = new ArrayList<String>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.genre_being_searched);
         final Button NextButton = (Button) findViewById(R.id.Next);
@@ -117,13 +116,6 @@ public class GenreBeingSearched extends AppCompatActivity implements View.OnClic
 
             }
         });
-
-
-
-
-
-       /* Button Rock = findViewById(R.id.Rock);
-        Rock.setOnClickListener(this);*/
         return list;
     }
     @Override
@@ -150,15 +142,4 @@ public class GenreBeingSearched extends AppCompatActivity implements View.OnClic
 
         }
     }
-   /* @Override
-    public void onClick(View v) {
-        Intent i = new Intent(getBaseContext(), GenreBeingSearched.class);
-        switch (v.getId()) {
-            case R.id.Rock: {
-                i.putExtra("Genre", "-pop-songs");
-                startActivity(i);
-                break;
-            }
-        }
-    }*/
 }

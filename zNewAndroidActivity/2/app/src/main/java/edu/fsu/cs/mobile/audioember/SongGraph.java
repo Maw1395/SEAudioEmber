@@ -235,8 +235,6 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
         double x = 0;
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
-        // graph.getGridLabelRenderer().setHumanRounding(false);
-        //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
         graph.getGridLabelRenderer().setGridColor(Color.rgb(180,23,212));
@@ -250,8 +248,6 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
         graph.getLegendRenderer().setWidth(400);
         graph.getGridLabelRenderer().setHorizontalLabelsAngle(20);
         graph.getLegendRenderer().setTextColor(Color.WHITE);
-        //graph.getGridLabelRenderer().setVerticalAxisTitle("P  o  i  n  t  s");
-        //graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.rgb(204,0,0));
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         Log.e("SIZE", pointarray.size() + "");
     }
@@ -335,9 +331,6 @@ public class SongGraph extends AppCompatActivity implements View.OnClickListener
                 break;
         }
     }
-
-
-//String uri = "spotify.com/track/4G8gkOterJn0Ywt6uhqbhp";
 
     //radioactive imagine dragons
     //https://open.spotify.com/track/4G8gkOterJn0Ywt6uhqbhp

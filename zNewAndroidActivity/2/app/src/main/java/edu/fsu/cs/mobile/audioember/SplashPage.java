@@ -1,5 +1,4 @@
 package edu.fsu.cs.mobile.audioember;
-//https://stackoverflow.com/questions/43598734/android-app-opens-after-a-few-seconds-after-pressing-home-button-during-splash-s
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;

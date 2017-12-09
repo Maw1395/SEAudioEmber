@@ -84,7 +84,6 @@ public class ArtistPage extends AppCompatActivity implements View.OnClickListene
 
                         }
                         songs.add(Artist + " " + Points);
-                        //Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
                         setup(list, adapter);
                     }
 
@@ -96,10 +95,8 @@ public class ArtistPage extends AppCompatActivity implements View.OnClickListene
                     //Log.e("Nothing", "NOTHING");
                 }
             });
-            //Log.e("i value", i + "");
             if (i == 50) {
                 for (int j = 0; j < songs.size(); j++)
-                    //Log.e("SONG IN LIST",songs.get(j));
                     setup(list, adapter);
             }
         }
@@ -114,16 +111,9 @@ public class ArtistPage extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onItemClick(AdapterView<?> adapter, View list, int pos, long id) {
 
-                /*intent.putExtra("SONGID", SongID.get(pos));
-                startActivity(intent);*/
-                //Log.e("I'm BEING CLICKED", SongID.get(pos));
-
             }
         });
 
-
-       /* Button Rock = findViewById(R.id.Rock);
-        Rock.setOnClickListener(this);*/
         return list;
     }
 

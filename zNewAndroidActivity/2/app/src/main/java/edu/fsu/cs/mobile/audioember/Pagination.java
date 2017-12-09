@@ -17,17 +17,6 @@ public class Pagination extends AppCompatActivity {
     public static final int ITEMS_REMAINING=TOTAL_NUM_ITEMS % ITEMS_PER_PAGE;
     public static final int LAST_PAGE=TOTAL_NUM_ITEMS/ITEMS_PER_PAGE;
 
-    //public GenreBeingSearched pagination;
-
-    //public ArrayList<String> songList()
-    //{
-        //pagination = new GenreBeingSearched();
-    //    ArrayList<String> songs = pagination.getSongs();
-    //    return songs;
-    //}
-
-    //ArrayList<String> songs = new ArrayList<>();
-
     /*
     GENERATE PAGE DATA, PASS US CURRENT PAGE.
      */
@@ -43,8 +32,7 @@ public class Pagination extends AppCompatActivity {
             for (int i=startItem;i<startItem+ITEMS_REMAINING;i++)
             {
                 pageData.add("Number " + i);
-                //pagination.getSongs();
-                //Log.i("
+
             }
         }else
         {
@@ -58,67 +46,3 @@ public class Pagination extends AppCompatActivity {
         //return pagination;
     }
 }
-/*
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    final DatabaseReference ref = database.getReference();
-
-    int i = 0;
-        for (i = 1; i < 51; i++)
-        {
-        Query query = ref.child(Genre).child(Year).child((counter+i)+"");
-
-        query.addListenerForSingleValueEvent(new ValueEventListener()
-        {
-@Override
-public void onDataChange(DataSnapshot dataSnapshot)
-        {
-        if (dataSnapshot.exists())
-        {
-        String Artist = "";
-        String Points = "";
-        String SongName = "";
-
-        for (DataSnapshot Rank : dataSnapshot.getChildren())
-        {
-        String key = Rank.getKey();
-        switch (key)
-        {
-        case "Artist":
-        Artist = Rank.getValue() + "";
-        break;
-        case "Points":
-        Points = Rank.getValue() + "";
-        break;
-        case "SongID":
-        SongID.add(Rank.getValue() + "");
-        break;
-        case "SongName":
-        SongName = Rank.getValue() + "";
-        break;
-        }
-        }
-        songs.add(  SongName + " by " + Artist + " " + Points);
-        Log.e("Songs", " " + SongName + " by " + Artist + " " + Points);
-        //setup(list, adapter);
-        setup(lv, adapter);
-        }
-        }
-
-@Override
-public void onCancelled(DatabaseError databaseError)
-        {
-
-        }
-        });
-
-        Log.e("i value", i + "");
-        if (i == 50)
-        {
-        for (int j =0; j<songs.size(); j++)
-        Log.e("SONG IN LIST",songs.get(j));
-
-        //setup(list, adapter);
-        setup(lv, adapter);
-        }
-        }
-*/

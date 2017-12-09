@@ -72,15 +72,6 @@ public class ArtistOrSongPage extends AppCompatActivity implements View.OnClickL
                 break;
             }
 
-            /*case R.id.Genre:
-            {
-                Intent i = new Intent(getBaseContext(),SongPage.class);
-                i.putExtra("GENRE", Genre);
-                i.putExtra("YEAR_RANGE", YearRange);
-                startActivity(i);
-                break;
-            }*/
-
         }
     }
 }

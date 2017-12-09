@@ -199,8 +199,6 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
         double x = 0;
         graph.getViewport().setMaxY(105);
         graph.getViewport().setMinY(0);
-        //graph.getGridLabelRenderer().setHumanRounding(false);
-        //graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setScrollable(true);
         graph.getGridLabelRenderer().setGridColor(Color.rgb(180,23,212));
@@ -210,14 +208,10 @@ public class FrontPage extends AppCompatActivity implements View.OnClickListener
         graph.setTitleColor(Color.red(204));
         graph.getViewport().setScrollable(true); // enables horizontal scrolling
         graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
-        //graph.getViewport().setScalableY(true);
         graph.getLegendRenderer().setVisible(true);
-        // graph.getGridLabelRenderer().setNumHorizontalLabels(5);
         graph.getGridLabelRenderer().setHorizontalLabelsAngle(20);
         graph.getLegendRenderer().setWidth(400);
         graph.getLegendRenderer().setTextColor(Color.WHITE);
-        //graph.getGridLabelRenderer().setVerticalAxisTitle("P  o  i  n  t  s");
-        //graph.getGridLabelRenderer().setVerticalAxisTitleColor(Color.rgb(204,0,0));
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
         Log.e("SIZE", pointarray.size() + "");
     }

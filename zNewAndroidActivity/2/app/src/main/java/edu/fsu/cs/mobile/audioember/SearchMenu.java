@@ -53,7 +53,7 @@ public class SearchMenu extends AppCompatActivity implements View.OnClickListene
 
             case R.id.year:
             {
-                // startActivity(new Intent(SearchMenu.this, YearView.class));
+
                 break;
             }
 
@@ -65,7 +65,6 @@ public class SearchMenu extends AppCompatActivity implements View.OnClickListene
 
             case R.id.AllTime:
             {
-                //startActivity(new Intent(SearchMenu.this, All_Time_List));
                 break;
             }
         }

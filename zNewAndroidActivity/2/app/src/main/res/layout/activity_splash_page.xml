@@ -1,30 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<android.support.relative.RelativeLayout -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    tools:context="edu.fsu.cs.mobile.audioember.SplashPage">
+    android:background="@android:color/black"
+    tools:context="edu.fsu.cs.mobile.audioember.SearchMenu">
 
-    <ImageView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        android:adjustViewBounds="true"
-        android:src="@drawable/musicians" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Audio Ember"
-        android:textColor="#ffffff"
-        android:textSize="40sp"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="228dp" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search By:"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="8dp" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/song"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="Song"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/artist"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="Artist"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/year"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="Year"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/genre"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:text="Genre"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="50dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/AllTime"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/audiowide2"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:text="All Time" />
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

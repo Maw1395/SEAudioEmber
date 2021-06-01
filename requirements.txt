@@ -29,5 +29,5 @@ sqlmigrate==1.0.0
 sqlparse==0.2.4
 Tempita==0.5.2
 traitlets==4.3.2
-urllib3==1.22
+urllib3==1.26.5
 Werkzeug==0.12.2
